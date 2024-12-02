@@ -10,12 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins="http://localhost:8888/",methods = {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins="http://localhost:8080",methods = {RequestMethod.POST})
 @RestController
 @RequiredArgsConstructor
 public class AuthenticationController {
 
     private final AuthenticationService service;
+
 
     @PostMapping("/register")
     public ResponseEntity<String> register (@Valid @RequestBody User user) {
