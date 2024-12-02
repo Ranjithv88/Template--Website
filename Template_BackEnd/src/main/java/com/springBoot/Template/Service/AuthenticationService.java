@@ -7,8 +7,10 @@ import com.springBoot.Template.Repository.UserRepository;
 import com.springBoot.Template.Security.JwtUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,18 +20,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class AuthenticationService implements UserDetailsService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtUtils jwtUtils;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
+    @Autowired
+    private  JwtUtils jwtUtils;
+    @Autowired
+    private  AuthenticationManager authenticationManager;
 
-    public ResponseEntity<String > register(User user) {
+    public ResponseEntity<String> register(User user) {
         User student = new User();
         student.setPassword(passwordEncoder.encode(user.getPassword()));
         if (user.getRole() == null)
@@ -38,18 +45,18 @@ public class AuthenticationService implements UserDetailsService {
         return new ResponseEntity<>("Registered Successfully...", HttpStatus.CREATED);
     }
 
-    public ResponseEntity<?> login (Login login){
-        try{
-            Authentication authentication = new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword());
+    public ResponseEntity<?> login(Login login) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        }catch (BadCredentialsException ex){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(" UserName And Password is inValid ......! ");
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UserName and Password are invalid.");
         }
-        Optional<User> username = userRepository.findByEmail(login.getEmail());
-        if(username.isPresent()){
-            String Token = jwtUtils.generateToken(new HashMap<>(),username.get());
-            return ResponseEntity.ok(Token);
-        }else{
+        Optional<User> userOpt = userRepository.findByEmail(login.getEmail());
+        if (userOpt.isPresent()) {
+            String token = jwtUtils.generateToken(new HashMap<>(), userOpt.get());
+            return ResponseEntity.ok(token);
+        } else {
             return ResponseEntity.noContent().build();
         }
     }
@@ -58,8 +65,7 @@ public class AuthenticationService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(" User Not Found with UserName : " + email));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + email));
     }
-
 }
 

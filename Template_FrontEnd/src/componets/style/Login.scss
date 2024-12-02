@@ -1,128 +1,175 @@
 
 /*------------- Login Components -------------*/
 .Login {
-    height: 100vh;
-    width: 100vw;
-    background-image:
-    repeating-linear-gradient(to right, transparent 0 250px, rgba(255, 255, 255, 0.067) 250px 251px),
-    repeating-linear-gradient(to bottom, transparent 0 250px, rgba(255, 255, 255, 0.067) 250px 251px),
-    url('../../assets/images/Login-Bg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
     display: flex;
     align-items: center;
+    justify-content: center;
     transition: 1s;
-    .LoginForm {
-        font-family: "Griffy", system-ui;
-        height: 90vh;
-        width: 28vw;
-        border-radius: 5px;
-        background-color: rgb(255, 255, 255);
-        display: grid;
+    height: 100vh;
+    width: 100vw;
+    .LoginBanner::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+        repeating-linear-gradient(to right, transparent 0 250px, rgba(255, 255, 255, 0.067) 250px 251px),
+        repeating-linear-gradient(to bottom, transparent 0 250px, rgba(255, 255, 255, 0.067) 250px 251px),
+        url('../../assets/images/Login-Bg.jpg');
+        background-size: cover;
+        background-position: center;
+        animation: bgZoomIn 4s ease-in-out 1 forwards;
+        z-index: -1;
+        pointer-events: none;
+      }
+      @keyframes bgZoomIn {
+        from {
+          transform: scale(1.2);
+        } to {
+          transform: scale(1);
+        }
+      }  
+      .LoginBanner{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
-        padding: 20px 50px;
-        row-gap: 4px;
-        position: absolute;
-        left: 10%;
-        font-weight: bold;
-        justify-items: center;
-        h1 {
-            font-size: 4.5vh;
-            cursor: default;
-        }
-        span {
-            cursor: default;
-            font-size: 2.3vh;
-            a {
-                color: rgb(23, 115, 234);
-            }
-            a:hover{
-                text-decoration: underline solid 2px rgb(23, 115, 234);
-            }
-        }
-        input {
-            font-size: 2.8vh;
-            padding: 10px 15px;
-            border-radius: 10px;
-            border: none;
-            background-color: rgb(233, 233, 233);
-            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
-            font-family: "BebasNeue",sans-serif;
-            height: 6.5vh;
-            width: 22vw;
-        }
-        input:focus {
-            outline: 2px solid rgb(253, 188, 58);
-        }
-        h2 {
-            font-size: 2.3vh;
-            text-align: end;
-            cursor: pointer;
-            place-self: end;
-        }
-        h4{
-            font-size: 2.3vh;
-            text-align: start;
-            cursor: default;
-            place-self: start;
-            color: rgba(255, 0, 0, 0.8);
-        }
-        button {
-            font-size: 2.8vh;
-            height: 5.8vh;
-            width: 22vw;
-            border: none;
-            cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        .LoginForm {
+            font-family: "Griffy", system-ui;
+            height: 90vh;
+            width: 28vw;
             border-radius: 5px;
-            display: flex;
-            align-items: center;
+            background-color: rgb(255, 255, 255);
+            display: grid;
             justify-content: center;
-            padding: 2px 2px;
-            background-color: rgb(238, 238, 230);
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            font-family: "BebasNeue",sans-serif;
-            h3 {
-                padding-right: 10px;
-                font-size: 3.8vh;
-                text-align: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px 50px;
+            row-gap: 4px;
+            font-weight: bold;
+            justify-items: center;
+            h1 {
+                font-size: 4.5vh;
+                cursor: default;
             }
-        }
-        button:hover{
-            filter: opacity(0.85);
-        }
-        p {
-            font-size: 2vh;
-            font-family: cursive;
-            cursor: default;
-        }
-        .SignIn {
-            background-color: rgba(199, 0, 57, 0.8);
-            color: rgb(255, 255, 255);
-            border-radius: 50px;
-            font-weight: 700;
-            font-family: "Griffy",cursive;
-            font-size: 3vh;
-        }
-        .SignIn:hover {
-            background-color: rgba(199, 0, 57, 1);
-            filter: none;
-        }
-        .SignF {
-            background-color: rgb(23, 115, 234);
-            color: rgb(255, 255, 255);
-            h3 {
+            span {
+                cursor: default;
+                font-size: 2.3vh;
+                a {
+                    color: rgb(23, 115, 234);
+                }
+                a:hover{
+                    text-decoration: underline solid 2px rgb(23, 115, 234);
+                }
+            }
+            input {
+                font-size: 2.8vh;
+                padding: 10px 15px;
+                border-radius: 10px;
+                border: none;
+                background-color: rgb(233, 233, 233);
+                box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+                font-family: "BebasNeue",sans-serif;
+                height: 6.5vh;
+                width: 22vw;
+            }
+            input:invalid{
+                border: 2px solid rgba(255, 0, 0, 0.8);
+            }
+            input:valid{
+                border: 2px solid rgba( 0, 255, 0, 0.8);
+            }
+            input:focus {
+                outline: 2px solid rgba(253, 188, 58, 1);
+            }
+            h2 {
+                font-size: 2.3vh;
+                text-align: end;
+                cursor: pointer;
+                place-self: end;
+            }
+            h4{
+                font-size: 2.3vh;
+                text-align: start;
+                cursor: default;
+                place-self: start;
+                color: rgba(255, 0, 0, 0.8);
+            }
+            button {
+                font-size: 2.8vh;
+                height: 5.8vh;
+                width: 22vw;
+                border: none;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2px 2px;
+                background-color: rgb(238, 238, 230);
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+                font-family: "BebasNeue",sans-serif;
+                h3 {
+                    padding-right: 10px;
+                    font-size: 3.8vh;
+                    text-align: center;
+                }
+            }
+            button:hover{
+                filter: opacity(0.85);
+            }
+            p {
+                font-size: 2vh;
+                font-family: cursive;
+                cursor: default;
+            }
+            .SignIn {
+                background-color: rgba(199, 0, 57, 0.8);
+                color: rgb(255, 255, 255);
+                border-radius: 50px;
+                font-weight: 700;
+                font-family: "Griffy",cursive;
+                font-size: 3vh;
+            }
+            .SignIn:hover {
+                background-color: rgba(199, 0, 57, 1);
+                filter: none;
+            }
+            .SignF {
+                background-color: rgb(23, 115, 234);
+                color: rgb(255, 255, 255);
+                h3 {
+                    color: rgb(255, 255, 255);
+                }
+            }
+            .SignT {
+                background-color: rgb(0,0, 0);
                 color: rgb(255, 255, 255);
             }
-        }
-        .SignT {
-            background-color: rgb(0,0, 0);
-            color: rgb(255, 255, 255);
-        }
-        .SignInIcon{
-            padding-left: 20px;
+            .SignInIcon{
+                padding-left: 20px;
+            }
         }
     }
+    .LoginBanner::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('../../assets/images/login-img.png');
+        background-size: cover;
+        background-position: top;
+        transform: scale(2);
+        animation: bgZoomOut 4s ease-in-out 1 forwards;
+        z-index: -1;
+        pointer-events: none;
+    }
+    @keyframes bgZoomOut {
+        from {
+          transform: scale(1);
+        } to {
+          transform: scale(2);
+        }
+      } 
 }
 
