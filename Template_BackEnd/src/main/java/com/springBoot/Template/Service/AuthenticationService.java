@@ -7,7 +7,7 @@ import com.springBoot.Template.Repository.UserRepository;
 import com.springBoot.Template.Security.JwtUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,21 +20,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.Optional;
 
 @Service
+@Configuration
+@RequiredArgsConstructor
 public class AuthenticationService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private  PasswordEncoder passwordEncoder;
-    @Autowired
-    private  JwtUtils jwtUtils;
-    @Autowired
-    private  AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final  PasswordEncoder passwordEncoder;
+    private final JwtUtils jwtUtils;
+    private final  AuthenticationManager authenticationManager;
 
     public ResponseEntity<String> register(User user) {
         User student = new User();
@@ -67,5 +64,6 @@ public class AuthenticationService implements UserDetailsService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + email));
     }
+
 }
 
