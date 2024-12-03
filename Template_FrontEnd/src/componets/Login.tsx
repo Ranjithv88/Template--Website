@@ -21,24 +21,20 @@ function Login() {
   }
 
   async function submit(){
-    console.log("enter")
     document.body.style.cursor = "wait"
-    console.log("out")
     const obj: FormData = {
       email: emailInput.current?.value || "",
       password: passwordInput.current?.value || "",
     }
     if(emailValidation() == true && passwordValidation() == true) {
-      console.log(await send(obj) == true)
       if(await send(obj) == true){
-        navigate('./register')
+        navigate('/register')
       }else{
         setLoginValidator(true)
         document.body.style.cursor = "default"
       }
-    }else{
-      document.body.style.cursor = "default"
     }
+    document.body.style.cursor = "default"
   }
 
   const emailValidation=()=> {
@@ -94,19 +90,19 @@ function Login() {
     <div className='Login'>
       <div className='LoginBanner'>
           <form className='LoginForm' >
-            <h1>Welcome to Template.Vignesh.com</h1>
+            <h1>Welcome to Template</h1>
             <input type="email" ref={emailInput} onChange={()=>{emailValidation(), curserPrograss()}} placeholder=' Enter the Email'/>
             {emailValidator?<h4>Email is Invaild...</h4>:<></>}
-            <input type="password" ref={passwordInput} onChange={()=>{passwordValidation(), curserPrograss()}} minlength={8} placeholder=' Enter the Password'/>
+            <input type="password" ref={passwordInput} onChange={()=>{passwordValidation(), curserPrograss()}} minLength={8} placeholder=' Enter the Password'/>
             {passwordValidator?<h4>password is to Weak...</h4>:<></>}
             <h2>Forget Your Password ?</h2>
-            {loginValidator?<h4>username and Password Wrong...</h4>:<></>}
+            {loginValidator?<h5>username and Password Wrong...</h5>:<></>}
             <button className='SignIn' type='button' style={{ cursor: curserValidator }} onClick={submit} >Log In</button>
             <span>OR</span>
             <button className='SignG'><h3><FcGoogle /></h3>Continue With Google </button>
             <button className='SignF'><h3><FaFacebook /></h3>Continue With FaceBook </button>
             <button className='SignT'><h3><FaXTwitter /></h3>Continue With X </button>
-            <span>Don't have the Account ? <Link to='/register'><a href='#'>Click Here</a></Link></span>
+            <span>Don't have the Account ?<Link className='a' to='/register'>Click Here</Link></span>
             <p>By continuing, you agree to Online Shop Terms of Service an acknowledge you've read our Privacy Policy. Notice at collection.</p>
           </form>
         </div>

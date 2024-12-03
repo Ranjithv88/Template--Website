@@ -38,7 +38,7 @@
         overflow: hidden;
         .LoginForm {
             font-family: "Griffy", system-ui;
-            height: 600px;
+            height: 550px;
             width: 320px;
             border-radius: 5px;
             background-color: rgb(255, 255, 255);
@@ -57,10 +57,10 @@
             span {
                 cursor: default;
                 font-size: 15px;
-                a {
+                .a {
                     color: rgb(23, 115, 234);
                 }
-                a:hover{
+                .a:hover{
                     text-decoration: underline solid 2px rgb(23, 115, 234);
                 }
             }
@@ -90,12 +90,16 @@
                 cursor: pointer;
                 place-self: end;
             }
-            h4{
+            h4,h5{
                 font-size: 15px;
-                text-align: start;
                 cursor: default;
-                place-self: start;
                 color: rgba(255, 0, 0, 0.8);
+            }
+            h4{
+                place-self: start;
+            }
+            h5{
+                place-self: center;
             }
             button {
                 font-size: 20px;

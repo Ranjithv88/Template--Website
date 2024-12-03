@@ -17,7 +17,6 @@ public class AuthenticationController {
 
     private final AuthenticationService service;
 
-
     @PostMapping("/register")
     public ResponseEntity<String> register (@Valid @RequestBody User user) {
         return service.register(user);

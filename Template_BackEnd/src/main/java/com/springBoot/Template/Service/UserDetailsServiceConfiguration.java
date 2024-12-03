@@ -1,4 +1,26 @@
 package com.springBoot.Template.Service;
 
-public class UserDetailsServiceConfiguration {
+import com.springBoot.Template.Repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
+
+@Configuration
+@RequiredArgsConstructor
+public class UserDetailsServiceConfiguration implements UserDetailsService {
+
+    private final UserRepository repository;
+
+    @Override
+    @Transactional
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return repository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + email));
+    }
+
 }
+
