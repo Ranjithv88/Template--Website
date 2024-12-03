@@ -14,7 +14,7 @@
         background-image:
         repeating-linear-gradient(to right, transparent 0 250px, rgba(255, 255, 255, 0.067) 250px 251px),
         repeating-linear-gradient(to bottom, transparent 0 250px, rgba(255, 255, 255, 0.067) 250px 251px),
-        url('../../assets/images/Login-Bg.jpg');
+        url('../../assets/images/valentin-petrov-m-mal-01.jpg');
         background-size: cover;
         background-position: center;
         animation: bgZoomIn 4s ease-in-out 1 forwards;
@@ -38,8 +38,8 @@
         overflow: hidden;
         .LoginForm {
             font-family: "Griffy", system-ui;
-            height: 90vh;
-            width: 28vw;
+            height: 600px;
+            width: 320px;
             border-radius: 5px;
             background-color: rgb(255, 255, 255);
             display: grid;
@@ -51,12 +51,12 @@
             font-weight: bold;
             justify-items: center;
             h1 {
-                font-size: 4.5vh;
+                font-size: 30px;
                 cursor: default;
             }
             span {
                 cursor: default;
-                font-size: 2.3vh;
+                font-size: 15px;
                 a {
                     color: rgb(23, 115, 234);
                 }
@@ -65,15 +65,15 @@
                 }
             }
             input {
-                font-size: 2.8vh;
+                font-size: 20px;
                 padding: 10px 15px;
-                border-radius: 10px;
+                border-radius: 5px;
                 border: none;
                 background-color: rgb(233, 233, 233);
                 box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
                 font-family: "BebasNeue",sans-serif;
-                height: 6.5vh;
-                width: 22vw;
+                height: 30px;
+                width: 250px;
             }
             input:invalid{
                 border: 2px solid rgba(255, 0, 0, 0.8);
@@ -85,22 +85,22 @@
                 outline: 2px solid rgba(253, 188, 58, 1);
             }
             h2 {
-                font-size: 2.3vh;
+                font-size: 15px;
                 text-align: end;
                 cursor: pointer;
                 place-self: end;
             }
             h4{
-                font-size: 2.3vh;
+                font-size: 15px;
                 text-align: start;
                 cursor: default;
                 place-self: start;
                 color: rgba(255, 0, 0, 0.8);
             }
             button {
-                font-size: 2.8vh;
-                height: 5.8vh;
-                width: 22vw;
+                font-size: 20px;
+                height: 30px;
+                width: 280px;
                 border: none;
                 border-radius: 5px;
                 display: flex;
@@ -112,7 +112,7 @@
                 font-family: "BebasNeue",sans-serif;
                 h3 {
                     padding-right: 10px;
-                    font-size: 3.8vh;
+                    font-size: 25px;
                     text-align: center;
                 }
             }
@@ -120,7 +120,6 @@
                 filter: opacity(0.85);
             }
             p {
-                font-size: 2vh;
                 font-family: cursive;
                 cursor: default;
             }
@@ -130,7 +129,7 @@
                 border-radius: 50px;
                 font-weight: 700;
                 font-family: "Griffy",cursive;
-                font-size: 3vh;
+                font-size: 20px;
             }
             .SignIn:hover {
                 background-color: rgba(199, 0, 57, 1);

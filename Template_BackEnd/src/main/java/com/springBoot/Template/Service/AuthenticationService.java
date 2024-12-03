@@ -4,10 +4,12 @@ import com.springBoot.Template.Model.Enum.Role;
 import com.springBoot.Template.Model.Login;
 import com.springBoot.Template.Model.User;
 import com.springBoot.Template.Repository.UserRepository;
+import com.springBoot.Template.Security.ApplicationConfiguration;
 import com.springBoot.Template.Security.JwtUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,7 +33,7 @@ public class AuthenticationService implements UserDetailsService {
     private final UserRepository userRepository;
     private final  PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
-    private final  AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     public ResponseEntity<String> register(User user) {
         User student = new User();
@@ -44,7 +46,9 @@ public class AuthenticationService implements UserDetailsService {
 
     public ResponseEntity<?> login(Login login) {
         try {
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword())
+            );
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UserName and Password are invalid.");

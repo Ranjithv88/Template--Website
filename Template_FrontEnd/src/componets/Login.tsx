@@ -21,10 +21,12 @@ function Login() {
   }
 
   async function submit(){
+    console.log("enter")
     document.body.style.cursor = "wait"
+    console.log("out")
     const obj: FormData = {
-      email: emailInput.current?.value,
-      password: passwordInput.current?.value
+      email: emailInput.current?.value || "",
+      password: passwordInput.current?.value || "",
     }
     if(emailValidation() == true && passwordValidation() == true) {
       console.log(await send(obj) == true)
@@ -34,6 +36,8 @@ function Login() {
         setLoginValidator(true)
         document.body.style.cursor = "default"
       }
+    }else{
+      document.body.style.cursor = "default"
     }
   }
 
@@ -90,10 +94,10 @@ function Login() {
     <div className='Login'>
       <div className='LoginBanner'>
           <form className='LoginForm' >
-            <h1>Template</h1>
+            <h1>Welcome to Template.Vignesh.com</h1>
             <input type="email" ref={emailInput} onChange={()=>{emailValidation(), curserPrograss()}} placeholder=' Enter the Email'/>
             {emailValidator?<h4>Email is Invaild...</h4>:<></>}
-            <input type="password" ref={passwordInput} onChange={()=>{passwordValidation(), curserPrograss()}} minlength="8" placeholder=' Enter the Password'/>
+            <input type="password" ref={passwordInput} onChange={()=>{passwordValidation(), curserPrograss()}} minlength={8} placeholder=' Enter the Password'/>
             {passwordValidator?<h4>password is to Weak...</h4>:<></>}
             <h2>Forget Your Password ?</h2>
             {loginValidator?<h4>username and Password Wrong...</h4>:<></>}
