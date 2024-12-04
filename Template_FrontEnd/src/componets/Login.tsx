@@ -65,7 +65,7 @@ function Login() {
     }
   }
 
-  const curserPrograss = () => {
+  const curserProgress = () => {
     if(emailValidation() && passwordValidation())
       setCurserValidator("pointer")
     else
@@ -90,10 +90,10 @@ function Login() {
     <div className='Login'>
       <div className='LoginBanner'>
           <form className='LoginForm' >
-            <h1>Welcome to Template</h1>
-            <input type="email" ref={emailInput} onChange={()=>{emailValidation(), curserPrograss()}} placeholder=' Enter the Email'/>
+            <h1>Hi, welcome back!</h1>
+            <input type="email" ref={emailInput} onChange={()=>{emailValidation(), curserProgress()}} placeholder=' Enter the Email'/>
             {emailValidator?<h4>Email is Invaild...</h4>:<></>}
-            <input type="password" ref={passwordInput} onChange={()=>{passwordValidation(), curserPrograss()}} minLength={8} placeholder=' Enter the Password'/>
+            <input type="password" ref={passwordInput} onChange={()=>{passwordValidation(), curserProgress()}} minLength={8} placeholder=' Enter the Password'/>
             {passwordValidator?<h4>password is to Weak...</h4>:<></>}
             <h2>Forget Your Password ?</h2>
             {loginValidator?<h5>username and Password Wrong...</h5>:<></>}
@@ -103,7 +103,7 @@ function Login() {
             <button className='SignF'><h3><FaFacebook /></h3>Continue With FaceBook </button>
             <button className='SignT'><h3><FaXTwitter /></h3>Continue With X </button>
             <span>Don't have the Account ?<Link className='a' to='/register'>Click Here</Link></span>
-            <p>By continuing, you agree to Online Shop Terms of Service an acknowledge you've read our Privacy Policy. Notice at collection.</p>
+            <p>By continuing, you agree to Template <span className='LoginSpan'> Terms of Service </span>an acknowledge you've read our <span className='LoginSpan'> Privacy Policy</span></p>
           </form>
         </div>
     </div>

@@ -1,0 +1,110 @@
+
+/*------------- Register Components -------------*/
+.Register {
+    transition: 1s;
+    height: 100vh;
+    width: 100vw;
+      .RegisterBanner{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .RegisterForm {
+            color: rgba(255, 255, 255, 1);
+            font-family: "Griffy", system-ui;
+            height: 550px;
+            width: 400px;
+            border-radius: 5px;
+            background-color: rgba(28, 28, 30, 0.6);
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px 50px;
+            row-gap: 4px;
+            font-weight: bold;
+            justify-items: center;
+            h1 {
+                font-size: 30px;
+                cursor: default;
+            }
+            span {
+                cursor: default;
+                font-size: 15px;
+                .a {
+                    color: rgba(35, 168, 242, 1);
+                }
+                .a:hover{
+                    text-decoration: underline solid 2px rgba(35, 168, 242, 1);
+                }
+            }
+            input {
+                font-size: 20px;
+                padding: 10px 15px;
+                border-radius: 5px;
+                border: none;
+                background-color: rgb(233, 233, 233);
+                box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+                font-family: "BebasNeue",sans-serif;
+                height: 38px;
+                width: 300px;
+            }
+            input:invalid{
+                border: 2px solid rgba(170, 4, 4, 0.8);
+            }
+            input:valid{
+                border: 2px solid rgba(113, 113, 113, 0.5);
+            }
+            input:focus {
+                outline: none;
+            }
+            p {
+                font-size: 12.5px;
+                font-family: cursive;
+                cursor: default;
+            }
+            .RegisterSpan{
+                text-decoration: underline;
+                font-size: 12.5px;
+            }
+            .SignIn {
+                font-size: 20px;
+                height: 38px;
+                width: 280px;
+                border: none;
+                border-radius: 5px;
+                background-color: rgb(165, 165, 166, 1);
+                opacity: 0.2;
+                pointer-events: none;
+                color: rgb(255, 255, 255);
+                border-radius: 50px;
+                font-weight: 700;
+                font-family: "Griffy",cursive;
+                font-size: 20px;
+                padding: 2px 2px;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            }
+            input:valid ~ button[type="submit"] {
+                opacity: 1;
+                pointer-events: fill;
+                background-color: red;
+                
+            }
+        }
+    } 
+    .RegisterBanner::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('../../assets/images/login-Bg.jpg');
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+        mask-image: url('../../assets/images/Redister-animation.gif');
+        mask-size: cover;
+        mask-position: center;
+    }
+}
+

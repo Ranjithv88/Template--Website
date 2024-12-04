@@ -72,7 +72,7 @@
                 background-color: rgb(233, 233, 233);
                 box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
                 font-family: "BebasNeue",sans-serif;
-                height: 30px;
+                height: 38px;
                 width: 250px;
             }
             input:invalid{
@@ -96,6 +96,7 @@
                 color: rgba(255, 0, 0, 0.8);
             }
             h4{
+                padding-left: 20px;
                 place-self: start;
             }
             h5{
@@ -124,8 +125,13 @@
                 filter: opacity(0.85);
             }
             p {
+                font-size: 12.5px;
                 font-family: cursive;
                 cursor: default;
+            }
+            .LoginSpan{
+                text-decoration: underline;
+                font-size: 12.5px;
             }
             .SignIn {
                 background-color: rgba(199, 0, 57, 0.8);
