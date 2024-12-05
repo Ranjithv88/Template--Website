@@ -22,7 +22,7 @@ function Register() {
     phoneNumber: string
   }
 
-  const submit = (event: any)=> {
+    const submit = async (event: any): Promise<void> => {
     event.preventDefault()
     document.body.style.cursor = "wait"
     var registerData: FormData = {
@@ -34,17 +34,16 @@ function Register() {
       phoneNumber: event.target[5].value
     }
     if(validation(registerData)){
-      console.log(addUser(registerData))
-      if(async.await addUser(registerData)){
+      if(await addUser(registerData)){
         setAfter(false)
-        console.log(entry)
+        console.log('entry')
       }
       document.body.style.cursor = "default"
     }
     document.body.style.cursor = "default"
   }
 
-  function validation(registerData: any){ 
+  function validation(registerData: any): boolean { 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if(registerData.userName.length < 2){
       return false
@@ -65,7 +64,7 @@ function Register() {
     }
   }
 
-  async function addUser(registerData: any){
+  async function addUser(registerData: any) {
     try{
       let response = await axios.post('http://localhost:8888/register',
         {
@@ -78,10 +77,18 @@ function Register() {
         if(response.status === 201 && response.data === "Registered Successfully...!"){
           console.log(response)
           return true
-        }else
+        }else if(response.status != 409 && response.data != "That Email is taken, Try another...!"){
+          setEmailUnique(true)
           return false
+        }else if(response.status != 409 && response.data != "That PhoneNumber is taken. Try another...!"){
+          setPhoneNumberUnique(true)
+          return false
+        }else{
+          setEmailUnique(false)
+          setPhoneNumberUnique(false)
+          return false
+        }
     }catch (e){
-      setEmailUnique(true)
       setPhoneNumberUnique(true)
       alert(" Something Went wrong, please try again later....!")
       console.log(e)
