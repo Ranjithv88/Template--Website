@@ -1,8 +1,8 @@
 import React from 'react'
 import './App.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './componets/Login'
-import Register from './componets/Register'
+import Login from './components/Login'
+import Register from './components/Register'
 
 function App() {
   return (

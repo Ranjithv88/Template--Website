@@ -38,7 +38,8 @@ function Login() {
   }
 
   const emailValidation=()=> {
-    if(!emailInput.current?.value.endsWith('@gmail.com')){
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if(!emailPattern.test(emailInput.current?.value)){
       if(!emailInput.current?.value == ""){
         setEmailValidator(true)
         return false

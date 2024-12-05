@@ -47,6 +47,7 @@ public class User implements UserDetails {
     @Size(min = 8,message = " Too Weak .......! ")
     private String password;
 
+    @Column(unique = true)
     @NotNull(message = " Phone Number is Mandatory ......! ")
     @Size(min = 10,max = 10,message = " Phone Number is Invalid ......! ")
     private String phoneNumber;

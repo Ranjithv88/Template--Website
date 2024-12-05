@@ -32,7 +32,7 @@ public class AuthenticationService {
         if (user.getRole() == null)
             user.setRole(Role.USER);
         userRepository.save(user);
-        return new ResponseEntity<>("Registered Successfully...", HttpStatus.CREATED);
+        return new ResponseEntity<>("Registered Successfully...!", HttpStatus.CREATED);
     }
 
     public ResponseEntity<?> login(Login login) {

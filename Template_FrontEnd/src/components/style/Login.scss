@@ -14,7 +14,7 @@
         background-image:
         repeating-linear-gradient(to right, transparent 0 250px, rgba(255, 255, 255, 0.067) 250px 251px),
         repeating-linear-gradient(to bottom, transparent 0 250px, rgba(255, 255, 255, 0.067) 250px 251px),
-        url('../../assets/images/valentin-petrov-m-mal-01.jpg');
+        url('../../assets/images/Login-Bg.jpg');
         background-size: cover;
         background-position: center;
         animation: bgZoomIn 4s ease-in-out 1 forwards;
@@ -65,15 +65,19 @@
                 }
             }
             input {
-                font-size: 20px;
+                font-size: 16px;
                 padding: 10px 15px;
                 border-radius: 5px;
                 border: none;
                 background-color: rgb(233, 233, 233);
                 box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
-                font-family: "BebasNeue",sans-serif;
+                font-family: "Poppins";
                 height: 38px;
                 width: 250px;
+            }
+            input::placeholder{
+                font-size: 18px;
+                font-family: "BebasNeue",sans-serif;
             }
             input:invalid{
                 border: 2px solid rgba(255, 0, 0, 0.8);
@@ -111,7 +115,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding: 2px 2px;
+                padding: 5px 2px;
                 background-color: rgb(238, 238, 230);
                 box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
                 font-family: "BebasNeue",sans-serif;
@@ -145,9 +149,13 @@
                 background-color: rgba(199, 0, 57, 1);
                 filter: none;
             }
+            .SignG{
+                cursor: not-allowed;
+            }
             .SignF {
                 background-color: rgb(23, 115, 234);
                 color: rgb(255, 255, 255);
+                cursor: not-allowed;
                 h3 {
                     color: rgb(255, 255, 255);
                 }
@@ -155,6 +163,7 @@
             .SignT {
                 background-color: rgb(0,0, 0);
                 color: rgb(255, 255, 255);
+                cursor: not-allowed;
             }
             .SignInIcon{
                 padding-left: 20px;

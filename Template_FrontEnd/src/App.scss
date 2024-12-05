@@ -19,43 +19,47 @@
 
 /*--------------------------- Google Fonts ( Anton,BebasNeue,Griffy,Inter,Karantina,Matemasie,Merriweather,Oswald,Pacifico,Poppins ) --------------------*/
 @font-face {
-    font-family: Anton;
-    src: url(./assets/fonts/Anton-Regular.ttf);
+    font-family: "Anton";
+    src: url('./assets/fonts/Anton-Regular.ttf');
 }
 @font-face {
-    font-family: BebasNeue;
-    src: url(./assets/fonts/BebasNeue-Regular.ttf);
+    font-family: "BebasNeue";
+    src: url('./assets/fonts/BebasNeue-Regular.ttf');
 }
 @font-face {
-    font-family: Griffy;
-    src: url(./assets/fonts/Griffy-Regular.ttf);
+    font-family: "Griffy";
+    src: url('./assets/fonts/Griffy-Regular.ttf');
 }
 @font-face {
-    font-family: Inter;
-    src: url(./assets/fonts/Inter-Italic-VariableFont.ttf);
+    font-family: "Inter";
+    src: url('./assets/fonts/Inter-Italic-VariableFont.ttf');
 }
 @font-face {
-    font-family: Karantina;
-    src: url(./assets/fonts/Karantina-Bold.ttf);
+    font-family: "Karantina";
+    src: url('./assets/fonts/Karantina-Bold.ttf');
 }
 @font-face {
-    font-family: Matemasie;
-    src: url(./assets/fonts/Matemasie-Regular.ttf);
+    font-family: "Matemasie";
+    src: url('./assets/fonts/Matemasie-Regular.ttf');
 }
 @font-face {
-    font-family: Merriweather;
-    src: url(./assets/fonts/Merriweather-Black.ttf);
+    font-family: "Merriweather";
+    src: url('./assets/fonts/Merriweather-Black.ttf');
 }
 @font-face {
-    font-family: Oswald;
-    src: url(./assets/fonts/Oswald-VariableFont_wght.ttf);
+    font-family: "Oswald";
+    src: url('./assets/fonts/Oswald-VariableFont_wght.ttf');
 }
 @font-face {
-    font-family: Pacifico;
-    src: url(./assets/fonts/Pacifico-Regular.ttf);
+    font-family: "Pacifico";
+    src: url('./assets/fonts/Pacifico-Regular.ttf');
 }
 @font-face {
-    font-family: Poppins;
-    src: url(./assets/fonts/Poppins-Black.ttf);
+    font-family: "Poppins black";
+    src: url('./assets/fonts/Poppins-Black.ttf');
+}
+@font-face {
+    font-family: "Poppins";
+    src: url('./assets/fonts/Poppins.ttf');
 }
 
