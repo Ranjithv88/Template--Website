@@ -131,6 +131,14 @@
                     font-family: cursive;
                     text-align: start;
                 }
+                h5{
+                    padding-left: 20px;
+                    cursor: pointer;
+                    color: rgba(255, 255, 255, 1);
+                    place-self: start;
+                    font-family: cursive;
+                    text-align: start;
+                }
                 p {
                     font-size: 12.5px;
                     font-family: cursive;
@@ -226,7 +234,7 @@
             border: none;
             border-radius: 5px;
             padding: 2px 10px;
-            background-color: rgb(238, 238, 230);
+            background-color: rgba(238, 238, 230, 1);
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             font-family: "BebasNeue",sans-serif;
             cursor: pointer;

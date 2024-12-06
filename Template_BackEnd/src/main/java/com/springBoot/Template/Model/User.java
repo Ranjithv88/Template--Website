@@ -33,7 +33,7 @@ public class User implements UserDetails {
 
     @NotBlank(message = " UserName is Mandatory ......! ")
     @Size(min = 2,message = " UserName Must Be Between 2 & 30 Characters .......! ",max = 40)
-    private String userName;
+    private String name;
 
     @Decimal
     private int age;

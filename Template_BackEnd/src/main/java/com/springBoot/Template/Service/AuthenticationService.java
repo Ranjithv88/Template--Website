@@ -6,8 +6,6 @@ import com.springBoot.Template.Model.User;
 import com.springBoot.Template.Repository.UserRepository;
 import com.springBoot.Template.Security.JwtUtils;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,7 +23,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-    private static final Logger log = LoggerFactory.getLogger(AuthenticationService.class);
     private final UserRepository userRepository;
     private final  PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
@@ -37,6 +34,7 @@ public class AuthenticationService {
             boolean numberExist = userRepository.existsByPhoneNumber(user.getPhoneNumber());
             if (!emailExist) {
                 if (!numberExist) {
+                    user.setPassword(passwordEncoder.encode(user.getPassword()));
                     user.setCreatedOn(new Date(System.currentTimeMillis()));
                     user.setRole(Role.USER);
                     userRepository.save(user);

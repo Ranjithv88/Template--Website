@@ -2,18 +2,21 @@ import React, { useRef, useState} from 'react'
 import './style/login.scss'
 import {FcGoogle} from "react-icons/fc"
 import {FaFacebook,FaXTwitter} from "react-icons/fa6"
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Loading from './Loading'
 
 function Login() {
 
+  const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
+  const [after, setAfter] = React.useState(true)
+  const [loadingAfter, setLoadingAfter] = React.useState(true)
   const [emailValidator, setEmailValidator] = useState<boolean>(false)
-  const [passwordValidator, setPasswordValidator] = useState<boolean>(false)
   const [loginValidator, setLoginValidator] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<String>('password')
   const [curserValidator, setCurserValidator] = useState<String>("not-allowed")
   const emailInput = useRef<HTMLInputElement>()
   const passwordInput = useRef<HTMLInputElement>()
-  const navigate = useNavigate()
 
   interface FormData {
     email: string
@@ -28,7 +31,9 @@ function Login() {
     }
     if(emailValidation() == true && passwordValidation() == true) {
       if(await send(obj) == true){
-        navigate('/register')
+        setAfter(false)
+        await sleep(5000)
+        setLoadingAfter(false)
       }else{
         setLoginValidator(true)
         document.body.style.cursor = "default"
@@ -53,15 +58,12 @@ function Login() {
   }
 
   const passwordValidation=()=> {
-    if(passwordInput.current.value.length < 8){
+    if(passwordInput.current.value.length < 2){
       if(passwordInput.current?.value == ""){
-        setPasswordValidator(false)
         return false
       }
-    setPasswordValidator(true)
     return false
     }else{
-      setPasswordValidator(false)
       return true
     }
   }
@@ -87,27 +89,36 @@ function Login() {
     }
   }
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(showPassword === 'text'? 'password' : 'text')
+  }
+
   return (
-    <div className='Login'>
-      <div className='LoginBanner'>
-          <form className='LoginForm' >
-            <h1>Hi, welcome back!</h1>
-            <input type="email" ref={emailInput} onChange={()=>{emailValidation(), curserProgress()}} placeholder=' Enter the Email'/>
-            {emailValidator?<h4>Email is Invaild...</h4>:<></>}
-            <input type="password" ref={passwordInput} onChange={()=>{passwordValidation(), curserProgress()}} minLength={8} placeholder=' Enter the Password'/>
-            {passwordValidator?<h4>password is to Weak...</h4>:<></>}
-            <h2>Forget Your Password ?</h2>
-            {loginValidator?<h5>username and Password Wrong...</h5>:<></>}
-            <button className='SignIn' type='button' style={{ cursor: curserValidator }} onClick={submit} >Log In</button>
-            <span>OR</span>
-            <button className='SignG'><h3><FcGoogle /></h3>Continue With Google </button>
-            <button className='SignF'><h3><FaFacebook /></h3>Continue With FaceBook </button>
-            <button className='SignT'><h3><FaXTwitter /></h3>Continue With X </button>
-            <span>Don't have the Account ?<Link className='a' to='/register'>Click Here</Link></span>
-            <p>By continuing, you agree to Template <span className='LoginSpan'> Terms of Service </span>an acknowledge you've read our <span className='LoginSpan'> Privacy Policy</span></p>
-          </form>
-        </div>
-    </div>
+    <>
+      {after?
+        <div className='Login'>
+          <div className='LoginBanner'>
+              <form className='LoginForm' >
+                <h1>Hi, welcome back!</h1>
+                <input type="email" ref={emailInput} onChange={()=>{emailValidation(), curserProgress()}} placeholder=' Enter the Email'/>
+                {emailValidator?<h4>Email is Invaild...</h4>:<></>}
+                <input type={showPassword} ref={passwordInput} onChange={()=>{passwordValidation(), curserProgress()}} minLength={2} placeholder=' Enter the Password'/>
+                <h5 className='ShowPassword' onClick={togglePasswordVisibility}>Show Password</h5>
+                <h2>Forget Your Password ?</h2>
+                {loginValidator?<h5>username and Password Wrong...</h5>:<></>}
+                <button className='SignIn' type='button' style={{ cursor: curserValidator }} onClick={submit} >Log In</button>
+                <span>OR</span>
+                <button className='SignG'><h3><FcGoogle /></h3>Continue With Google </button>
+                <button className='SignF'><h3><FaFacebook /></h3>Continue With FaceBook </button>
+                <button className='SignT'><h3><FaXTwitter /></h3>Continue With X </button>
+                <span>Don't have the Account ?<Link className='a' to='/register'>Click Here</Link></span>
+                <p>By continuing, you agree to Template <span className='LoginSpan'> Terms of Service </span>an acknowledge you've read our <span className='LoginSpan'> Privacy Policy</span></p>
+              </form>
+            </div>
+        </div>:loadingAfter? <Loading/>:
+        <>hello</>
+      }
+    </>
   )
 }
 

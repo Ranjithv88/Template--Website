@@ -3,6 +3,7 @@ import './App.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/Login'
 import Register from './components/Register'
+import Loading from './components/Loading'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/Loading" element={<Loading/>}/>
       </Routes>
     </BrowserRouter>
   )

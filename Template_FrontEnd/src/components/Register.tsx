@@ -5,16 +5,20 @@ import {FcGoogle} from "react-icons/fc"
 import {FaFacebook,FaXTwitter} from "react-icons/fa6"
 import { CgDanger } from "react-icons/cg"
 import axios from 'axios'
+import Loading from './Loading'
 
 function Register() {
 
+  const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
   const [after, setAfter] = React.useState(true)
+  const [loadingAfter, setLoadingAfter] = React.useState(true)
   const [emailUnique, setEmailUnique] = React.useState(false)
   const [passwordConfirm, setPasswordConfirm] = React.useState(false)
   const [phoneNumberUnique, setPhoneNumberUnique] = React.useState(false)
+  const [showPassword, setShowPassword] = React.useState<String>('password')
 
   interface FormData {
-    userName: string
+    name: string
     age: number
     email: string
     password: string
@@ -26,7 +30,7 @@ function Register() {
     event.preventDefault()
     document.body.style.cursor = "wait"
     var registerData: FormData = {
-      userName: event.target[0].value,
+      name: event.target[0].value,
       age: parseInt(event.target[1].value),
       email: event.target[2].value,
       password: event.target[3].value,
@@ -36,7 +40,8 @@ function Register() {
     if(validation(registerData)){
       if(await addUser(registerData)){
         setAfter(false)
-        console.log('entry')
+        await sleep(5000)
+        setLoadingAfter(false)
       }
       document.body.style.cursor = "default"
     }
@@ -45,7 +50,7 @@ function Register() {
 
   function validation(registerData: any): boolean { 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if(registerData.userName.length < 2){
+    if(registerData.name.length < 2){
       return false
     }else if(registerData.age >= 10 && registerData.age >= 99){
       return false
@@ -68,7 +73,7 @@ function Register() {
     try{
       let response = await axios.post('http://localhost:8888/register',
         {
-          userName: registerData.userName,
+          name: registerData.name,
           age: registerData.age,
           email: registerData.email,
           password: registerData.password,
@@ -89,11 +94,14 @@ function Register() {
           return false
         }
     }catch (e){
-      setPhoneNumberUnique(true)
       alert(" Something Went wrong, please try again later....!")
       console.log(e)
       return false
     }
+  }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(showPassword === 'text'? 'password' : 'text')
   }
  
   return (
@@ -114,8 +122,9 @@ function Register() {
                 <input type="number" min={10} max={99} placeholder=' Enter the Age'/>
                 <input type="email" placeholder=' Enter the Email'/>
                 {emailUnique?<h4><CgDanger/> That Email is taken. Try another.</h4>:<></>}
-                <input type="password" minLength={8} placeholder=' Enter the Password'/>
-                <input type="password" minLength={8} placeholder=' Renter the Password'/>
+                <input type={showPassword} minLength={8} placeholder=' Enter the Password'/>
+                <input type={showPassword} minLength={8} placeholder=' Renter the Password'/>
+                <h5 onClick={togglePasswordVisibility}>Show Password</h5>
                 {passwordConfirm?<h4><CgDanger/> password Mismatch</h4>:<></>}
                 <input type="number" min={1000000000} max={9999999999} placeholder=' Enter the PhoneNumber'/>
                 {phoneNumberUnique?<h4><CgDanger/> That PhoneNumber is taken. Try another.</h4>:<></>}
@@ -126,25 +135,25 @@ function Register() {
             </div>
           </div>
         </div>
-        :
-        <div className='RegisterSuccess'>
-          <div className='RegisterSuccessOuter'>
-            <ul>
-              <li>T</li>
-              <li>h</li>
-              <li>a</li>
-              <li>n</li>
-              <li>k</li>
-              <li>&nbsp;</li>
-              <li>Y</li>
-              <li>o</li>
-              <li>u</li>
-            </ul>
-            <button type='button'><Link className='a' to={'/login'}>Go to Login</Link></button>
-            <button type='button'>Go to Home</button>
+        :loadingAfter? <Loading/>:
+          <div className='RegisterSuccess'>
+            <div className='RegisterSuccessOuter'>
+              <ul>
+                <li>T</li>
+                <li>h</li>
+                <li>a</li>
+                <li>n</li>
+                <li>k</li>
+                <li>&nbsp;</li>
+                <li>Y</li>
+                <li>o</li>
+                <li>u</li>
+              </ul>
+              <button type='button'><Link className='a' to={'/login'}>Go to Login</Link></button>
+              <button type='button'>Go to Home</button>
+            </div>
           </div>
-        </div>
-      }
+        }
     </>
   )
 }
