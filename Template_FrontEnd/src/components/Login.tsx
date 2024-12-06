@@ -5,6 +5,7 @@ import {FaFacebook,FaXTwitter} from "react-icons/fa6"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Loading from './Loading'
+import svg from '../assets/logo/Template.svg'
 
 function Login() {
 
@@ -116,7 +117,11 @@ function Login() {
               </form>
             </div>
         </div>:loadingAfter? <Loading/>:
-        <>hello</>
+        <div className='LoginSuccess'>
+          <img src={svg} alt='Template'/>
+          <h2>hi, {emailInput.current?.value}</h2>
+          <button type='button'><Link className='a' to={'/Home'}>go to Home</Link></button>
+        </div>
       }
     </>
   )

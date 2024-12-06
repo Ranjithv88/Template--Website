@@ -150,7 +150,7 @@ function Register() {
                 <li>u</li>
               </ul>
               <button type='button'><Link className='a' to={'/login'}>Go to Login</Link></button>
-              <button type='button'>Go to Home</button>
+              <button type='button'><Link className='a' to={'/Home'}>Go to Home</Link></button>
             </div>
           </div>
         }
