@@ -40,7 +40,7 @@ function Register() {
     if(validation(registerData)){
       if(await addUser(registerData)){
         setAfter(false)
-        await sleep(5000)
+        await sleep(6000)
         setLoadingAfter(false)
       }
       document.body.style.cursor = "default"

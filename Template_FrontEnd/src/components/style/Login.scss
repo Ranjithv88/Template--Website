@@ -205,18 +205,14 @@
     justify-content: center;
     align-items: center;
     row-gap: 28px;
-    img{
-        height: 200px;
-        width: 600px;
-        font-size: 40px;
-        font-family: "Poppins";
-        color: rgba(223, 47, 50, 1);
-        text-align: center;
-        animation: bgZoomIn 4s ease-in-out 1 forwards;
-        // stroke: rgba(255, 255, 255, 1);
-        // stroke-width: 3px;
-        // stroke-dasharray: 1800;
-        // animation: svg 5s ease-in-out 1 alternate;
+    svg {
+        path {
+            fill: transparent;
+            stroke: rgba(223, 47, 50, 1);
+            stroke-width: 0;
+            stroke-dasharray: 78;
+            animation: textAnimation 5s ease-in-out 1 forwards;
+        }  
     }
     h2{
         animation: bgZoomOut 4s ease-in-out 1 forwards;
@@ -243,13 +239,18 @@
             color: rgba(245, 245, 245, 1);
         }
     }
-    // @keyframes svg {
-    //     from{
-    //         fill: transparent;
-    //         stroke-dashoffset: 1800;
-    //     }to{
-    //         fill: rgba(255, 255, 255, 1);
-    //         stroke-dashoffset: 1800;
-    //     }
-    // }
+    @keyframes textAnimation {
+        0% {
+          stroke-dasharray: 78;
+        }
+        80% {
+          fill: transparent;
+          stroke-width: 0.5;
+        }
+        100% {
+          fill: rgba(223, 47, 50, 1);
+          stroke-dasharray: 440;
+        }
+    }
 }
+
