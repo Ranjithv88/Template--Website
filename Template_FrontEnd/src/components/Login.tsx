@@ -5,10 +5,11 @@ import {FaFacebook,FaXTwitter} from "react-icons/fa6"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Loading from './Loading'
-import svg from '../assets/logo/Template.svg'
+import { useCookies } from 'react-cookie'
 
 function Login() {
 
+  const [cookies, setCookie, removeCookie] = useCookies(['token'])
   const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
   const [after, setAfter] = React.useState(true)
   const [loadingAfter, setLoadingAfter] = React.useState(true)
@@ -82,7 +83,7 @@ function Login() {
     try{
       let response = await axios.post('http://localhost:8888/login',obj)
       if(response.status === 200){
-        localStorage.setItem("token",response.data)
+        setCookie('token', response.data,{ path: '/', expires: new Date(Date.now() + 3600 * 1000) })
         return true
       }else
         return false

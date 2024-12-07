@@ -68,6 +68,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- Dependency for SCrypt  -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.70</version>
+		</dependency>
+
 		<!-- Dependency for Validation  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -82,21 +82,22 @@ function Register() {
         if(response.status === 201 && response.data === "Registered Successfully...!"){
           console.log(response)
           return true
-        }else if(response.status != 409 && response.data != "That Email is taken, Try another...!"){
-          setEmailUnique(true)
-          return false
-        }else if(response.status != 409 && response.data != "That PhoneNumber is taken. Try another...!"){
-          setPhoneNumberUnique(true)
-          return false
-        }else{
-          setEmailUnique(false)
-          setPhoneNumberUnique(false)
-          return false
         }
-    }catch (e){
-      alert(" Something Went wrong, please try again later....!")
+    }catch (e: any){
       console.log(e)
-      return false
+      if(e.response.status === 409 && e.response.data === 'That Email is taken, Try another...!'){
+        setEmailUnique(true)
+        return false
+      }else if(e.response.status === 409 && e.response.data === 'That PhoneNumber is taken. Try another...!'){
+        setEmailUnique(false)
+        setPhoneNumberUnique(true)
+        return false
+      }else { 
+        setEmailUnique(false)
+        setPhoneNumberUnique(false)
+        alert("Something went wrong, please try again later....!")
+        return false
+      }
     }
   }
 
