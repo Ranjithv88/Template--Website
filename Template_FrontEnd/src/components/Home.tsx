@@ -1,10 +1,15 @@
-import React from 'react'
+import './style/Home.scss'
 
-function Home() {
+function Introduction() {
   return (
-    <div>Home</div>
+    <main>
+        <h1>create your own</h1>
+        <section>
+          <h1>portfolio</h1>
+        </section>
+    </main>
   )
 }
 
-export default Home
+export default Introduction
 

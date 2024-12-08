@@ -17,7 +17,7 @@
     }
 }
 
-/*--------------------------- Google Fonts ( Anton,BebasNeue,Griffy,Inter,Karantina,Matemasie,Merriweather,Oswald,Pacifico,Poppins ) --------------------*/
+/*--------------------------- Google Fonts ( Anton, BebasNeue, Griffy, Inter, Karantina, Matemasie, Merriweather, Oswald, Pacifico, Poppins, Jaro, Devil, Canicule, BrightMelody ) --------------------*/
 @font-face {
     font-family: "Anton";
     src: url('./assets/fonts/Anton-Regular.ttf');
@@ -61,5 +61,21 @@
 @font-face {
     font-family: "Poppins";
     src: url('./assets/fonts/Poppins.ttf');
+}
+@font-face {
+    font-family: "Jaro";
+    src: url('./assets/fonts/Jaro.ttf');
+}
+@font-face {
+    font-family: "Devil";
+    src: url('./assets/fonts/Devil-Breeze-Medium.ttf');
+}
+@font-face {
+    font-family: "Canicule";
+    src: url('./assets/fonts/Canicule.otf');
+}
+@font-face {
+    font-family: "BrightMelody";
+    src: url('./assets/fonts/BrightMelody.ttf');
 }
 
