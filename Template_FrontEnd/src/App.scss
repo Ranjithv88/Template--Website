@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
     a {
         text-decoration: none;
         color: rgb( 0, 0, 0);
@@ -16,8 +17,11 @@
         -webkit-appearance: none;
     }
 }
+.app{
+    overflow-x: hidden;
+}
 
-/*--------------------------- Google Fonts ( Anton, BebasNeue, Griffy, Inter, Karantina, Matemasie, Merriweather, Oswald, Pacifico, Poppins, Jaro, Devil, Canicule, BrightMelody ) --------------------*/
+/*--------------------------- Google Fonts ( Anton, BebasNeue, Griffy, Inter, Karantina, Matemasie, Merriweather, Oswald, Pacifico, Poppins, Jaro, Devil, Canicule, BrightMelody, skyer, Morion ) --------------------*/
 @font-face {
     font-family: "Anton";
     src: url('./assets/fonts/Anton-Regular.ttf');
@@ -77,5 +81,13 @@
 @font-face {
     font-family: "BrightMelody";
     src: url('./assets/fonts/BrightMelody.ttf');
+}
+@font-face {
+    font-family: "skyer";
+    src: url('./assets/fonts/skyer.otf');
+}
+@font-face {
+    font-family: "Morion";
+    src: url('./assets/fonts/Morion-Bold.ttf');
 }
 

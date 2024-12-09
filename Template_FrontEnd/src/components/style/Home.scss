@@ -13,6 +13,7 @@ main{
         color: rgb(0, 0, 0, 1);
         font-size: 40px;
         text-align: center;
+        cursor: default;
     }
     section{
         height: 50vh;
@@ -32,6 +33,7 @@ main{
             color: rgb(255, 255, 255, 1);
             font-size: 40px;
             text-align: center;
+            cursor: default;
         }
     }
 }

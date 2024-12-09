@@ -1,6 +1,24 @@
 
+@import './Variables.scss';
+
 /*------------- Home Components -------------*/
 .Home{
     overflow-x: hidden;
+    --circle-size: 40px;
+    .circle {
+        position: fixed;
+        height: var(--circle-size);
+        width: var(--circle-size);
+        border: 1px solid rgb(4, 32, 29, 1);
+        border-radius: 100%;
+        top: calc(var(--circle-size)/2*-1);
+        left: calc(var(--circle-size)/2*-1);
+        pointer-events: none;
+        z-index: 22;
+        transition: 0.2s;
+    }
+    button {
+        --circle-size: 50px;
+    }
 }
 

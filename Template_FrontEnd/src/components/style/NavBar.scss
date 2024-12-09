@@ -9,13 +9,14 @@ header {
     background-color: rgb(255, 255, 255, 1);
     position: fixed;
     z-index: 20;
+    border: 1px solid rgb(0, 0, 0, 0.050);
+    filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 1));
     nav{
         height: 10vh;
         width: 90vw;
         display: inherit;
         justify-content: space-between;
         align-items: center;
-
         h1{
             font-family: 'Jaro';
             font-weight: bold;
@@ -24,6 +25,10 @@ header {
             cursor: default;
         }
         ul{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: inherit;
             justify-content: space-between;
             align-items: center;
@@ -38,67 +43,95 @@ header {
                     font-size: 18px;
                 }
                 ul{
-                    display: none;
                     justify-content: center;
                     align-items: center;
+                    flex-direction: column;
                     position: absolute;
-                    top: 9vh;
-                    left: 48%;
-                    transform: translate(-52%);
+                    top: 6vh;
+                    left: 50%;
+                    transform: translate(-50%);
                     padding: 5px 10px;
                     row-gap: 5px;
                     border-radius: 10px;
+                    text-align: center;
+                    background-color: rgba(29, 29, 29, 1);
+                    color: rgba(255, 255, 255, 1);
+                    li:hover{
+                        color: rgba(29, 29, 29, 1);
+                        background-color: rgba(255, 255, 255, 1);
+                    }
                 }
             }
             li:hover{
                 background-color: rgba(29, 29, 29, 1);
-                ul{
-                    display: flex;
-                    flex-direction: row;
-                    background-color: transparent;
-                    li{
-                        a{
-                            color: rgba(0, 0, 0, 1);
-                        }
-                    }
-                    li:hover {
-                        a{
-                            color: rgba(255, 255, 255, 1);
-                        }
-                    }
-                }
                 a{
                     color: rgba(255, 255, 255, 1)
                 }
             }
         }
         div{
-            display: inherit;
-            justify-content: space-between;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            column-gap: 5px;
-            button{
-                letter-spacing: 1px;
-                font-family: 'BebasNeue';
-                border: 2px solid transparent;
-                font-size: 16px;
-                padding: 8px;
-                background-color: rgba(208, 197, 173, 1);
+            gap: 10px;
+            .search {
+                height: 35px;
+                width: 200px;
                 border-radius: 8px;
-                transition: 0.3s;
-                cursor: pointer;
-                .a {
-                    color: rgba(255, 255, 255, 1);
+                background-color: rgba(237, 237, 237, 1);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 5px;
+                .icon {
+                    font-size: 25px;
+                    cursor: pointer;
+                }
+                input {
+                    font-size: 13px;
+                    padding-left: 2px;
+                    height: 30px;
+                    width: 160px;
+                    border: none;
+                    background-color: rgba(237, 237, 237, 1);
+                    &:focus {
+                        outline: none;
+                    }
                 }
             }
-            button:hover{
-                background-color: rgba(255, 255, 255, 1);
-                border: 2px solid rgba(208, 197, 173, 1);
-                .a {
-                    color: rgba(0, 0, 0, 1);
+            .button {
+                display: inherit;
+                justify-content: space-between;
+                align-items: center;
+                column-gap: 5px;
+                button{
+                    letter-spacing: 1px;
+                    font-family: 'BebasNeue';
+                    border: 2px solid transparent;
+                    font-size: 16px;
+                    padding: 8px;
+                    background-color: rgba(208, 197, 173, 1);
+                    border-radius: 8px;
+                    transition: 0.3s;
+                    cursor: pointer;
+                    .a {
+                        color: rgba(255, 255, 255, 1);
+                    }
+                }
+                button:hover{
+                    background-color: rgba(255, 255, 255, 1);
+                    border: 2px solid rgba(208, 197, 173, 1);
+                    .a {
+                        color: rgba(0, 0, 0, 1);
+                    }
                 }
             }
         }
     }
+}
+
+/*------------- Extra Class -------------*/
+.show {
+    background-color: rgba(208, 197, 173, 1);
 }
 
