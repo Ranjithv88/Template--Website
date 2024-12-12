@@ -1,5 +1,5 @@
 import React from 'react'
-import './style/NavBar.scss'
+import './styles/NavBar.scss'
 import { Link } from 'react-router-dom'
 import { motion } from "framer-motion"
 import { CiSearch } from "react-icons/ci"

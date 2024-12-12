@@ -1,5 +1,5 @@
 import React, { useRef, useState} from 'react'
-import './style/login.scss'
+import './styles/login.scss'
 import {FcGoogle} from "react-icons/fc"
 import {FaFacebook,FaXTwitter} from "react-icons/fa6"
 import { Link } from 'react-router-dom'
@@ -9,17 +9,17 @@ import { useCookies } from 'react-cookie'
 
 function Login() {
 
-  const [cookies, setCookie, removeCookie] = useCookies(['token'])
+  const [_, setCookie ] = useCookies(['token'])
   const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
   const [after, setAfter] = React.useState(true)
   const [loadingAfter, setLoadingAfter] = React.useState(true)
   const [emailValidator, setEmailValidator] = useState<boolean>(false)
   const [loginValidator, setLoginValidator] = useState<boolean>(false)
-  const [showPassword, setShowPassword] = useState<String>('password')
-  const [curserValidator, setCurserValidator] = useState<String>("not-allowed")
-  const emailInput = useRef<HTMLInputElement>()
-  const passwordInput = useRef<HTMLInputElement>()
-  const [emailSuccess, setEmailSuccess] = useState<String>('unknown')
+  const [showPassword, setShowPassword] = useState<string>('password')
+  const [curserValidator, setCurserValidator] = useState<string>("not-allowed")
+  const emailInput = useRef<HTMLInputElement>(null)
+  const passwordInput = useRef<HTMLInputElement>(null)
+  const [emailSuccess, setEmailSuccess] = useState<string>('unknown')
 
   interface FormData {
     email: string
@@ -48,28 +48,34 @@ function Login() {
 
   const emailValidation=()=> {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if(!emailPattern.test(emailInput.current?.value)){
-      if(!emailInput.current?.value == ""){
-        setEmailValidator(true)
+    if(emailInput.current?.value){
+      if(!emailPattern.test(emailInput.current?.value)){
+        if(emailInput.current?.value !== ""){
+          setEmailValidator(true)
+          return false
+        }
+        setEmailValidator(false)
         return false
+      }else{
+        setEmailValidator(false)
+        return true
       }
-      setEmailValidator(false)
-      return false
-    }else{
-      setEmailValidator(false)
-      return true
     }
+    return false
   }
 
   const passwordValidation=()=> {
-    if(passwordInput.current.value.length < 2){
-      if(passwordInput.current?.value == ""){
-        return false
+    if(passwordInput.current?.value){
+      if(passwordInput.current.value.length < 2){
+        if(passwordInput.current?.value == ""){
+          return false
+        }
+      return false
+      }else{
+        return true
       }
-    return false
-    }else{
-      return true
     }
+    return false
   }
 
   const curserProgress = () => {

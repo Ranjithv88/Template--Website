@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react'
-import './style/HomePage.scss'
+import './styles/HomePage.scss'
 import NavBar from './NavBar'
 import Home from './Home'
-import Content from './Content'
 import Footer from './Footer'
 
 function HomePage() {
@@ -37,7 +36,6 @@ function HomePage() {
       <div className="circle" ref={circleElement}/>
       <NavBar/>
       <Home/>
-      <Content/>
       <Footer/>
     </div>
   )

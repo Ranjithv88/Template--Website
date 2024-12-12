@@ -1,4 +1,4 @@
-import './style/Home.scss'
+import './styles/Home.scss'
 
 function Introduction() {
   return (

@@ -1,5 +1,4 @@
-import React from 'react'
-import './style/Footer.scss'
+import './styles/Footer.scss'
 import { FaArrowRight } from "react-icons/fa"
 import { Link } from 'react-router-dom'
 

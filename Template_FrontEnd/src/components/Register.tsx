@@ -1,5 +1,5 @@
 import React from 'react'
-import './style/Register.scss'
+import './styles/Register.scss'
 import { Link } from 'react-router-dom'
 import {FcGoogle} from "react-icons/fc"
 import {FaFacebook,FaXTwitter} from "react-icons/fa6"
@@ -15,7 +15,7 @@ function Register() {
   const [emailUnique, setEmailUnique] = React.useState(false)
   const [passwordConfirm, setPasswordConfirm] = React.useState(false)
   const [phoneNumberUnique, setPhoneNumberUnique] = React.useState(false)
-  const [showPassword, setShowPassword] = React.useState<String>('password')
+  const [showPassword, setShowPassword] = React.useState<string>('password')
 
   interface FormData {
     name: string
