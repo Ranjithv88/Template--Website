@@ -1,5 +1,5 @@
 
-/*------------- Register Components -------------*/
+/*------------- Register Components Style -------------*/
 .Register {
     transition: 1s;
     height: 100vh;
@@ -98,6 +98,32 @@
                         text-decoration: underline solid 2px rgba(35, 168, 242, 1);
                     }
                 }
+                .showPassword {
+                    display: grid;
+                    justify-content: center;
+                    align-items: center;
+                    grid-template-columns: repeat(2, 1fr);
+                    row-gap: 10px;
+                    input {
+                        width: 260px;
+                    }
+                    h5{
+                        grid-row: span 2;
+                        place-self: center;
+                        font-size: 20px;
+                        cursor: pointer;
+                        color: rgba(255, 255, 255, 1);
+                        animation: Password 12s ease-in-out 0.5s infinite;
+                    }
+                    .PMessage {
+                        cursor: default;
+                        text-align: start;
+                        font-size: 12px;
+                        font-family: cursive;
+                        animation: none;
+                        grid-column: span 2;
+                    }
+                }
                 input {
                     font-size: 16px;
                     padding: 10px 15px;
@@ -127,14 +153,6 @@
                     cursor: default;
                     color: yellow;
                     padding-left: 20px;
-                    place-self: start;
-                    font-family: cursive;
-                    text-align: start;
-                }
-                h5{
-                    padding-left: 20px;
-                    cursor: pointer;
-                    color: rgba(255, 255, 255, 1);
                     place-self: start;
                     font-family: cursive;
                     text-align: start;
@@ -248,6 +266,21 @@
                 color: rgba(245, 245, 245, 1);
             }
         }
+    }
+}
+
+/*------------- Animation for Register -------------*/
+@keyframes Password {
+    0% {
+        transform:rotate(0deg);
+    }45%{
+        transform: rotateY(0deg);
+    }50%{
+        transform: rotateY(180deg);
+    }55%{
+        transform: rotateY(0deg);
+    }100% {
+        transform:rotate(0deg);
     }
 }
 

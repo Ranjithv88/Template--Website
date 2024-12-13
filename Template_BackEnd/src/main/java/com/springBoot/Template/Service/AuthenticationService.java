@@ -2,6 +2,7 @@ package com.springBoot.Template.Service;
 
 import com.springBoot.Template.Model.Enum.Role;
 import com.springBoot.Template.Model.Login;
+import com.springBoot.Template.Model.Register;
 import com.springBoot.Template.Model.User;
 import com.springBoot.Template.Repository.UserRepository;
 import com.springBoot.Template.Security.JwtUtils;
@@ -28,35 +29,36 @@ public class AuthenticationService {
     private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
 
-    public ResponseEntity<String> register(User user) {
+    public ResponseEntity<String> register(Register data) {
         try {
-            boolean emailExist = userRepository.existsByEmail(user.getEmail());
-            boolean numberExist = userRepository.existsByPhoneNumber(user.getPhoneNumber());
-            if (!emailExist) {
-                if (!numberExist) {
-                    user.setPassword(passwordEncoder.encode(user.getPassword()));
-                    user.setCreatedOn(new Date(System.currentTimeMillis()));
-                    user.setRole(Role.USER);
-                    userRepository.save(user);
+            boolean userNameExist = userRepository.existsByUserName(data.getUserName());
+            if (!userNameExist) {
+                    User newUser = User.builder()
+                        .userName(data.getUserName())
+                        .password(passwordEncoder.encode(data.getPassword()))
+                        .age(data.getAge())
+                        .email(data.getEmail())
+                        .phoneNumber(data.getPhoneNumber())
+                        .createdOn(new Date(System.currentTimeMillis()))
+                        .role(Role.USER)
+                            .build();
+                    userRepository.save(newUser);
                     return ResponseEntity.status(HttpStatus.CREATED).body("Registered Successfully...!");
-                } else {
-                    return ResponseEntity.status(HttpStatus.CONFLICT).body("That PhoneNumber is taken. Try another...!");
-                }
             }
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("That Email is taken, Try another...!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("That UserName is taken, Try another...!");
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something Went wrong, please try again later....!");
         }
     }
 
-    public ResponseEntity<?> login(Login login) {
+    public ResponseEntity<?> login(Login data) {
         try {
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.getUserName(), data.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UserName and Password are invalid.");
         }
-        Optional<User> userOpt = userRepository.findByEmail(login.getEmail());
+        Optional<User> userOpt = userRepository.findByUserName(data.getUserName());
         if (userOpt.isPresent()) {
             String token = jwtUtils.generateToken(new HashMap<>(), userOpt.get());
             return ResponseEntity.ok(token);

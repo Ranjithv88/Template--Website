@@ -1,13 +1,11 @@
 package com.springBoot.Template.Controller;
 
 import com.springBoot.Template.Model.Login;
-import com.springBoot.Template.Model.User;
-import com.springBoot.Template.Security.AuthenticationFilter;
+import com.springBoot.Template.Model.Register;
 import com.springBoot.Template.Service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins="http://localhost:8088",methods = {RequestMethod.POST})
@@ -18,13 +16,13 @@ public class AuthenticationController {
     private final AuthenticationService service;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register (@Valid @RequestBody User user) {
-        return service.register(user);
+    public ResponseEntity<String> register (@Valid @RequestBody Register data) {
+        return service.register(data);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login ( @Valid @RequestBody Login login) {
-        return service.login(login);
+    public ResponseEntity<?> login ( @Valid @RequestBody Login data) {
+        return service.login(data);
     }
 
 }

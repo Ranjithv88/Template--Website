@@ -1,8 +1,8 @@
 import './App.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login01 from './components/Login01'
 import Login from './components/Login'
 import Register from './components/Register'
-import Homepage from './components/Homepage'
 import Loading from './components/Loading'
 
 function App() {
@@ -11,8 +11,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/login01" element={<Login01/>}/>
           <Route path="/register" element={<Register/>}/>
-          <Route path="/Home" element={<Homepage/>}/>
           <Route path="/Loading" element={<Loading/>}/>
         </Routes>
       </BrowserRouter>

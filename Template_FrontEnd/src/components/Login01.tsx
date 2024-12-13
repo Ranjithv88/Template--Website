@@ -1,13 +1,108 @@
 import React, { useRef, useState} from 'react'
 import './styles/login.scss'
+import {FcGoogle} from "react-icons/fc"
+import {FaFacebook,FaXTwitter} from "react-icons/fa6"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Loading from './Loading'
 import { useCookies } from 'react-cookie'
-import {FcGoogle} from "react-icons/fc"
-import {FaFacebook,FaXTwitter} from "react-icons/fa6"
 
 function Login() {
+
+  const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
+  const [_, setCookie ] = useCookies(['token'])
+  const [after, setAfter] = React.useState(true)
+  const [loadingAfter, setLoadingAfter] = React.useState(true)
+  const [emailValidator, setEmailValidator] = useState<boolean>(false)
+  const [loginValidator, setLoginValidator] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<string>('password')
+  const [curserValidator, setCurserValidator] = useState<string>("not-allowed")
+  const emailInput = useRef<HTMLInputElement>(null)
+  const passwordInput = useRef<HTMLInputElement>(null)
+  const [emailSuccess, setEmailSuccess] = useState<string>('unknown')
+
+  interface FormData {
+    email: string
+    password: string
+  }
+
+  async function submit(){
+    document.body.style.cursor = "wait"
+    const obj: FormData = {
+      email: emailInput.current?.value || "",
+      password: passwordInput.current?.value || "",
+    }
+    if(emailValidation() == true && passwordValidation() == true) {
+      if(await send(obj) == true){
+        setAfter(false)
+        await sleep(6000)
+        setEmailSuccess(obj.email)
+        setLoadingAfter(false)
+      }else{
+        setLoginValidator(true)
+        document.body.style.cursor = "default"
+      }
+    }
+    document.body.style.cursor = "default"
+  }
+
+  const emailValidation=()=> {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if(emailInput.current?.value){
+      if(!emailPattern.test(emailInput.current?.value)){
+        if(emailInput.current?.value !== ""){
+          setEmailValidator(true)
+          return false
+        }
+        setEmailValidator(false)
+        return false
+      }else{
+        setEmailValidator(false)
+        return true
+      }
+    }
+    return false
+  }
+
+  const passwordValidation=()=> {
+    if(passwordInput.current?.value){
+      if(passwordInput.current.value.length < 2){
+        if(passwordInput.current?.value == ""){
+          return false
+        }
+      return false
+      }else{
+        return true
+      }
+    }
+    return false
+  }
+
+  const curserProgress = () => {
+    if(emailValidation() && passwordValidation())
+      setCurserValidator("pointer")
+    else
+      setCurserValidator("not-allowed")
+  }
+
+  async function send(obj: FormData){
+    try{
+      let response = await axios.post('http://localhost:8888/login',obj)
+      if(response.status === 200){
+        setCookie('token', response.data,{ path: '/', expires: new Date(Date.now() + 3600 * 1000) })
+        return true
+      }else
+        return false
+    }catch(e){
+      console.error(e)
+      return false
+    }
+  }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(showPassword === 'text'? 'password' : 'text')
+  }
+
   return (
     <>
       {after?
@@ -15,12 +110,13 @@ function Login() {
           <div className='LoginBanner'>
               <form className='LoginForm' >
                 <h1>Hi, welcome back!</h1>
-                <input type="text" placeholder=' Enter the UserName'/>
-                <input type={showPassword} minLength={2} placeholder=' Enter the Password'/>
+                <input type="email" ref={emailInput} onChange={()=>{emailValidation(), curserProgress()}} placeholder=' Enter the Email'/>
+                {emailValidator?<h4>Email is Invaild...</h4>:<></>}
+                <input type={showPassword} ref={passwordInput} onChange={()=>{passwordValidation(), curserProgress()}} minLength={2} placeholder=' Enter the Password'/>
                 <h5 className='ShowPassword' onClick={togglePasswordVisibility}>Show Password</h5>
                 <h2>Forget Your Password ?</h2>
                 {loginValidator?<h5>username and Password Wrong...</h5>:<></>}
-                <button className='SignIn' type='button' onClick={submit} >Log In</button>
+                <button className='SignIn' type='button' style={{ cursor: curserValidator }} onClick={submit} >Log In</button>
                 <span>OR</span>
                 <button className='SignG'><h3><FcGoogle /></h3>Continue With Google </button>
                 <button className='SignF'><h3><FaFacebook /></h3>Continue With FaceBook </button>

@@ -24,7 +24,7 @@ public class JwtUtils {
     private String secretKey;
 
     public String generateToken (Map<String,Object> claims, User user) {
-        claims.put("email",user.getEmail());
+        claims.put("userName",user.getUsername());
         claims.put("role",user.getAuthorities());
         String token = Jwts.builder()
                 .setClaims(claims)
@@ -46,7 +46,7 @@ public class JwtUtils {
     }
 
     public String extractEmail (String token) {
-        return extractClaims(token).get("email").toString();
+        return extractClaims(token).get("userName").toString();
     }
 
     public Collection<? extends GrantedAuthority> extractRole (String Token){

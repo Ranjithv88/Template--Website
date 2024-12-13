@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Date;
 import java.util.Collection;
 import java.util.List;
@@ -31,23 +30,22 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(unique=true)
     @NotBlank(message = " UserName is Mandatory ......! ")
     @Size(min = 2,message = " UserName Must Be Between 2 & 30 Characters .......! ",max = 40)
-    private String name;
+    private String userName;
+
+    @NotBlank(message = " Password is Mandatory ......! ")
+    @Size(min = 8,message = " Too Weak .......! ")
+    private String password;
 
     @Decimal
     private int age;
 
     @NotBlank(message = " Email is Mandatory ......! ")
     @Email(message = " Email is Invalid .......! ")
-    @Column(unique=true)
     private String email;
 
-    @NotBlank(message = " Password is Mandatory ......! ")
-    @Size(min = 8,message = " Too Weak .......! ")
-    private String password;
-
-    @Column(unique = true)
     @NotNull(message = " Phone Number is Mandatory ......! ")
     @Size(min = 10,max = 10,message = " Phone Number is Invalid ......! ")
     private String phoneNumber;
@@ -64,7 +62,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return userName;
     }
 
     @Override
