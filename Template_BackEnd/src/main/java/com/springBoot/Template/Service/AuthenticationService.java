@@ -61,6 +61,9 @@ public class AuthenticationService {
         Optional<User> userOpt = userRepository.findByUserName(data.getUserName());
         if (userOpt.isPresent()) {
             String token = jwtUtils.generateToken(new HashMap<>(), userOpt.get());
+            if (token == null) {
+                return ResponseEntity.noContent().build();
+            }
             return ResponseEntity.ok(token);
         } else {
             return ResponseEntity.noContent().build();

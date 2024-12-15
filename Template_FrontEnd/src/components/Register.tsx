@@ -17,10 +17,44 @@ function Register() {
     const [userNameUnique, setUserNameUnique] = React.useState<boolean>(false)
     const [passwordConfirm, setPasswordConfirm] = React.useState<boolean>(false)
     const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
+    const [isHovered, setIsHovered] = React.useState(false)
+    const [mousePosition, setMousePosition] = React.useState({ x: 500, y: 500 })
+    const message = React.useRef<HTMLDivElement | null>(null)
+    const lightDiv = React.useRef<HTMLDivElement | null>(null)
+
+    // light div positioning
+    React.useEffect(() => {
+      let EyeIcon = document.querySelector('.LEyeIcon') as HTMLElement
+      let lightDiv = document.querySelector('.light') as HTMLDivElement
+      if (EyeIcon && lightDiv) {
+        const light = EyeIcon.getBoundingClientRect()
+        lightDiv.style.left = `${light.left - 79 * window.innerWidth / 100}px`
+        lightDiv.style.top = `${light.top - 12 * window.innerHeight / 100}px`
+      }
+    }, [])
+
+    // button message on hover
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX+10, y: e.clientY+10 })
+    }
+    React.useEffect(() => {
+      if (isHovered){
+        document.addEventListener('mousemove', handleMouseMove)
+        if (message.current) {
+          message.current.style.display = 'block';
+        }
+      }else {
+        document.removeEventListener('mousemove', handleMouseMove)
+        if (message.current) {
+          message.current.style.display = 'none'
+        }
+        }
+      return () => document.removeEventListener('mousemove', handleMouseMove)
+    }, [isHovered])
     
     // password Toggle Function
     const togglePasswordVisibility = () => {
-        setShowPassword(showPassword === 'text'? 'password' : 'text')
+      setShowPassword(showPassword === 'text'? 'password' : 'text')
     }
 
     // Interface for Form Data
@@ -109,7 +143,7 @@ function Register() {
       }
 
   return (
-    // registration Page Html Code
+    // Registration Page Html Code
     <>
       {after?
         <div className='Register'>
@@ -118,16 +152,16 @@ function Register() {
               <h1>Welcome to Template</h1>
               <div className='RegisterLink'>
                 <h1> Using Magical Link? </h1>
-                <button className='SignG'><h3><FcGoogle /></h3>Continue With Google </button>
-                <button className='SignF'><h3><FaFacebook /></h3>Continue With FaceBook </button>
-                <button className='SignT'><h3><FaXTwitter /></h3>Continue With X </button>
+                <button className='SignG' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}><h3><FcGoogle /></h3>Continue With Google </button>
+                <button className='SignF' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}><h3><FaFacebook /></h3>Continue With FaceBook </button>
+                <button className='SignT' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}><h3><FaXTwitter /></h3>Continue With X </button>
               </div>
               <form className='RegisterForm' onSubmit={submit}>
                 <input type="text" minLength={2} placeholder=' Enter the Username'/>
                 {userNameUnique?<h4><CgDanger/> That userName is taken. Try another.</h4>:<></>}
                 <div className='showPassword'>
                     <input pattern="^.{8,}$" title="Password must be at least 8 characters long." type={showPassword} minLength={8} placeholder=' Enter the Password'/>
-                    <h5 onClick={togglePasswordVisibility}>{showPassword == 'password'?<BsFillEyeSlashFill/>:<BsFillEyeFill/>}</h5>
+                    <h5 className='LEyeIcon' onClick={togglePasswordVisibility}>{showPassword == 'password'?<BsFillEyeSlashFill/>:<BsFillEyeFill/>}</h5>
                     <input pattern="^.{8,}$" title="Password must be at least 8 characters long." type={showPassword} minLength={8} placeholder=' Renter the Password'/>
                     <h5 className='PMessage'>Password must be at least 8 characters long.</h5>
                 </div>
@@ -142,9 +176,9 @@ function Register() {
             </div>
           </div>
         </div>
-        // Loading page for registration
+        // Loading page for Registration
         :loadingAfter? <Loading/>:
-        // That is thankyou page for registration
+        // That is thankyou page for Registration
           <div className='RegisterSuccess'>
             <div className='RegisterSuccessOuter'>
               <ul>
@@ -163,6 +197,8 @@ function Register() {
             </div>
           </div>
         }
+      <h1 className='Underdevelopment' ref={message} style={{top: mousePosition.y+'px', left: mousePosition.x+'px'}}>Under Development</h1>
+      <div className='light' ref={lightDiv} style={{ display: showPassword === 'password' ? 'none' : 'block' }}></div>
     </>
   )
 }

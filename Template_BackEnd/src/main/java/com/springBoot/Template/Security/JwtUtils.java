@@ -12,6 +12,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,6 +25,32 @@ public class JwtUtils {
     @Value("${spring.jwt.token.key}")
     private String secretKey;
 
+    @Value("${spring.encrypt.key}")
+    private String encryptKey;
+
+    private SecretKeySpec secretKeySpec;
+
+    private static final String ALGORITHM = "AES";
+    private static final String CHARSET = "UTF-8";
+
+    public void init() {
+        this.secretKeySpec = new SecretKeySpec(encryptKey.getBytes(), ALGORITHM);
+    }
+
+    public String encrypt(String data) throws Exception {
+        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+        byte[] encrypted = cipher.doFinal(data.getBytes(CHARSET));
+        return Base64.getEncoder().encodeToString(encrypted);
+    }
+
+    public String decrypt(String encryptedData) throws Exception {
+        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+        byte[] decrypted = cipher.doFinal(Base64.getDecoder().decode(encryptedData));
+        return new String(decrypted, CHARSET);
+    }
+
     public String generateToken (Map<String,Object> claims, User user) {
         claims.put("userName",user.getUsername());
         claims.put("role",user.getAuthorities());
@@ -32,8 +60,14 @@ public class JwtUtils {
                 .setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 60))
                 .signWith(key(), SignatureAlgorithm.HS384)
                 .compact();
-        log.info(" Token Generate SuccessFully .....! {} \t",token);
-        return token;
+        String encryptToken = null;
+        try{
+            init();
+            encryptToken = encrypt(token);
+        }catch (Exception e){
+            log.info(e.toString());
+        }
+        return encryptToken;
     }
 
     public Key key () {
@@ -41,7 +75,14 @@ public class JwtUtils {
         return Keys.hmacShaKeyFor(KeyBytes);
     }
 
-    public Claims extractClaims (String token) {
+    public Claims extractClaims (String decryptToken) {
+        String token = null;
+        try{
+            init();
+            token = decrypt(decryptToken);
+        }catch (Exception e){
+            log.info(e.toString());
+        }
         return Jwts.parser().setSigningKey(key()).build().parseClaimsJws(token).getBody();
     }
 

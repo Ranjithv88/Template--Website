@@ -1,5 +1,5 @@
 
-/*------------- Loading Components -------------*/
+/*------------- Loading Components Style -------------*/
 .Loading{
     height: 100vh;
     width: 100vw;
@@ -10,7 +10,18 @@
     align-items: center;
     row-gap: 20px;
     background-color: rgba(239, 244, 239, 1);
+    cursor: wait;
+    .media{
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        height: 100vh;
+        width: 100vw;
+    }
     .LoadingOuter{
+        z-index: 2;
         height: 100px;
         width: 100px;
         background-color: rgba( 236, 240, 243, 1);
@@ -25,7 +36,8 @@
         }
     }
     ul{
-        color: rgba(200, 182, 235, 1);
+        z-index: 2;
+        color: rgba(255, 255, 255, 1);
         font-family: "Griffy", system-ui;
         font-size: 100px;
         cursor: wait;
@@ -33,7 +45,7 @@
         display: inherit;
         li{
             transform: translateX(-100vw);
-            animation: leftAnimation 6s ease-in-out 1 forwards;
+            animation: leftAnimation 6s ease-in-out infinite forwards;
         }
         li:nth-child(1){ animation-delay: 1.5s; }
         li:nth-child(2){ animation-delay: 1.4s; }
@@ -46,20 +58,22 @@
         li:nth-child(9){ animation-delay: 0.7s; }
         li:nth-child(10){ animation-delay: 0.6s; }
     }
-    @keyframes leftAnimation {
-        0% { 
-            transform: translateX(-100vw); 
-            opacity: 0;
-        }20% { 
-            transform: translateX(0); 
-            opacity: 1;
-        }80% {
-            transform: translateX(0); 
-            opacity: 1;
-        }100% {
-            transform: translateX(100vw); 
-            opacity: 0;
-        }
+}
+
+/*------------- Animation for Loading -------------*/
+@keyframes leftAnimation {
+    0% { 
+        transform: translateX(-100vw); 
+        opacity: 0;
+    }20% { 
+        transform: translateX(0); 
+        opacity: 1;
+    }80% {
+        transform: translateX(0); 
+        opacity: 1;
+    }100% {
+        transform: translateX(100vw); 
+        opacity: 0;
     }
 }
 @keyframes animation {
