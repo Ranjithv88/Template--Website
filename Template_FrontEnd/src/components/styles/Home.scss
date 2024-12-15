@@ -1,0 +1,90 @@
+
+/*------------- Home Components Style -------------*/
+.empty{
+    height: 14vh;
+    width: 100vw;
+}
+.HMainOuter {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .HMainInner {
+        height: 100vh;
+        width: 94vw;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        div {
+            border-radius: 8px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+        }
+        .HOne {
+            height: 65vh;
+            width: 46vw;
+            display: grid;
+            justify-items: center;
+            grid-template-columns: 1fr;
+            row-gap: 10px;
+            h1{
+                font-family: 'devil';
+                padding: 10px;
+                text-align: start;
+            }
+            p{
+                padding: 10px;
+                text-align: center;
+                font-family: 'devil';
+            }
+        }
+        .HTwo {
+            height: 100vh;
+            width: 46vw;
+            grid-row: span 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button {
+                height: 100px;
+                width: 100px;
+                border: none;
+                background-color: rgba(0, 0, 0, 1);
+                color: rgba(255, 255, 255, 1);
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 12px;
+                transition: font-size 0.4;
+            }
+            button:hover {
+                font-size: 14px;
+            }
+        }
+        .HThree {
+            height: 31vh;
+            width: 46vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: none;
+            div {
+                display: flex;
+                align-items: end;
+                h1{
+                    font-family: 'BebasNeue';
+                }
+            }
+            .HThree01 {
+                height: 31vh;
+                width: 22.5vw;
+            }
+            .HThree02 {
+                height: 31vh;
+                width: 22.5vw;
+            }
+        }
+    }
+}
+

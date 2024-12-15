@@ -1,0 +1,18 @@
+
+/*------------- HomePage Components Style -------------*/
+.Home {
+    .circle {
+        --circle-size: 40px;
+        position: fixed;
+        height: var(--circle-size);
+        width: var(--circle-size);
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 100%;
+        top: calc(var(--circle-size)/2*-1);
+        left: calc(var(--circle-size)/2*-1);
+        pointer-events: none;
+        z-index: 50;
+        transition: transform 0.8;
+    }
+}
+
