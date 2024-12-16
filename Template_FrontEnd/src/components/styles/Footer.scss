@@ -1,0 +1,106 @@
+
+/*------------- Footer Components Style -------------*/
+footer {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(212, 201, 188, 1);
+    .Foot {
+        height: 80vh;
+        width: 90vw;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(3, 30vw);
+        div {
+            background-color: rgba(248, 245, 236, 1);
+            border-radius: 40px;
+            border: 2px solid rgba(0, 0, 0, 0.4);
+        }
+        .Foot01 {
+            grid-row: span 2;
+            width: 29.5vw;
+            height: 30vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'BebasNeue';
+            button {
+                font-size: 18px;
+                height: 50px;
+                width: 50px;
+                border: none;
+                background-color: rgba(0, 0, 0, 1);
+                color: rgba(255, 255, 255, 1);
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background-color 0.3s ease-in-out;
+                transition: 1s;
+            }
+        }
+        .Foot01:hover {
+            button {
+                height: 50px;
+                width: 250px;
+                background-color: rgba(0, 0, 0, 0.9);
+            }
+            h1 {
+                transition: 1s;
+                transform: translateY(-40px); 
+                opacity: 0;
+            }
+        }
+        .Foot02 {
+            grid-column: span 2;
+            grid-row: span 2;   
+            width: 59.5vw;
+            height: 30vh;
+        }
+        .Foot03 {
+            grid-column: span 2;
+            width: 59.5vw;
+            height: 18vh;
+        }
+        .Foot04 {   
+            width: 29.5vw;
+            height: 18vh;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-family: 'BebasNeue';
+            button {
+                font-size: 38px;
+                border: none;
+                background-color: transparent;
+                color: rgba(0, 0, 0, 1);
+                border-radius: 50%;
+                cursor: pointer;
+            }
+        }
+        .Foot05 {   
+            grid-column: span 3;
+            width: 88vw;
+            height: 15vh;
+        }
+        .Foot06 {  
+            grid-column: span 3;
+            width: 88vw;
+            height: 7vh;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: rgba(212, 201, 188, 1);
+            a{
+                font-size: 14px;
+                font-family: cursive;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+

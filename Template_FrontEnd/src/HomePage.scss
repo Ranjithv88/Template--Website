@@ -12,7 +12,16 @@
         left: calc(var(--circle-size)/2*-1);
         pointer-events: none;
         z-index: 50;
-        transition: transform 0.8;
+        transition: transform 0.1s;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h1{
+            color: rgba(255, 255, 255, 1);
+            font-size: 6px;
+            font-family: 'Griffy';
+        }
     }
 }
 

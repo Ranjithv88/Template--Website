@@ -10,7 +10,7 @@ function Home() {
                     <h1>Create your own Portfolio</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa esse corrupti obcaecati aliquam dolores assumenda maiores deserunt excepturi quos expedita tenetur, quae id, incidunt, quo possimus error natus eum ipsam.</p>
                 </div>
-                <div className='HTwo'>
+                <div className='HTwo noEffect'>
                     <button>View More</button>
                 </div>
                 <div className='HThree'>

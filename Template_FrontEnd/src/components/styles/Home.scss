@@ -21,6 +21,7 @@
         div {
             border-radius: 8px;
             border: 2px solid rgba(0, 0, 0, 0.2);
+            background-color: rgba(225, 225, 225, 1);
         }
         .HOne {
             height: 65vh;
@@ -37,7 +38,7 @@
             p{
                 padding: 10px;
                 text-align: center;
-                font-family: 'devil';
+                font-family: 'BebasNeue';
             }
         }
         .HTwo {
@@ -47,6 +48,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
+            &:hover {
+                button{
+                    animation: ButtonHomeHover 4s ease-in-out 0.2s 1 forwards;
+                }
+            }
             button {
                 height: 100px;
                 width: 100px;
@@ -56,10 +63,8 @@
                 border-radius: 50%;
                 cursor: pointer;
                 font-size: 12px;
-                transition: font-size 0.4;
-            }
-            button:hover {
-                font-size: 14px;
+                transform: rotate(0deg) scale(1);
+                animation: ButtonHomeNotHover 4s ease-in-out 0s 1 forwards;
             }
         }
         .HThree {
@@ -69,6 +74,7 @@
             justify-content: space-between;
             align-items: center;
             border: none;
+            background-color: rgba(255, 255, 255, 1);
             div {
                 display: flex;
                 align-items: end;
@@ -88,3 +94,18 @@
     }
 }
 
+/*------------- Animation For Home -------------*/
+@keyframes ButtonHomeHover {
+    from{
+        transform: rotate(0deg) scale(1);
+    }to {
+        transform: rotate(360deg) scale(0);
+    }
+}
+@keyframes ButtonHomeNotHover {
+    from{
+        transform: rotate(360deg) scale(0);
+    }to {
+        transform: rotate(0deg) scale(1);
+    }
+}
