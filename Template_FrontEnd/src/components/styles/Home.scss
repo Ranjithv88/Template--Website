@@ -85,10 +85,28 @@
             .HThree01 {
                 height: 31vh;
                 width: 22.5vw;
+                background-image: url('../../assets/images/Font_intro.png');
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 100% 100%;
+                background-blend-mode: normal;
+                h1{
+                    background-color: white;
+                    width: 22.5vw;
+                }
             }
             .HThree02 {
                 height: 31vh;
                 width: 22.5vw;
+                background-image: url('../../assets/images/color_intro.png');
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 100% 100%;
+                background-blend-mode: normal;
+                h1{
+                    background-color: white;
+                    width: 22.5vw;
+                }
             }
         }
     }
