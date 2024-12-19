@@ -29,7 +29,7 @@ function Register() {
       if (EyeIcon && lightDiv) {
         const light = EyeIcon.getBoundingClientRect()
         lightDiv.style.left = `${light.left - 79 * window.innerWidth / 100}px`
-        lightDiv.style.top = `${light.top - 12 * window.innerHeight / 100}px`
+        lightDiv.style.top = `${light.top - 12.8 * window.innerHeight / 100}px`
       }
     }, [])
 
