@@ -1,9 +1,11 @@
 import './styles/Home.scss'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
+    const navigate = useNavigate()
   return (
     <>
-        <div className='empty'></div>
+        <div className='empty'/>
         <main className="HMainOuter">
             <main className="HMainInner">
                 <div className='HOne'>
@@ -14,12 +16,12 @@ function Home() {
                     <button>View More</button>
                 </div>
                 <div className='HThree'>
-                    <div className='HThree01'><h1>$Fonts</h1></div>
+                    <div className='HThree01' onClick={()=> navigate('./Font-Face')}><h1>$Fonts</h1></div>
                     <div className='HThree02'><h1>$Colors</h1></div>
                 </div>
             </main>
         </main>
-        <div className='empty'></div>
+        <div className='empty'/>
     </>
   )
 }

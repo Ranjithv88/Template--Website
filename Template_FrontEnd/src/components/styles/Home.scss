@@ -1,9 +1,5 @@
 
 /*------------- Home Components Style -------------*/
-.empty{
-    height: 14vh;
-    width: 100vw;
-}
 .HMainOuter {
     height: 100vh;
     width: 100vw;
@@ -22,6 +18,7 @@
             border-radius: 8px;
             border: 2px solid rgba(0, 0, 0, 0.2);
             background-color: rgba(225, 225, 225, 1);
+            cursor: pointer;
         }
         .HOne {
             height: 65vh;
@@ -49,6 +46,10 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            background-image: url('../../assets/images/NOIR\ -\ Modern\ Portfolio\ PowerPoint\ Template.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
             &:hover {
                 button{
                     animation: ButtonHomeHover 4s ease-in-out 0.2s 1 forwards;
@@ -127,3 +128,11 @@
         transform: rotate(0deg) scale(1);
     }
 }
+// @keyframes ButtonHomeNotHover {
+//     from{
+//         background-image: url('');
+//     }to {
+//         transform: rotate(0deg) scale(1);
+//     }
+// }
+
