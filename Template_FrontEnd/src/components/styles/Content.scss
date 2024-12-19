@@ -24,10 +24,9 @@
     .ContentOuter {
         width: 92vw;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         row-gap: 10px;
         column-gap: 10px;
-        justify-content: center;
         align-items: center;
         justify-items: center;
         div {
@@ -40,44 +39,11 @@
             align-items: center;
             background-color: rgba(225, 225, 225, 1);
             cursor: pointer;
-            &:hover {
-                transform: translateY(-30px);
-                z-index: 2;
-                h2 {
-                    transform: rotateZ(180deg);
-                }
-            }
             h2{
                 font-size: 20px;
                 font-family: 'skyer';
             }
         }
-        .Content01 {
-            animation: slider01 12s ease-in-out 0.2s infinite;
-        }
-        .Content02 {
-            animation: slider02 12s ease-in-out 2s infinite;
-        }
-    }
-}
-
-/*------------- Animation For Home -------------*/
-@keyframes slider01 {
-    0% {
-        transform: translateX(0vw);
-    }50% {
-        transform: translateX(-55vw);
-    }100% {
-        transform: translateX(0vw);
-    }
-}
-@keyframes slider02 {
-    0% {
-        transform: translateX(0vw);
-    }50% {
-        transform: translateX(55vw);
-    }100% {
-        transform: translateX(0vw);
     }
 }
 

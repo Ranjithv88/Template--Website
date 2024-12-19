@@ -1,7 +1,15 @@
+import React from 'react'
 import './styles/Font.scss'
 import { fonts } from '../Details'
 
 function Font() {
+
+  React.useEffect(() => {
+    let contentDiv = document.querySelector('.empty')
+    contentDiv?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    console.log('working')
+  }, [])
+
   return (
     <>
         <div className='empty'/>

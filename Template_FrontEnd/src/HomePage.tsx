@@ -32,6 +32,18 @@ function HomePage() {
       }
     }else if(e.target instanceof Element && e.target.classList.contains('ContentInner')){
       scale = 100
+    }else if(e.target instanceof Element && e.target.classList.contains('portfolio')){
+      scale = 0.8
+      if(backgroundColor != 'rgba(255, 255, 255, 1)'){
+        backgroundColor = 'rgba(255, 255, 255, 1)'
+        setMessage(false)
+      }
+    }else if(e.target instanceof Element && e.target.classList.contains('following')){
+      scale = 0.8
+      if(backgroundColor != 'rgba(255, 255, 255, 0.4)'){
+        backgroundColor = 'rgba(255, 255, 255, 0.4)'
+        setMessage(true)
+      }
     }else{
       scale = 1
       if(backgroundColor != 'rgba(0, 0, 0, 0.2)'){

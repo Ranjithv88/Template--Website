@@ -27,12 +27,19 @@
             justify-items: center;
             grid-template-columns: 1fr;
             row-gap: 10px;
+            color: rgba(225, 225, 225, 1);
+            background-image: url('../../assets/images/Intro_images/Portfolio_intro.jpeg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            animation: PortfolioIntroAnimation 50s linear 10s infinite;
             h1{
                 font-family: 'devil';
                 padding: 10px;
                 text-align: start;
             }
             p{
+                place-content: end;
                 padding: 10px;
                 text-align: center;
                 font-family: 'BebasNeue';
@@ -46,11 +53,14 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            background-image: url('../../assets/images/Portfolio\ stock\ graphic\ design\ and\ motion\ graphic\ templates.jpeg');
+            background-image: url('../../assets/images/Intro_images/Template_intro00.jpeg');
             background-repeat: no-repeat;
-            background-size: 100% 100%;
-            background-position: center center;
+            background-size: cover;
+            background-position: top center;
+            transition: background-position 6s;
+            animation: TemplateIntroAnimation 90s linear 10s infinite;
             &:hover {
+                background-position: bottom center;
                 button{
                     animation: ButtonHomeHover 4s ease-in-out 0.2s 1 forwards;
                 }
@@ -64,7 +74,7 @@
                 border-radius: 50%;
                 cursor: pointer;
                 font-size: 12px;
-                transform: rotate(0deg) scale(1);
+                transform: translateY(0) scale(1) rotate(0);
                 animation: ButtonHomeNotHover 4s ease-in-out 0s 1 forwards;
             }
         }
@@ -80,32 +90,33 @@
                 display: flex;
                 align-items: end;
                 h1{
+                    overflow: hidden;
                     font-family: 'BebasNeue';
                 }
             }
             .HThree01 {
                 height: 31vh;
                 width: 22.5vw;
-                background-image: url('../../assets/images/Font_intro02.jpeg');
+                background-image: url('../../assets/images/Intro_images/Font_intro00.jpeg');
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-size: 100% 100%;
-                background-blend-mode: normal;
+                animation: FontIntroAnimation 40s linear 10s infinite;
                 h1{
-                    background-color: white;
+                    background-color: rgba(255, 255, 255, 0.9);
                     width: 22.5vw;
                 }
             }
             .HThree02 {
                 height: 31vh;
                 width: 22.5vw;
-                background-image: url('../../assets/images/color_intro.png');
+                background-image: url('../../assets/images/Intro_images/color_intro00.jpeg');
                 background-repeat: no-repeat;
                 background-position: center center;
-                background-size: 100% 100%;
-                background-blend-mode: normal;
+                background-size: 150% 150%;
+                animation: colorIntroAnimation 40s linear 0s infinite;
                 h1{
-                    background-color: white;
+                    background-color: rgba(255, 255, 255, 0.9);
                     width: 22.5vw;
                 }
             }
@@ -116,23 +127,118 @@
 /*------------- Animation For Home -------------*/
 @keyframes ButtonHomeHover {
     from{
-        transform: rotate(0deg) scale(1);
+        transform: translateY(0) scale(1) rotate(0);
     }to {
-        transform: rotate(360deg) scale(0);
+        transform: translateY(40vh) scale(0) rotate(360deg);
     }
 }
 @keyframes ButtonHomeNotHover {
     from{
-        transform: rotate(360deg) scale(0);
+        transform: translateY(40vh) scale(0) rotate(360deg);
     }to {
-        transform: rotate(0deg) scale(1);
+        transform: translateY(0) scale(1) rotate(0);
     }
 }
-// @keyframes ButtonHomeNotHover {
-//     from{
-//         background-image: url('');
-//     }to {
-//         transform: rotate(0deg) scale(1);
-//     }
-// }
+@keyframes FontIntroAnimation {
+    0%{
+        background-image: url('../../assets/images/Intro_images/Font_intro00.jpeg');
+    }10%{
+        background-image: url('../../assets/images/Intro_images/Font_intro00.jpeg');
+    }11%{
+        background-image: url('../../assets/images/Intro_images/Font_intro01.jpeg');
+    }30%{
+        background-image: url('../../assets/images/Intro_images/Font_intro01.jpeg');
+    }31% {
+        background-image: url('../../assets/images/Intro_images/Font_intro02.jpeg');
+    }54%{
+        background-image: url('../../assets/images/Intro_images/Font_intro02.jpeg');
+    }55%{
+        background-image: url('../../assets/images/Intro_images/Font_intro03.jpeg');
+    }79%{
+        background-image: url('../../assets/images/Intro_images/Font_intro03.jpeg');
+    }80% {
+        background-image: url('../../assets/images/Intro_images/Font_intro04.jpeg');
+    }100%{
+        background-image: url('../../assets/images/Intro_images/Font_intro04.jpeg');
+    }
+}
+@keyframes PortfolioIntroAnimation {
+    0%{
+        color: rgba(255, 255, 255, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro.jpeg');
+    }20%{
+        color: rgba(255, 255, 255, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro.jpeg');
+    }21%{
+        color: rgba(255, 255, 255, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro00.jpeg');
+    }40%{
+        color: rgba(255, 255, 255, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro00.jpeg');
+    }41%{
+        color: rgba(0, 0, 0, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro01.jpeg');
+    }70%{
+        color: rgba(0, 0, 0, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro01.jpeg');
+    }71%{
+        color: rgba(0, 0, 0, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro02.jpeg');
+    }90%{
+        color: rgba(0, 0, 0, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro02.jpeg');
+    }91%{
+        color: rgba(0, 0, 0, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro03.jpeg');
+    }100%{
+        color: rgba(0, 0, 0, 1);
+        background-image: url('../../assets/images/Intro_images/Portfolio_intro03.jpeg');
+    }
+}
+@keyframes TemplateIntroAnimation {
+    0%{
+        background-image: url('../../assets/images/Intro_images/Template_intro00.jpeg');
+    }20%{
+        background-image: url('../../assets/images/Intro_images/Template_intro00.jpeg');
+    }21%{
+        background-image: url('../../assets/images/Intro_images/Template_intro01.jpeg');
+    }40%{
+        background-image: url('../../assets/images/Intro_images/Template_intro01.jpeg');
+    }41%{
+        background-image: url('../../assets/images/Intro_images/Template_intro02.jpeg');
+    }70%{
+        background-image: url('../../assets/images/Intro_images/Template_intro02.jpeg');
+    }71%{
+        background-image: url('../../assets/images/Intro_images/Template_intro03.jpeg');
+    }90%{
+        background-image: url('../../assets/images/Intro_images/Template_intro03.jpeg');
+    }91%{
+        background-image: url('../../assets/images/Intro_images/Template_intro04.jpeg');
+    }100%{
+        background-image: url('../../assets/images/Intro_images/Template_intro04.jpeg');
+    }
+}
+@keyframes colorIntroAnimation {
+    0%{
+        background-image: url('../../assets/images/Intro_images/color_intro00.jpeg');
+    }20%{
+        background-image: url('../../assets/images/Intro_images/color_intro00.jpeg');
+    }21%{
+        background-image: url('../../assets/images/Intro_images/color_intro01.jpeg');
+    }40%{
+        background-image: url('../../assets/images/Intro_images/color_intro01.jpeg');
+    }41%{
+        background-image: url('../../assets/images/Intro_images/color_intro02.jpeg');
+    }70%{
+        background-image: url('../../assets/images/Intro_images/color_intro02.jpeg');
+    }71%{
+        background-image: url('../../assets/images/Intro_images/color_intro03.jpeg');
+    }90%{
+        background-image: url('../../assets/images/Intro_images/color_intro03.jpeg');
+    }91%{
+        background-image: url('../../assets/images/Intro_images/color_intro04.jpeg');
+    }100%{
+        background-image: url('../../assets/images/Intro_images/color_intro04.jpeg');
+    }
+}
 

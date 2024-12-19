@@ -7,214 +7,170 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgba(212, 201, 188, 1);
+    row-gap: 10px;
     margin-top: 20px;
-    h4{
-        font-size: 40px;
-        padding: 20px 0px;
-        font-family: 'Griffy';
-        letter-spacing: 4px;
+    background-color: rgba(255, 255, 255, 1);
+    div {
+        background-color: rgba(242, 242, 242, 1);
+        border-radius: 18px;
+        border: 2px solid rgba(0, 0, 0, 0.4);
     }
-    .Foot {
-        height: 80vh;
-        width: 90vw;
-        display: grid;
-        justify-content: center;
+    .Foot01 {
+        width: 88vw;
+        height: 28vh;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        grid-template-columns: repeat(3, 30vw);
-        div {
-            background-color: rgba(248, 245, 236, 1);
-            border-radius: 40px;
-            border: 2px solid rgba(0, 0, 0, 0.4);
+        div{
+            width: 48vw;
+            border: none;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            h2{
+                font-family: 'Matemasie';
+                font-size: 22px;
+            }
+            h1{
+                font-family: 'BebasNeue';
+                font-size: 50px;
+                text-decoration: underline rgba(255, 255, 0, 0.8);
+            }
         }
-        .Foot01 {
-            grid-row: span 2;
-            width: 29.5vw;
+        button {
+            font-size: 40px;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 1);
+            color: rgba(255, 255, 255, 1);
+            border: 2px solid rgba(0, 0, 0, 1);
+            cursor: pointer;
+            &:hover {
+                font-size: 45px;
+                background-color: rgba(255, 255, 255, 1);
+                color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+    .Foot02 {   
+        width: 86vw;
+        height: 12vh;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        h1{
+            width: 120px;
+            font-size: 14px;
+            h2{
+                font-family: 'Devil';
+            }
+            .FH201{
+                text-align: start;
+            }
+            .FH202{
+                text-align: end;
+            }
+        }
+        button {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 38px;
+            border: none;
+            background-color: transparent;
+            color: rgba(0, 0, 0, 1);
+            border-radius: 50%;
+            cursor: pointer;
+            a{
+                padding: 2px;
+                animation: rotateInfinite 2s linear infinite;
+            }
+            h5{
+                opacity: 0;
+                font-size: 20px;
+                transition: opacity 3s;
+            }
+        }
+        &:hover {
+            h2{
+                text-align: center;
+            }
+            button{
+                h5{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .Foot03{
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        width: 90vw;
+        height: 40vh;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 1);
+        color: rgba(242, 242, 242, 1);
+        div{
+            width: 28vw;
             height: 30vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-family: 'BebasNeue';
-            button {
-                font-size: 18px;
-                height: 50px;
-                width: 50px;
+            flex-direction: column;
+        }
+        .Foot03First {
+            font-family: 'blinkMacSystem-light';
+            background-color: rgba(0, 0, 0, 1);
+            h1{
+                font-size: 40px;
+                color: rgba(242, 242, 242, 1);
+            }
+        }
+        .Foot03Two {
+            font-family: 'Morion';
+            background-color: rgba(0, 0, 0, 1);
+            p{
+                font-size: 12px;
+                color: rgba(242, 242, 242, 1);
+                text-align: center;
+            }
+        }
+        .Foot03Three {
+            flex-direction: row;
+            font-size: 28px;
+            background-color: rgba(0, 0, 0, 1);
+            color: rgba(242, 242, 242, 1);
+            font-family: 'Griffy';
+            .Foot03Three01{
+                row-gap: 16px;
+                padding: 2px;
                 border: none;
                 background-color: rgba(0, 0, 0, 1);
-                color: rgba(255, 255, 255, 1);
-                border-radius: 50%;
-                cursor: pointer;
-                transition: background-color 0.3s ease-in-out;
-                transition: 1s;
+                color: rgba(242, 242, 242, 1);
             }
-        }
-        .Foot01:hover {
-            button {
-                height: 50px;
-                width: 250px;
-                background-color: rgba(0, 0, 0, 0.9);
-            }
-            h1 {
-                transition: 1s;
-                transform: translateY(-40px); 
-                opacity: 0;
-            }
-        }
-        .Foot02 {
-            grid-column: span 2;
-            grid-row: span 2;   
-            width: 59.5vw;
-            height: 30vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            h1 {
-                width: 58vw;
-                font-size: 28px;
+            .Foot03Three02{
+                align-items: start;
+                row-gap: 10px;
+                border: none;
+                padding: 2px;
+                text-decoration: underline;
                 text-align: start;
-                font-family: 'Karantina';
-            }
-            .feedback{
-                width: 58vw;
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
-                input{
-                    height: 30px;
-                    width: 250px;
-                    border-radius: 10px;
-                    border: 1px solid rgba(170, 161, 150, 1);
-                    padding-left: 10px;
-                    &:focus {
-                        outline: none;
-                    }
-                    &:invalid{
-                        border: 1px solid rgba(255, 0, 0, 1);
-                    }
-                }
-                textarea{
-                    border: 1px solid rgba(170, 161, 150, 1);
-                    width: 300px;
-                    border-radius: 10px;
-                    padding: 4px;
-                    &:focus {
-                        outline: none;
-                    }
-                    &:invalid{
-                        border: 1px solid rgba(255, 0, 0, 1);
-                    }
-                }
-                button {
-                    font-size: 35px;
-                    border: none;
-                    background-color: transparent;
-                    color: rgba(0, 0, 0, 1);
-                    cursor: pointer;
-                    &:hover {
-                        font-size: 38px;
-                    }
-                }
+                background-color: rgba(0, 0, 0, 1);
+                a{color: rgba(242, 242, 242, 1);}
             }
         }
-        .Foot03 {
-            grid-column: span 2;
-            width: 59.5vw;
-            height: 18vh;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            p{
-                text-align: center;
-                padding: 5px 5vw;
-                font-family: 'BrightMelody';
-                font-size: 12px;
-            }
-        }
-        .Foot04 {   
-            width: 29.5vw;
-            height: 18vh;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            font-family: 'BebasNeue';
-            button {
-                font-size: 38px;
-                border: none;
-                background-color: transparent;
-                color: rgba(0, 0, 0, 1);
-                border-radius: 50%;
-                cursor: pointer;
-            }
-        }
-        .Foot05 {   
-            grid-column: span 3;
-            width: 88vw;
-            height: 15vh;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            h1{
-                width: 120px;
-                font-size: 14px;
-                h2{
-                    font-family: 'Devil';
-                }
-                .FH201{
-                    text-align: start;
-                }
-                .FH202{
-                    text-align: end;
-                }
-            }
-            button {
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
-                font-size: 38px;
-                border: none;
-                background-color: transparent;
-                color: rgba(0, 0, 0, 1);
-                border-radius: 50%;
-                cursor: pointer;
-                h5{
-                    opacity: 0;
-                    font-size: 20px;
-                    transition: opacity 3s;
-                }
-            }
-            &:hover {
-                h2{
-                    text-align: center;
-                }
-                button{
-                    a{
-                        transform: rotateZ(360deg);
-                        transition: transform  3s;
-                    }
-                    h5{
-                        opacity: 1;
-                    }
-                }
-            }
-        }
-        .Foot06 {  
-            grid-column: span 3;
-            width: 88vw;
-            height: 7vh;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            background-color: rgba(212, 201, 188, 1);
-            a{
-                font-size: 14px;
-                font-family: cursive;
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
+    }
+}
+
+/*------------- Animation For Footer -------------*/
+@keyframes rotateInfinite {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
 }
 
