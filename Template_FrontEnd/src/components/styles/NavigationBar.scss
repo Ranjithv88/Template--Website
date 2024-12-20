@@ -43,7 +43,7 @@ header {
             li:nth-child(5) {
                 scale: 1;
             }
-            &:hover li:not(:hover){
+            &:hover {
                 transform: rotateZ(180deg);
                 color: rgba(0, 0, 0, 1);
                 background-color: transparent;

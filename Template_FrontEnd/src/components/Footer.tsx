@@ -20,10 +20,10 @@ function Footer01() {
         </div>
          <div className="Foot02">
             <h1><h2 className='FH201'>Support </h2><h2 className='FH202'>Browser</h2></h1>
-            <button type='button'><a href="#"><FaChrome className='Fa'/></a><h5>Google Chrome</h5></button>
-            <button type='button'><a href="#"><FaEdge className='Fa'/></a><h5>Edge</h5></button>
-            <button type='button'><a href="#"><FaFirefoxBrowser className='Fa'/></a><h5>Fire Fox</h5></button>
-            <button type='button'><a href="#"><FaSafari className='Fa'/></a><h5>Safari</h5></button>
+            <button type='button'><a target='_Blank' href="https://www.google.com/intl/en_in/chrome/"><FaChrome className='Fa'/></a><h5>Google Chrome</h5></button>
+            <button type='button'><a target='_Blank' href="https://www.microsoft.com/en-us/edge/?form=MA13FJ"><FaEdge className='Fa'/></a><h5>Edge</h5></button>
+            <button type='button'><a target='_Blank' href="https://www.mozilla.org/en-US/firefox/"><FaFirefoxBrowser className='Fa'/></a><h5>Fire Fox</h5></button>
+            <button type='button'><a target='_Blank' href="https://www.apple.com/in/safari/"><FaSafari className='Fa'/></a><h5>Safari</h5></button>
         </div>
         <div className='Foot03'>
             <div className="Foot03First">
@@ -34,14 +34,14 @@ function Footer01() {
             </div>
             <div className="Foot03Three">
                 <div className="Foot03Three01">
-                    <GrGoogle className='a'/>
-                    <FaThreads className='a'/>
-                    <FaInstagram className='a'/>
+                    <GrGoogle className='a FGB'/>
+                    <FaThreads className='a FTB'/>
+                    <FaInstagram className='a FIB'/>
                 </div>
                 <div className="Foot03Three02 following">
-                    <a href="#" className='following'> Google</a>
-                    <a href="#" className='following'> Threads</a>
-                    <a href="#" className='following'> Instagram</a>
+                    <a href="#" className='following FG'> Google</a>
+                    <a href="#" className='following FT'> Threads</a>
+                    <a href="#" className='following FI'> Instagram</a>
                 </div>
             </div>
         </div>

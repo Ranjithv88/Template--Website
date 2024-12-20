@@ -47,7 +47,7 @@ function Home() {
             </main>
         </main>
         <div className='empty'/>
-        <h1 className='Underdevelopment' ref={message} style={{top: mousePosition.y+'px', left: mousePosition.x+'px'}}>Click</h1>
+        <h1 className='click' ref={message} style={{top: mousePosition.y+'px', left: mousePosition.x+'px'}}>Click</h1>
     </>
   )
 }

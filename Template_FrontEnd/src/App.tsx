@@ -5,7 +5,6 @@ import Register from './components/Register'
 import Loading from './components/Loading'
 import HomePage from './HomePage'
 import FontPage from './FontPage'
-import Footer01 from './components/Footer01'
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
           <Route path="/Loading" element={<Loading/>}/>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/Font-Face" element={<FontPage/>}/>
-          <Route path="/Footer01" element={<Footer01/>}/>
         </Routes>
       </BrowserRouter>
     </div>

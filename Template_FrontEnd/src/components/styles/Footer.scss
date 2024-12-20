@@ -46,6 +46,7 @@ footer {
             color: rgba(255, 255, 255, 1);
             border: 2px solid rgba(0, 0, 0, 1);
             cursor: pointer;
+            transition: 1s;
             &:hover {
                 font-size: 45px;
                 background-color: rgba(255, 255, 255, 1);
@@ -84,9 +85,10 @@ footer {
             cursor: pointer;
             a{
                 padding: 2px;
-                animation: rotateInfinite 2s linear infinite;
+                animation: rotateInfinite 4s linear infinite;
             }
             h5{
+                cursor: default;
                 opacity: 0;
                 font-size: 20px;
                 transition: opacity 3s;
@@ -149,6 +151,15 @@ footer {
                 border: none;
                 background-color: rgba(0, 0, 0, 1);
                 color: rgba(242, 242, 242, 1);
+                .FGB:hover{
+                    color: rgba(204, 167, 0, 1);
+                }
+                .FTB:hover{
+                    color: rgba(134, 0, 204, 1);
+                }
+                .FIB:hover{
+                    color: rgba(202, 0, 135, 1);
+                }
             }
             .Foot03Three02{
                 align-items: start;
@@ -158,7 +169,24 @@ footer {
                 text-decoration: underline;
                 text-align: start;
                 background-color: rgba(0, 0, 0, 1);
-                a{color: rgba(242, 242, 242, 1);}
+                a{
+                    color: rgba(242, 242, 242, 1);
+                }
+                .FG:hover {
+                    background: linear-gradient(45deg, #4285F4 25%, #DB4437 25%, #DB4437 50%,#F4B400 50%, #F4B400 75%, #0F9D58 75%, #0F9D58 100%);
+                    background-clip: text;
+                    color: transparent;
+                }
+                .FT:hover {
+                    background: linear-gradient(45deg, #9c27b0, #3f51b5, #f50057);
+                    background-clip: text;
+                    color: transparent;
+                }
+                .FI:hover {
+                    background: linear-gradient(45deg,#833ab4, #fd1d1d,#fcb045);
+                    background-clip: text;
+                    color: transparent;
+                }
             }
         }
     }
