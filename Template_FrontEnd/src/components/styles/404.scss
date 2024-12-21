@@ -1,0 +1,55 @@
+
+/*------------- NotFound Components Style -------------*/
+.NotFound {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 1);
+    p  {
+        font-family: 'skyer';
+        font-weight: 800;
+        text-decoration: underline;
+        font-size: 2vh;
+        color: rgba(255, 255, 255, 1);
+        letter-spacing: 2vh;
+        padding: 0vh 4vh;
+        text-align: justify;
+    }
+    h1 {
+        font-family: 'skyer';
+        font-weight: 800;
+        text-decoration: underline;
+        font-size: 40vh;
+        color: rgba(255, 255, 255, 1);
+        letter-spacing: 2vh;
+    }
+    button {
+        position: absolute;
+        top: 45%;
+        left: 47%;
+        transform: translate(-47%, -45%) rotate(270deg);
+        border: none;
+        font-family: 'skyer';
+        background-color: transparent;
+        color: rgba(255, 255, 255, 1);
+        font-size: 4vh;
+        padding: 2.8vh;
+        cursor: pointer;
+        transition: 0.8s;
+        &:hover {
+            background-color:rgba(255, 255, 255, 1);
+            color: rgba(0, 0, 0, 1);
+        }
+    }
+    h2 {
+        font-family: 'devil';
+        font-weight: 800;
+        font-size: 16vh;
+        color: rgba(255, 255, 255, 1);
+    }
+}
+

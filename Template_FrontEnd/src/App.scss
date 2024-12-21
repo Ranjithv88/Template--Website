@@ -27,7 +27,7 @@
     overflow-x: hidden;
 }
 
-/*--------------------------- Google Fonts ( Anton, BebasNeue, Griffy, Inter, Karantina, Matemasie, Merriweather, Oswald, Pacifico, Poppins, Jaro, Devil, Canicule, BrightMelody, skyer, Morion, blinkMacSystem-light ) --------------------*/
+/*--------------------------- Google Fonts ( Anton, BebasNeue, Griffy, Inter, Karantina, Matemasie, Merriweather, Oswald, Pacifico, Poppins, Jaro, Devil, Canicule, BrightMelody, skyer, Morion, blinkMacSystem-light, Brandbe ) --------------------*/
 @font-face {
     font-family: "Anton";
     src: url('./assets/fonts/Anton-Regular.ttf');
@@ -99,5 +99,9 @@
 @font-face {
     font-family: "blinkMacSystem-light";
     src: url('./assets/fonts/blinkmacsystemfont-light.otf');
+}
+@font-face {
+    font-family: "Brandbe";
+    src: url('./assets/fonts/Brandbe\ Extra\ Bold.otf');
 }
 

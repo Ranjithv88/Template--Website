@@ -30,7 +30,7 @@ function Footer01() {
                 <h1>@CopyRight-<br/>2025</h1>
             </div>
             <div className="Foot03Two">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi aperiam voluptates cumque itaque, placeat laboriosam. Fugit odit obcaecati enim nesciunt consectetur deleniti corrupti amet porro temporibus officia, itaque neque quis!</p>
+                <p>By using this site, you agree to our Terms of Service and Privacy Policy.All content, including text, images, and logos, is protected by copyright law.Unauthorized reproduction, distribution, or modification is prohibited.All trademarks are the property of their respective owners.</p>
             </div>
             <div className="Foot03Three">
                 <div className="Foot03Three01">

@@ -1,0 +1,50 @@
+
+/*------------- Color Components Style -------------*/
+.ColorCodeOuter {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .ColorCodeInner {
+        overflow: hidden;
+        width: 90vw;
+        columns: 250px;
+        gap: 4px;
+        div{
+            background-image: none;
+            background-position: var(--zoom-x) var(--zoom-y);
+            background-repeat: no-repeat;
+            background-size: 200%;
+            border-radius: 15px;
+            margin-bottom: 4px;
+            &:hover {
+                background-image: var(--backgroundColor);
+                img{
+                    visibility: var(--Effect);
+                }
+            }
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 15px;
+            }
+        }
+    }
+}
+.magnifying {
+    position: fixed;
+    top: 98%;
+    left: 50%;
+    transform: translate(-50%, -98%);
+    z-index: 10;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    font-family: 'devil';
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: 1.5px solid rgba(255, 255, 255, 1);
+}
+

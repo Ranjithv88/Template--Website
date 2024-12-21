@@ -3,6 +3,8 @@ import './styles/Home.scss'
 import { useNavigate } from 'react-router-dom'
 
 function Home() {
+
+    // Hooks declaration 
     const navigate = useNavigate()
     const [mousePosition, setMousePosition] = React.useState({ x: 500, y: 500 })
     const [isHovered, setIsHovered] = React.useState(false)
@@ -35,14 +37,14 @@ function Home() {
             <main className="HMainInner">
                 <div className='HOne portfolio' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
                     <h1 className='portfolio'>Create your own Portfolio</h1>
-                    <p className='portfolio'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa esse corrupti obcaecati aliquam dolores assumenda maiores deserunt excepturi quos expedita tenetur, quae id, incidunt, quo possimus error natus eum ipsam.</p>
+                    <p className='portfolio'>A portfolio is a collection of work samples that showcase an individual's skills and achievements. It provides potential employers or clients with insight into the person's expertise and work quality.</p>
                 </div>
                 <div className='HTwo noEffect'>
                     <button>View More</button>
                 </div>
                 <div className='HThree'>
                     <div className='HThree01' onClick={()=> navigate('./Font-Face')}><h1>$Fonts</h1></div>
-                    <div className='HThree02'><h1>$Colors</h1></div>
+                    <div className='HThree02'onClick={()=> navigate('./Color-Code')}><h1>$Colors</h1></div>
                 </div>
             </main>
         </main>

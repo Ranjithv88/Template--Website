@@ -22,9 +22,9 @@
         }
     }
     .ContentOuter {
-        width: 92vw;
+        width: 95vw;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         row-gap: 10px;
         column-gap: 10px;
         align-items: center;
@@ -32,8 +32,8 @@
         div {
             border-radius: 8px;
             border: 2px solid rgba(0, 0, 0, 0.2);
-            height: 50vh;
-            width: 41vw;
+            height: 20vw;
+            width: 31vw;
             display: flex;
             justify-content: center;
             align-items: center;
