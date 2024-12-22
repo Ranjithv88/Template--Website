@@ -20,7 +20,7 @@ function Footer01() {
             <Link to={'/ContactUs'}><button type='button'><FaArrowRight/></button></Link>
         </div>
          <div className="Foot02">
-            <h1><h2 className='FH201'>Support </h2><h2 className='FH202'>Browser</h2></h1>
+            <h1><span className='FSpan01'>Support </span><span className='FSpan02'>Browser</span></h1>
             <button type='button'><a target='_Blank' href="https://www.google.com/intl/en_in/chrome/"><FaChrome className='Fa'/></a><h5>Google Chrome</h5></button>
             <button type='button'><a target='_Blank' href="https://www.microsoft.com/en-us/edge/?form=MA13FJ"><FaEdge className='Fa'/></a><h5>Edge</h5></button>
             <button type='button'><a target='_Blank' href="https://www.mozilla.org/en-US/firefox/"><FaFirefoxBrowser className='Fa'/></a><h5>Fire Fox</h5></button>
