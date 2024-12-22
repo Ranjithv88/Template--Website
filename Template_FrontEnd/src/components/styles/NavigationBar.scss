@@ -1,13 +1,14 @@
 
 /*------------- NavigationBar Components Style -------------*/
 header {
-    height: 14vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     position: fixed;
     z-index: 20;
+    transition: 1s;
     nav {
         height: 10vh;
         width: 94vw;
@@ -97,6 +98,124 @@ header {
             .search {
                 border-radius: 50%;
                 padding: 10px 12px;
+            }
+        }
+    }
+    .menuOuter {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.6);
+        .MenuClose {
+            width: 80vw;
+            border: none;
+            background-color: transparent;
+            text-align: end;
+            font-size: 50px;
+            color: rgba(186, 0, 33, 1);
+            .CloseA {
+                cursor: pointer;
+                &:hover {
+                    font-size: 52px;
+                }
+            }
+        }
+        .menu {
+            height: 60vh;
+            width: 90vw;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: rgba(237, 237, 237, 1);
+            border-radius: 10px;
+            div {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            .menu01 {
+                flex-direction: column;
+                row-gap: 20px;
+                font-family: 'BebasNeue';
+                .MenuA01 {
+                    font-family: 'Griffy';
+                    font-size: 40px;
+                    border-radius: 15px;
+                    padding: 5px 10px;
+                    border: 3px solid transparent;
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 1);
+                        border: 3px solid rgba(255, 255, 255, 1);
+                    }
+                    .Ma {
+                        color: rgba(0, 0, 0, 1);
+                        font-size: 20px;
+                    }
+                }
+                .MenuA02 {
+                    font-size: 40px;
+                    border-radius: 15px;
+                    padding: 5px 10px;
+                    background: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);
+                    background-clip: text;
+                    color: transparent;
+                    border: 3px solid transparent;
+                    &:hover {
+                        border: 3px solid rgba(255, 255, 255, 1);
+                    }
+                    .Ma {
+                        color: rgba(0, 0, 0, 1);
+                        font-size: 20px;
+                    }
+                }
+            }
+            .menu02 {
+                align-items: start;
+                .menuSearch {
+                    background-color: rgba(255, 255, 255, 1);
+                    padding: 10px;
+                    border-radius: 10px;
+                    input {
+                        width: 25vw;
+                        border: none;
+                        font-size: 18px;
+                        padding-left: 10px;
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                    .a:hover {
+                        cursor: pointer;
+                        font-size: 20px;
+                    }
+                }
+            }
+            .menu03 {
+                gap: 20px;
+                button {
+                    background-color: rgba(0, 0, 0, 1);
+                    border-radius: 5px;
+                    border: none;
+                    padding: 8px 15px;
+                    font-family: 'Devil';
+                    cursor: pointer;
+                    color: rgba(255, 255, 255, 1);
+                    font-size: 20px;
+                    border: 1.5px solid rgba(0, 0, 0, 1);
+                    &:hover{
+                        background-color: rgba(255, 255, 255, 1);
+                        color: rgba(0, 0, 0, 1);
+                        .a{
+                            color: rgba(0, 0, 0, 1);
+                        }
+                    }
+                    .a {
+                        color: rgba(255, 255, 255, 1);
+                    }
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
 import './styles/Footer.scss'
+import { Link } from 'react-router-dom'
 import { FaArrowRight } from "react-icons/fa"
 import { FaInstagram } from "react-icons/fa"
 import { FaThreads } from "react-icons/fa6"
@@ -16,7 +17,7 @@ function Footer01() {
                 <h2>HEADRD<br/>ENOUGH?<FaArrowRight/></h2>
                 <h1>Contact us</h1>
             </div>
-            <button type='button'><FaArrowRight/></button>
+            <Link to={'/ContactUs'}><button type='button'><FaArrowRight/></button></Link>
         </div>
          <div className="Foot02">
             <h1><h2 className='FH201'>Support </h2><h2 className='FH202'>Browser</h2></h1>

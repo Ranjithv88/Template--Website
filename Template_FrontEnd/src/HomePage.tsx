@@ -63,7 +63,6 @@ function HomePage() {
         circleElement.current.style.transform = `translate(${circle.x}px, ${circle.y}px) scale(${scale})`
         circleElement.current.style.backgroundColor = backgroundColor
       }
- 
       window.requestAnimationFrame(tick)
     }
     tick()

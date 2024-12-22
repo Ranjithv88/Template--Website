@@ -34,6 +34,11 @@ footer {
                 background-color: rgba(0, 60, 108, 1);
                 padding: 10px;
                 border-radius: 40px;
+                transition: padding 1s;
+                cursor: default;
+                &:hover {
+                    padding: 20px;
+                }
             }
             h1{
                 font-family: 'BebasNeue';

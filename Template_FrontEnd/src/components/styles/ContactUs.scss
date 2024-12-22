@@ -1,0 +1,179 @@
+
+/*------------- ContactUs Components Style -------------*/
+.ContactUs {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 249, 244, 1);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    .CUWaterDrop {
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        transform: translate(-10%, -20%);
+        width: 250px;
+        height: 250px;
+        background-color: transparent;
+        border-radius: 43% 57% 30% 70% / 52% 30% 70% 48%;
+        box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.04),
+            15px 25px 10px rgba(0, 0, 0, 0.098),
+            inset -10px -10px 15px rgba(255, 255, 255, 0.8);
+    }
+    .CUWaterDrop01 {
+        position: absolute;
+        top: 51%;
+        left: 26%;
+        transform: translate(-10%, -20%);
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        border-radius: 43% 57% 30% 70% / 52% 30% 70% 48%;
+        box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.04),
+            5px 10px 5px rgba(0, 0, 0, 0.098),
+            inset -10px -10px 15px rgba(255, 255, 255, 0.8);
+    }
+    .CUWaterDrop::before{
+        position: absolute;
+        top: 31%;
+        left: 12%;
+        transform: translate(-12%, -31%);
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.8);
+        content: ''; 
+        border-radius: 65% 35% 53% 47% / 65% 65% 35% 36%;
+    }
+    .CUWaterDrop::after{
+        position: absolute;
+        top: 18%;
+        left: 25%;
+        transform: translate(-25%, -18%);
+        width: 24px;
+        height: 24px;
+        background-color: rgba(255, 255, 255, 0.8);
+        content: "";
+        border-radius : 34% 66% 40% 60% / 48% 75% 25% 52%;
+    }
+    .ContactDetailsBar {
+        .ContactDetails {
+            position: absolute;
+            top: 20%;
+            left: 70%;
+            transform: translate(-70%, -20%);
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            h1 {
+                font-family: 'Griffy';
+                font-size: 70px;
+                cursor: default;
+                background-color: rgba(255, 255, 255, 1);
+                padding: 0px 20px;
+                border-radius: 5px;
+            }
+            button {
+                border: 2px solid rgba(255, 242, 230, 1);
+                font-family: 'devil';
+                font-size: 30px;
+                background-color: rgba(42, 87, 50, 1);
+                padding: 10px 10px;
+                color: rgba(255, 242, 230, 1);
+                border-radius: 5px;
+                cursor: pointer;
+                span {
+                    font-size: 25px;
+                    padding: 0px 10px;
+                    letter-spacing: 2px;
+                }
+                &:hover {
+                    color: rgba(42, 87, 50, 1);
+                    background-color: rgba(255, 242, 230, 1);
+                    border: 2px solid rgba(42, 87, 50, 1);
+                    .CUA {
+                        transition: transform 4s;
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+        }
+        .ContactDetailsBar01 {
+            height: 180px;
+            width: 100vw;
+            background-color: rgba(42, 87, 50, 1);
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 0px 10px;
+            div {
+                height: 150px;
+                width: 35vw;
+                a{
+                    color: rgba(255, 242, 230, 1);
+                    text-decoration: underline;
+                    font-size: 14px;
+                    &:hover {
+                        color: rgba(86, 125, 176, 1);
+                    }
+                }
+            }
+            .CUPrivatePolicy {
+                color: rgba(255, 242, 230, 1);
+                font-family: 'Morion';
+                h1{
+                    font-family: 'BrightMelody';
+                    font-size: 30px;
+                }
+                p {
+                    padding: 5px 0px;
+                    font-size: 13px;
+                    text-align: justify;
+                }
+            }
+            .CUTermsAndService {
+                color: rgba(255, 242, 230, 1);
+                font-family: 'Morion';
+
+                h1{
+                    font-family: 'BrightMelody';
+                    font-size: 30px;
+                }
+                p {
+                    padding: 5px 0px;
+                    font-size: 13px;
+                    text-align: justify;
+                }
+            }
+            .GoTOHome {
+                width: 20vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                h1 {
+                    font-family: 'skyer';
+                    font-size: 18px;
+                    color: rgba(255, 242, 230, 1);
+                    margin: 10px 0px;
+                    text-align: center;
+                }
+                button {
+                    border: 1px solid rgba(255, 242, 230, 1);
+                    font-family: 'devil';
+                    font-size: 18px;
+                    background-color: rgba(0, 52, 11, 1);
+                    padding: 10px 10px;
+                    color: rgba(255, 242, 230, 1);
+                    border-radius: 5px;
+                    cursor: pointer;
+                    &:hover {
+                        color: rgba(0, 52, 11, 1);
+                        background-color: rgba(255, 255, 255, 1);
+                    }
+                }
+            }
+        }
+    }
+}
+

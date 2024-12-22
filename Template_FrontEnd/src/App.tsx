@@ -7,6 +7,7 @@ import HomePage from './HomePage'
 import FontPage from './FontPage'
 import ColorCodePage from './ColorCodePage'
 import NotFound from './components/404'
+import ContactUs from './components/ContactUs'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/Font-Face" element={<FontPage/>}/>
           <Route path="/Color-Code" element={<ColorCodePage/>}/>
           <Route path="*" element={<NotFound/>}/>
+          <Route path="/ContactUs" element={<ContactUs/>}/>
         </Routes>
       </BrowserRouter>
     </div>

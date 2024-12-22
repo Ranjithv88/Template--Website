@@ -22,21 +22,21 @@
         }
     }
     .ContentOuter {
-        width: 95vw;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        row-gap: 10px;
-        column-gap: 10px;
+        overflow: hidden;
+        width: 88vw;
+        gap: 20px;
+        display: flex;
+        justify-content: center;
         align-items: center;
-        justify-items: center;
-        div {
-            border-radius: 8px;
-            border: 2px solid rgba(0, 0, 0, 0.2);
-            height: 20vw;
-            width: 31vw;
+        flex-wrap: wrap;
+        .Content01 {
             display: flex;
             justify-content: center;
             align-items: center;
+            border-radius: 8px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            height: 250px;
+            width: 350px;
             background-color: rgba(225, 225, 225, 1);
             cursor: pointer;
             h2{

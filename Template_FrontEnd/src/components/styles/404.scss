@@ -13,31 +13,31 @@
         font-family: 'skyer';
         font-weight: 800;
         text-decoration: underline;
-        font-size: 2vh;
+        font-size: 0.8vw;
         color: rgba(255, 255, 255, 1);
-        letter-spacing: 2vh;
-        padding: 0vh 4vh;
+        letter-spacing: 1vw;
+        padding: 0vh 2vw;
         text-align: justify;
     }
     h1 {
         font-family: 'skyer';
         font-weight: 800;
         text-decoration: underline;
-        font-size: 40vh;
+        font-size: 14vw;
         color: rgba(255, 255, 255, 1);
-        letter-spacing: 2vh;
+        letter-spacing: 1vw;
     }
     button {
         position: absolute;
-        top: 45%;
+        top: 44.2%;
         left: 47%;
-        transform: translate(-47%, -45%) rotate(270deg);
+        transform: translate(-47%, -44.2%) rotate(270deg);
         border: none;
         font-family: 'skyer';
         background-color: transparent;
         color: rgba(255, 255, 255, 1);
-        font-size: 4vh;
-        padding: 2.8vh;
+        font-size: 1.5vw;
+        padding: 0.9vw;
         cursor: pointer;
         transition: 0.8s;
         &:hover {
@@ -48,7 +48,7 @@
     h2 {
         font-family: 'devil';
         font-weight: 800;
-        font-size: 16vh;
+        font-size: 6vw;
         color: rgba(255, 255, 255, 1);
     }
 }
