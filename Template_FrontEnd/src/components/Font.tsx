@@ -3,7 +3,6 @@ import './styles/Font.scss'
 import { fonts } from '../Details'
 import { motion } from 'motion/react'
 import { FaRegWindowClose } from "react-icons/fa"
-import { transform } from 'motion'
 
 function Font() {
 
