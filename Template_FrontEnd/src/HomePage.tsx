@@ -30,7 +30,7 @@ function HomePage() {
         backgroundColor = 'rgba(0, 0, 0, 1)'
         setMessage(false)
       }
-    }else if(e.target instanceof Element && e.target.classList.contains('ContentInner')){
+    }else if(e.target instanceof Element && e.target.classList.contains('Content01')){
       scale = 100
     }else if(e.target instanceof Element && e.target.classList.contains('portfolio')){
       scale = 0.8

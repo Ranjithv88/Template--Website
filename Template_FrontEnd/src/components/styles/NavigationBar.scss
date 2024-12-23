@@ -77,7 +77,6 @@ header {
             button {
                 background-color: rgba(0, 0, 0, 1);
                 border-radius: 5px;
-                border: none;
                 padding: 8px 15px;
                 font-family: 'Devil';
                 cursor: pointer;
@@ -190,6 +189,64 @@ header {
                     .a:hover {
                         cursor: pointer;
                         font-size: 20px;
+                    }
+                }
+            }
+            .MenuUser {
+                flex-direction: column;
+                row-gap: 15px;
+                button {
+                    background-color: rgba(0, 0, 0, 1);
+                    border-radius: 50%;
+                    padding: 40px 45px;
+                    font-family: 'Devil';
+                    color: rgba(255, 255, 255, 1);
+                    font-size: 50px;
+                    border: 2px solid rgba(255, 255, 255, 1);
+                    .a {
+                        padding: 2px 6px;
+                        color: rgba(255, 255, 255, 1);
+                    }
+                }
+                h1 {
+                    font-family: 'blinkMacSystem-light';
+                    font-size: 20px;
+                }
+                .MOptions {
+                    column-gap: 10px;
+                    img {
+                        height: 250px;
+                        width: 250px;
+                        border-radius: 50%;
+                        border: 1.5px solid rgba(0, 0, 0, 1);
+                    }
+                    button {
+                        font-size: 15px;
+                        padding: 3px 7px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        border: 1.5px solid rgba(0, 0, 0, 1);
+                        &:hover{
+                            background-color: rgba(255, 255, 255, 1);
+                            color: rgba(0, 0, 0, 1);
+                            .a{
+                                color: rgba(0, 0, 0, 1);
+                            }
+                        }
+                    }
+                }
+                .logOut {
+                    font-size: 18px;
+                    padding: 8px 18px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    border: 1.5px solid rgba(0, 0, 0, 1);
+                    &:hover{
+                        background-color: rgba(255, 255, 255, 1);
+                        color: rgba(255, 0, 0, 1);
+                        .a{
+                            color: rgba(255, 0, 0, 1);
+                        }
                     }
                 }
             }

@@ -58,9 +58,9 @@
     .ContactDetailsBar {
         .ContactDetails {
             position: absolute;
-            top: 20%;
+            top: 15%;
             left: 70%;
-            transform: translate(-70%, -20%);
+            transform: translate(-70%, -15%);
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -71,7 +71,7 @@
                 cursor: default;
                 background-color: rgba(255, 255, 255, 1);
                 padding: 0px 20px;
-                border-radius: 5px;
+                border-radius: 15px;
             }
             button {
                 border: 2px solid rgba(255, 242, 230, 1);
@@ -88,6 +88,7 @@
                     letter-spacing: 2px;
                 }
                 &:hover {
+                    transition: 0.8s;
                     color: rgba(42, 87, 50, 1);
                     background-color: rgba(255, 242, 230, 1);
                     border: 2px solid rgba(42, 87, 50, 1);
@@ -167,6 +168,7 @@
                     color: rgba(255, 242, 230, 1);
                     border-radius: 5px;
                     cursor: pointer;
+                    transition: 0.8s;
                     &:hover {
                         color: rgba(0, 52, 11, 1);
                         background-color: rgba(255, 255, 255, 1);
