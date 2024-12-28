@@ -170,6 +170,7 @@
                     cursor: pointer;
                     transition: 0.8s;
                     &:hover {
+                        transform: translateY(-5px);
                         color: rgba(0, 52, 11, 1);
                         background-color: rgba(255, 255, 255, 1);
                     }

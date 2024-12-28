@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles/NavigationBar.scss'
 import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useAppSelector } from '../redux/Hooks'
 import { CgSearch } from "react-icons/cg"
 import { FaWindowClose } from "react-icons/fa"
 import { FaArrowUpRightFromSquare } from "react-icons/fa6"
@@ -23,15 +23,17 @@ function NavigationBar() {
     search.current?.focus()
   },[menu])
 
-  const userInformation = useSelector((state: any) => state.userDetails)
+  const userInformation = useAppSelector((state) => state)
 
-  console.log(userInformation)
+  React.useEffect(() => {
+    console.log('User Information:', userInformation)
+  }, [userInformation])
 
   return (
-    <header style={{ height: `${menu==true?'14vh':'100vh'}`}}>
+    <header style={{ height: `${menu?'14vh':'100vh'}`}}>
       {menu?
         <nav>
-              <Link to={'/'}><ul className='NUl01'><li>P</li><li>O</li><li>R</li><li>T</li><li>F</li><li>O</li><li>L</li><li>I</li><li>O</li></ul></Link>
+              <Link to={'/'}><ul className='NUl01 Effect'><li>P</li><li>O</li><li>R</li><li>T</li><li>F</li><li>O</li><li>L</li><li>I</li><li>O</li></ul></Link>
               <ul className='NUl02'>
                   <Link to={'/'}><li className='Effect'>Home</li></Link>
                   <li className='Effect'  onClick={()=>setMenu(!menu)}>Product</li>
@@ -48,7 +50,7 @@ function NavigationBar() {
                   </>}
               </div>
         </nav>:
-        <div className='menuOuter'>
+        <div className='menuOuter' >
           <button className='MenuClose' type='button' onClick={()=>setMenu(!menu)}><FaWindowClose className='CloseA'/></button>
             <div className='menu'>
               <div className='menu01'>
