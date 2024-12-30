@@ -8,10 +8,10 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  userName: 'ranjithkumar',
+  userName: '',
   age: 0,
-  email: 'ranjith@gmail.com',
-  phoneNumber: '8778455300'
+  email: '',
+  phoneNumber: ''
 }
 
 export const userSlice = createSlice({

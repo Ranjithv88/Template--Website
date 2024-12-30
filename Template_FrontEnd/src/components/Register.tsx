@@ -81,6 +81,7 @@ function Register() {
         }
         if(validation(registerData)){
             if(await addUser(registerData)){
+              togglePasswordVisibility()
               setAfter(false)
               await sleep(6000)
               setLoadingAfter(false)

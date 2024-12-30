@@ -9,6 +9,8 @@ import { TbShoppingCartFilled } from "react-icons/tb"
 import { GiPlagueDoctorProfile } from "react-icons/gi"
 import { MdEdit } from "react-icons/md"
 import { IoMdLogOut } from "react-icons/io"
+import { useCookies } from 'react-cookie';
+import axios from 'axios'
 
 function NavigationBar() {
 
@@ -17,6 +19,7 @@ function NavigationBar() {
   const search = React.useRef<HTMLInputElement | null>(null) 
   const [user, setUser] = React.useState<boolean>(false)
   const [profilePic, setProfilePic] = React.useState<boolean>(false)
+  const [cookies] = useCookies(['token'])
 
   // Search Focus Functions 
   React.useEffect(()=>{
@@ -26,8 +29,39 @@ function NavigationBar() {
   const userInformation = useAppSelector((state) => state)
 
   React.useEffect(() => {
-    console.log('User Information:', userInformation)
-  }, [userInformation])
+    loginUser()
+  }, [])
+
+  const loginUser = async() => {
+    if(cookies.token!=undefined){
+      if(await getUserDetails()){
+        console.log("working....!")
+      }
+    }else{
+      console.log("places Login ....!")
+    }
+  }
+
+  const getUserDetails = async() => {
+    // try {
+    //   let response = await axios.get('http://localhost:8888/user/getUserDetails', {
+    //     headers: {
+    //       'Authorization': 'Bearer 6JT2R4wbUy0KjwoPM2J%2BuBBKL0OlG3TQBUkit1b%2B5V7OepflKc0F7FO1favNakbgB34hd%2BuO5NO2E2Lx2vGWAP6YPSINMPFXkfKdSHeUVjyP4JpTUehf41oMf1xE9kMSpbQ0oA1ZqGGh2AggR29b7GigYq9Hhl4YPQhSqHeMJifPPGmeG9lU5MUUVXxnYcCkwTMZ4FArP%2Fz1csdi2u4ay7m%2BTBL7IDoUsdcjFC2rUSZetWBjIm5fkNpiXJjyU0DYly5DkZyH9SrJ0mB0fvbO%2Bw%3D%3D'
+    //     }
+    //   })
+    //   console.log(response)
+    //   return true
+    // } catch (e) {
+    //   console.log(e)
+    //   return false
+    // }
+    try{
+      let response = await axios.get('http://localhost:8888/user')
+      console.log(response)
+    }catch(e){
+      console.log(e)
+    }
+  }
 
   return (
     <header style={{ height: `${menu?'14vh':'100vh'}`}}>
