@@ -11,6 +11,7 @@ import { MdEdit } from "react-icons/md"
 import { IoMdLogOut } from "react-icons/io"
 import { useCookies } from 'react-cookie';
 import axios from 'axios'
+import { setUserName, setAge, setEmail, setPhoneNumber } from '../redux/UserSlices'
 
 function NavigationBar() {
 
@@ -19,30 +20,32 @@ function NavigationBar() {
   const search = React.useRef<HTMLInputElement | null>(null) 
   const [user, setUser] = React.useState<boolean>(false)
   const [profilePic, setProfilePic] = React.useState<boolean>(false)
-  const [cookies] = useCookies(['token'])
+  const [cookies, _, removeCookie] = useCookies(['token'])
+  const userInformation = useAppSelector((state) => state)
+  const appDispatch = useAppDispatch()
 
   // Search Focus Functions 
   React.useEffect(()=>{
     search.current?.focus()
   },[menu])
 
-  const userInformation = useAppSelector((state) => state)
-  const appDispatch = useAppDispatch()
-
   React.useEffect(() => {
     loginUser()
   }, [])
 
   const loginUser = async() => {
-    if(cookies.token!=undefined){
-      console.log(cookies.token)
-      const response = await getUserDetails();
+    if(cookies.token!=undefined) {
+      const response = await getUserDetails()
       if (response) {
-        console.log("working....!")
-        // appDispatch(setUserName(response.))
+        appDispatch(setUserName(response.data.userName), setAge(response.data.age), setEmail(response.data.email), setPhoneNumber(response.data.phoneNumber))
+        setUser(true)
+        setProfilePic(false)
+        console.log("working....!", response.data)
       }
-    }else{
-      console.log("places Login ....!")
+    }else {
+      setUser(false)
+      setProfilePic(false)
+      console.log(" places Login ....! ")
     }
   }
 
@@ -54,6 +57,14 @@ function NavigationBar() {
       console.log(e)
       return false
     }
+  }
+
+  const logOut =()=>{
+    setMenu(true)
+    setUser(false)
+    setProfilePic(false)
+    appDispatch(setUserName(''), setAge(0), setEmail(''), setPhoneNumber(''))
+    removeCookie('token', { path: '/'})
   }
 
   return (
@@ -92,11 +103,11 @@ function NavigationBar() {
               {user?
                 <div className='MenuUser'>
                   {profilePic?<img src='#' alt="ProfilePic" />:<button className='NProfile' type='button'><GiPlagueDoctorProfile className='a'/></button>}
-                  <h1>Ranjith Kumar</h1>
+                  <h1>{userInformation.user.userName}</h1>
                   <div className='MOptions'>
                     <button className='MCart' type='button'><TbShoppingCartFilled/>cart</button><button className='MEdit' type='button'><MdEdit/>Edit</button>
                   </div>
-                  <button className='logOut' type='button'><IoMdLogOut/>Log Out</button>
+                  <button className='logOut' type='button' onClick={()=>logOut()}><IoMdLogOut/>Log Out</button>
                 </div>
                 :
                 <div className='menu03'>

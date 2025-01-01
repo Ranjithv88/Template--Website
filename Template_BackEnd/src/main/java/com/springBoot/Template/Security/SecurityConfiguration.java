@@ -25,7 +25,7 @@ public class SecurityConfiguration {
     private AuthenticationProvider authenticationProvider;
 
     private final String[] guest = {"/login","/register","/test"};
-    private final String[] user = {"/user","/user/getUserDetails"};
+    private final String[] user = {"/user/**",""};
     private final String[] admin = {"/admin/**"};
 
     @Bean

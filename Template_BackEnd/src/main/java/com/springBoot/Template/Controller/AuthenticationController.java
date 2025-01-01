@@ -25,5 +25,10 @@ public class AuthenticationController {
         return service.login(data);
     }
 
+    @PostMapping("user/logout")
+    public ResponseEntity<String> logOut ( @RequestHeader("Authorization") String token @Valid @RequestBody("userName") String userName ) {
+
+    }
+
 }
 

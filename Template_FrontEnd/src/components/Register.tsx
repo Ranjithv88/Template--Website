@@ -81,7 +81,7 @@ function Register() {
         }
         if(validation(registerData)){
             if(await addUser(registerData)){
-              setShowPassword('text')
+              setShowPassword('password')
               setAfter(false)
               await sleep(6000)
               setLoadingAfter(false)
