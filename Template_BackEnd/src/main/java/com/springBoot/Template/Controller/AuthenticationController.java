@@ -1,5 +1,6 @@
 package com.springBoot.Template.Controller;
 
+import com.springBoot.Template.Model.LogOut;
 import com.springBoot.Template.Model.Login;
 import com.springBoot.Template.Model.Register;
 import com.springBoot.Template.Service.AuthenticationService;
@@ -25,9 +26,9 @@ public class AuthenticationController {
         return service.login(data);
     }
 
-    @PostMapping("user/logout")
-    public ResponseEntity<String> logOut ( @RequestHeader("Authorization") String token @Valid @RequestBody("userName") String userName ) {
-
+    @PostMapping("/user/logout")
+    public ResponseEntity<String> logOut ( @RequestHeader("Authorization") String token ) {
+        return service.logOut(token);
     }
 
 }

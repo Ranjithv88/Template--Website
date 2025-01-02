@@ -1,9 +1,11 @@
 package com.springBoot.Template.Service;
 
 import com.springBoot.Template.Model.Enum.Role;
+import com.springBoot.Template.Model.LogOut;
 import com.springBoot.Template.Model.Login;
 import com.springBoot.Template.Model.Register;
 import com.springBoot.Template.Model.User;
+import com.springBoot.Template.Repository.LogoutRepository;
 import com.springBoot.Template.Repository.UserRepository;
 import com.springBoot.Template.Security.JwtUtils;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ import java.util.Optional;
 public class AuthenticationService {
 
     private final UserRepository userRepository;
+    private final LogoutRepository logoutRepository;
     private final  PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
@@ -68,6 +71,17 @@ public class AuthenticationService {
         } else {
             return ResponseEntity.noContent().build();
         }
+    }
+
+    public ResponseEntity<String> logOut (String token) {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        LogOut logOut = LogOut.builder()
+                .userName(userName)
+                .token(token)
+                .createdOn(new Date(System.currentTimeMillis()))
+                .build();
+        logoutRepository.save(logOut);
+        return ResponseEntity.status(200).body(" Token add BlockList Successfully.......! ");
     }
 
 }
