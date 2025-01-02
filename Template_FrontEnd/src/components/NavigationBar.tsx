@@ -53,18 +53,32 @@ function NavigationBar() {
     try {
       let response = await axios.get('http://localhost:8888/user/getUserDetails', {headers: {'Authorization': 'Bearer '+cookies.token}})
       return response
-    } catch (e) {
+    } catch (e: any) {
+      if(e.message === "Network Error")
+        alert("Server is Not Working, please try again later....!")
       console.log(e)
       return false
     }
   }
 
-  const logOut =()=>{
-    setMenu(true)
-    setUser(false)
-    setProfilePic(false)
-    appDispatch(setUserName(''), setAge(0), setEmail(''), setPhoneNumber(''))
-    removeCookie('token', { path: '/'})
+  const logOut =async()=>{
+    try {
+      let response = await axios.get('http://localhost:8888/user/logout', {headers: {'Authorization': 'Bearer '+cookies.token}})
+        if(response.status===201 && response.data==='Token add BlockList Successfully.......!'){
+          setMenu(true)
+          setUser(false)
+          setProfilePic(false)
+          appDispatch(setUserName(''), setAge(0), setEmail(''), setPhoneNumber(''))
+          removeCookie('token', { path: '/'})
+        }
+    }catch(e: any) {
+      if(e.message === "Network Error")
+        alert("Server is Not Working, please try again later....!")
+        if(e.response.status != 409 && e.response.data != 'Token Is Already Exists......!')
+          alert("Something went wrong, User is Already LogOut....!")
+      setUser(true)
+      setProfilePic(false)
+    }
   }
 
   return (

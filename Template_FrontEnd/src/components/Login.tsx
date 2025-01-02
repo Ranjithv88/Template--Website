@@ -21,6 +21,7 @@ function Login() {
   const [isHovered, setIsHovered] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 500, y: 500 })
   const message = useRef<HTMLDivElement | null>(null)
+  const [loginProcess, setLoginprocess] = React.useState<Boolean>(true)
 
   // button message on hover
   const handleMouseMove = (e: MouseEvent) => {
@@ -69,6 +70,7 @@ function Login() {
   const submit = async (event: any): Promise<void> => {
     event.preventDefault()
     document.body.style.cursor = "wait"
+    setLoginprocess(false)
     const loginData: FormData = {
       userName: event.target[0].value,
       password: event.target[1].value
@@ -76,14 +78,17 @@ function Login() {
     if(validation(loginData)){
       if(await send(loginData) == true){
         setAfter(false)
+        setLoginprocess(true)
         await sleep(6000)
         setEmailSuccess(loginData.userName)
         setLoadingAfter(false)
       }
       setLoginValidator(true)
+      setLoginprocess(true)
       document.body.style.cursor = "default"
     }
     setLoginValidator(true)
+    setLoginprocess(true)
     document.body.style.cursor = "default"
   }
 
@@ -132,7 +137,7 @@ function Login() {
                 </div>
                 <h2>Forget Your Password ?</h2>
                 {loginValidator?<h5>username and Password Wrong...</h5>:<></>}
-                <button className='SignIn' type='submit' >Log In</button>
+                <button className='SignIn' type='submit' style={{pointerEvents: `${loginProcess?'fill':'none'}`}}>{loginProcess?'Log In':'places Wait ...'}</button>
                 <span>OR</span>
                 <button className='SignG' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}><h3><FcGoogle /></h3>Continue With Google </button>
                 <button className='SignF' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}><h3><FaFacebook /></h3>Continue With FaceBook </button>

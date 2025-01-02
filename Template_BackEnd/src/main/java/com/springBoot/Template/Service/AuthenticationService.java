@@ -75,13 +75,17 @@ public class AuthenticationService {
 
     public ResponseEntity<String> logOut (String token) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        LogOut logOut = LogOut.builder()
-                .userName(userName)
-                .token(token)
-                .createdOn(new Date(System.currentTimeMillis()))
-                .build();
-        logoutRepository.save(logOut);
-        return ResponseEntity.status(200).body(" Token add BlockList Successfully.......! ");
+        boolean tokenExist = logoutRepository.existsByToken(token);
+        if (!tokenExist) {
+            LogOut logOut = LogOut.builder()
+                    .userName(userName)
+                    .token(token)
+                    .createdOn(new Date(System.currentTimeMillis()))
+                    .build();
+            logoutRepository.save(logOut);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Token add BlockList Successfully.......!");
+        }
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Token Is Already Exists......!");
     }
 
 }

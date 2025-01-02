@@ -21,6 +21,7 @@ function Register() {
     const [mousePosition, setMousePosition] = React.useState({ x: 500, y: 500 })
     const message = React.useRef<HTMLDivElement | null>(null)
     const lightDiv = React.useRef<HTMLDivElement | null>(null)
+    const [registerProcess, setRegisterprocess] = React.useState<Boolean>(true)
 
     // light div positioning
     React.useEffect(() => {
@@ -71,6 +72,7 @@ function Register() {
     const submit = async (event: any): Promise<void> => {
         event.preventDefault()
         document.body.style.cursor = "wait"
+        setRegisterprocess(false)
         var registerData: FormData = {
           userName: event.target[0].value,
           password: event.target[1].value,
@@ -83,11 +85,14 @@ function Register() {
             if(await addUser(registerData)){
               setShowPassword('password')
               setAfter(false)
+              setRegisterprocess(false)
               await sleep(6000)
               setLoadingAfter(false)
             }
+            setRegisterprocess(false)
             document.body.style.cursor = "default"
           }
+        setRegisterprocess(false)
         document.body.style.cursor = "default"
     }
 
@@ -170,7 +175,7 @@ function Register() {
                 <input type="number" min={10} max={99} placeholder=' Enter the Age'/>
                 <input type="email" placeholder=' Enter the Email'/>
                 <input type="number" min={1000000000} max={9999999999} placeholder=' Enter the PhoneNumber'/>
-                <button className='SignIn' type='submit'>Register Now</button>
+                <button className='SignIn' type='submit' style={{pointerEvents: `${registerProcess?'fill':'none'}`}}>{registerProcess?'Register Now':'places Wait ...'}</button>
                 <span>I already have the Account ?<Link className='a' to='/login'>Click Here</Link></span>
                 <p>By continuing, you agree to Template <span className='RegisterSpan'> Terms of Service </span>an acknowledge you've read our <span className='RegisterSpan'> Privacy Policy</span></p>
               </form>
