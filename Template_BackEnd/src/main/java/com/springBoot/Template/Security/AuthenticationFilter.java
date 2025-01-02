@@ -1,5 +1,6 @@
 package com.springBoot.Template.Security;
 
+import com.springBoot.Template.Repository.LogoutRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,13 +23,14 @@ public class  AuthenticationFilter extends OncePerRequestFilter {
 
     private final UserDetailsService userDetailsService;
     private final JwtUtils jwtUtils;
+    private final LogoutRepository repository;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         final String authentication = request.getHeader("Authorization");
         final String jwt;
         final String email;
-        if(authentication==null|| !authentication.startsWith("Bearer ")){
+        if(authentication==null|| !authentication.startsWith("Bearer ")|| repository.existsByToken(authentication)){
             filterChain.doFilter(request,response);
             return ;
         }

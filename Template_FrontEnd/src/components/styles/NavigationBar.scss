@@ -117,6 +117,7 @@ header {
         }
     }
     .menuOuter {
+        z-index: 22;
         animation: animationNavigation 0.8s ease-in-out 0s 1 forwards;
         height: 100vh;
         width: 100vw;
@@ -292,6 +293,163 @@ header {
                         color: rgba(255, 255, 255, 1);
                     }
                 }
+            }
+        }
+    }
+}
+.logoutMessage {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 24vw;
+    border-radius: 14px;
+    padding: 10px 20px;
+    z-index: 24;
+    position: fixed;
+    top: 98%;
+    transform: translate(-98%, -98%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(4, 4, 6, 1);
+    color: rgba(255, 255, 255, 1);
+    transition: 1s;
+    .LOM01 {
+        color: rgba(255, 234, 0, 1);
+        font-size: 1.5vw;
+    }
+    p {
+        font-family: 'BrightMelody';
+        font-size: 1.3vw;
+        cursor: default;
+    }
+    .LOM03 {
+        background-color: none;
+        border: none;
+        cursor: pointer;
+        font-size: 2.6vw;
+        color: rgba(255, 0, 0, 1);
+        padding: 0.2vw;
+        &:hover {
+            padding: 0;
+            font-size: 2.64vw;
+        }
+    }
+}
+.cartList {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+    height: 90vh;
+    width: 20vw;
+    z-index: 21;
+    background-color: rgba(238, 238, 230, 1);
+    position: fixed;
+    top: 50%;
+    left: 95%;
+    transform: translate(-95%, -50%);
+    padding: 2vw;
+    --primary-color: 5px; 
+    --secondary-color: -5px;
+    .cartListTitle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 1vw;
+        div {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Devil';
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+            cursor: default;
+            .cartIcon {
+                font-size: 2vw;
+            }
+            h1{
+                color: rgba(255, 255, 255, 1);
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+                li{
+                    transition: 2s;
+                    list-style: none;
+                    background-color: rgba(55, 117, 239, 1);
+                }
+                li:nth-child(1),li:nth-child(3){
+                    transform: translateY(var(--secondary-color));
+                }
+                li:nth-child(2),li:nth-child(4){
+                    transform: translateY(var(--primary-color));
+                }
+            }
+        }
+        .cartClose {
+            color: rgba(0, 0, 0, 1);
+            cursor: pointer;
+            font-size: 2.3vw;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-radius: 50%;
+            background-color: transparent;
+            transition: 1s;
+            &:hover {
+                transform: rotate(180deg);
+            }
+        }
+        .cartClose:hover {
+            --primary-color: 0px; 
+            --secondary-color: -0px;
+        }
+    }
+    .cartListOfProducts {
+        box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        display: flex;
+        justify-content: space-between;
+        justify-items: center;
+        padding: 0.2vw 0;
+        font-family: 'blinkMacSystem-light';
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 1);
+        h1 {
+            font-size: 1.5vw;
+        }
+        p {
+            font-family: 'Griffy';
+            font-size: 1.6vw;
+            span {
+                font-size: 1.8vw;
+            }
+        }
+    }
+    .CartBuyNow {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 20px;
+        width: 20vw;
+        position: fixed;
+        top: 99%;
+        left: 95%;
+        transform: translate(-95%, -99%);
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        button {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background-color: rgba(0, 0, 0, 1);
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-family: 'Griffy';
+            cursor: pointer;
+            color: rgba(255, 255, 255, 1);
+            font-size: 18px;
+            border: 1.5px solid rgba(0, 0, 0, 1);
+            transition: 1s;
+            font-weight: 800;
+            span {
+                font-family: 'Devil';
+            }
+            &:hover {
+                background-color: rgba(255, 255, 255, 1);
+                color: rgba(0, 0, 0, 1);
             }
         }
     }

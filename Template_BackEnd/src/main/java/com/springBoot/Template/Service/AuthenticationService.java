@@ -83,7 +83,7 @@ public class AuthenticationService {
                     .createdOn(new Date(System.currentTimeMillis()))
                     .build();
             logoutRepository.save(logOut);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Token add BlockList Successfully.......!");
+            return ResponseEntity.status(HttpStatus.CREATED).body("To add BlockList Token Successfully.......!");
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Token Is Already Exists......!");
     }

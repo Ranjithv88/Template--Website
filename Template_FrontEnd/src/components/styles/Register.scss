@@ -247,15 +247,11 @@
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             font-family: "BebasNeue",sans-serif;
             cursor: pointer;
-            .a{
-                color: rgba(0, 52, 11, 1);
-            }
+            color: rgba(0, 52, 11, 1);
         }
         button:hover{
             background-color: rgba(0, 52, 11, 1);
-            .a{
-                color: rgba(245, 245, 245, 1);
-            }
+            color: rgba(245, 245, 245, 1);
         }
     }
 }
