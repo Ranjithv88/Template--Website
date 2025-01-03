@@ -156,9 +156,9 @@ function NavigationBar() {
         <p>LogOut Successfully...!</p>
         <CgCloseO className='LOM03 Effect' onClick={()=>setLogoutMessage(false)}/>
       </div>
-      <div className='cartList' style={{ display: `${cartList?'block':'none'}` }}>
+      <div className='cartList' style={{ visibility: `${cartList?'visible':'hidden'}`, opacity: `${cartList?'1':'0'}`}}>
         <div className='cartListTitle'>
-          <div className='cartListTitleInner'><TbShoppingCartFilled className='cartIcon'/><h1><li className='cartLi01'>C</li><li className='cartLi02'>a</li><li className='cartLi01'>r</li><li className='cartLi02'>t</li></h1></div>
+          <div className='cartListTitleInner'><TbShoppingCartFilled className='cartIcon'/><h1 style={{ transform: `rotate(${cartList?'0':'10'}deg)` }}>Cart</h1></div>
           <RiCloseCircleFill className='cartClose Effect' onClick={()=>setCartList(false)}/>
         </div>
         {details.map(data=>(

@@ -346,8 +346,7 @@ header {
     left: 95%;
     transform: translate(-95%, -50%);
     padding: 2vw;
-    --primary-color: 5px; 
-    --secondary-color: -5px;
+    transition: 1.2s;
     .cartListTitle {
         display: flex;
         justify-content: center;
@@ -371,17 +370,8 @@ header {
                 justify-content: center;
                 align-items: center;
                 padding: 0;
-                li{
-                    transition: 2s;
-                    list-style: none;
-                    background-color: rgba(55, 117, 239, 1);
-                }
-                li:nth-child(1),li:nth-child(3){
-                    transform: translateY(var(--secondary-color));
-                }
-                li:nth-child(2),li:nth-child(4){
-                    transform: translateY(var(--primary-color));
-                }
+                background-color: rgba(55, 117, 239, 1);
+                transition: 1s;
             }
         }
         .cartClose {
@@ -395,10 +385,6 @@ header {
             &:hover {
                 transform: rotate(180deg);
             }
-        }
-        .cartClose:hover {
-            --primary-color: 0px; 
-            --secondary-color: -0px;
         }
     }
     .cartListOfProducts {
