@@ -7,10 +7,12 @@ import { useAppSelector, useAppDispatch } from '../redux/Hooks'
 import { motion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import { BiLogOutCircle } from "react-icons/bi"
+import NotFound from './404'
 
 function DashBoard() {
 
     const [process, setProcess] = React.useState<boolean>(false)
+    const [access, setAccess] = React.useState<boolean>(false)
     const [cookies, _, removeCookie] = useCookies(['token'])
     const appDispatch = useAppDispatch()
     const userInformation = useAppSelector((state) => state)
@@ -26,12 +28,15 @@ function DashBoard() {
           const response = await getUserDetails()
           if (response) {
             appDispatch(setUserName(response.data.userName), setAge(response.data.age), setEmail(response.data.email), setPhoneNumber(response.data.phoneNumber))
-
+            if(response.status === 200){
+              setAccess(true)
+            }
           }
-          setProcess(false)
+          setAccess(true)
         }else {
           console.log(" places Login ....! ")
           setProcess(false)
+          setAccess(true)
         }
       }
     
@@ -48,27 +53,34 @@ function DashBoard() {
     }
 
   return (
-    <div className='DashBoard'>
-      <div className='DashBoardInner'>
-        <Link className='DashBoardBack' to={'/'}><BiLogOutCircle/>Go To Home</Link>
-        <div className='DashBoardOuter'>
-          {details.map(data=>(
-            <motion.div key={data.key} initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }} onClick={} >
-              <h1>{data.name}</h1>
-              <p>{data.description}</p>
-            </motion.div>
-          ))}
+    <>
+    {access?
+      <div className='DashBoard'>
+        <div className='DashBoardInner'>
+          <Link className='DashBoardBack' to={'/'}><BiLogOutCircle/>Go To Home</Link>
+          <div className='DashBoardOuter'>
+            {details.map(data=>(
+              <motion.div key={data.key} initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }} >
+                <h1>{data.name}</h1>
+                <p>{data.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        <div className='DashBoardContent'>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }} >
+
+        </motion.div>
+        </div>
+        <div className='DashBoardContent01' >
+          <motion.h1 initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }}>Terms & services</motion.h1>
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }}>We collect personal information like name, email, and payment details to process orders and improve our services. Non-personal data, such as browser type and IP address, is used for analytics. Your information is protected and only shared with trusted third parties, like payment processors. Cookies are used to enhance your experience, and you can manage them in your browser settings.<br/><a href="#"> Read The Document</a></motion.p>
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }}>By using our website, you agree to comply with our terms. Templates are sold under a limited-use license and cannot be redistributed or resold. All purchases are final, with no refunds, unless otherwise stated. We reserve the right to modify or terminate services at any time.<br/><a href="#">Read The Document</a></motion.p>
         </div>
       </div>
-      <div className='DashBoardSpace'/>
-      <div className='DashBoardContent'>
-
-      </div>
-      <div className='DashBoardContent01' >
-        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }}>We collect personal information like name, email, and payment details to process orders and improve our services. Non-personal data, such as browser type and IP address, is used for analytics. Your information is protected and only shared with trusted third parties, like payment processors. Cookies are used to enhance your experience, and you can manage them in your browser settings.<br/><a href="#"> Read The Document</a></motion.p>
-        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }}>By using our website, you agree to comply with our terms. Templates are sold under a limited-use license and cannot be redistributed or resold. All purchases are final, with no refunds, unless otherwise stated. We reserve the right to modify or terminate services at any time.<br/><a href="#">Read The Document</a></motion.p>
-      </div>
-    </div>
+      :
+      <NotFound/>}
+    </>
   )
 }
 

@@ -89,10 +89,10 @@ function Register() {
               await sleep(6000)
               setLoadingAfter(false)
             }
-            setRegisterProcess(false)
+            setRegisterProcess(true)
             document.body.style.cursor = "default"
           }
-        setRegisterProcess(false)
+        setRegisterProcess(true)
         document.body.style.cursor = "default"
     }
 

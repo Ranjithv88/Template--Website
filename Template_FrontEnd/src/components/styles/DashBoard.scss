@@ -93,14 +93,6 @@
             }
         }
     }
-    .DashBoardSpace {
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%,rgba(0, 0, 0, 0.8) 100%), url('../../assets/images/dashBoard/banner_3.png');
-        background-position: bottom;
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 20vh;
-        width: 100vw;
-    }
     .DashBoardContent {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 1) 90%,rgba(0, 0, 0, 1) 100%), url('../../assets/images/dashBoard/tab1.jpg');
         background-position: center center;
@@ -123,16 +115,20 @@
         align-items: center;
         flex-direction: column;
         gap: 20px;
+        h1 {
+            font-family: 'Griffy';
+            font-size: 1.8vw;
+        }
         p {
             padding: 5px 0px;
-            font-size: 13px;
+            font-size: 1.2vw;
             text-align: justify;
             width: 80vw;
         }
         a{
             color: rgba(255, 242, 230, 1);
             text-decoration: underline;
-            font-size: 14px;
+            font-size: 1.3vw;
             &:hover {
                 color: rgba(86, 125, 176, 1);
             }
