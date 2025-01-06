@@ -259,7 +259,6 @@ header {
                     font-size: 18px;
                     padding: 8px 18px;
                     border-radius: 5px;
-                    cursor: pointer;
                     border: 1.5px solid rgba(0, 0, 0, 1);
                     &:hover{
                         background-color: rgba(255, 255, 255, 1);
@@ -407,7 +406,7 @@ header {
             }
         }
     }
-    .CartBuyNow {
+    .CartCheckOut {
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         border-radius: 20px;
         width: 20vw;
@@ -426,7 +425,7 @@ header {
             font-family: 'Griffy';
             cursor: pointer;
             color: rgba(255, 255, 255, 1);
-            font-size: 18px;
+            font-size: 20px;
             border: 1.5px solid rgba(0, 0, 0, 1);
             transition: 1s;
             font-weight: 800;
@@ -436,6 +435,175 @@ header {
             &:hover {
                 background-color: rgba(255, 255, 255, 1);
                 color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+}
+.CheckOut{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 21;
+    transition: 1.8s;
+    .CheckOutOuter{
+        border-radius: 20px;
+        height: 80vh;
+        width: 80vw;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: start;
+        justify-items: center;
+        flex-direction: column;
+        background-color: rgba(238, 238, 230, 1);
+        padding: 20px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+        .CheckOutTitle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 1vw;
+            div {
+                flex-grow: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Devil';
+                text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+                cursor: default;
+                .CheckOutIcon {
+                    font-size: 3vw;
+                }
+                h1{
+                    color: rgba(255, 255, 255, 1);
+                    background-color: transparent;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0;
+                    background-color: rgba(55, 117, 239, 1);
+                    transition: 1s;
+                    font-size: 2vw;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.2);
+                }
+            }
+            .CheckOutClose {
+                color: rgba(186, 0, 33, 1);
+                cursor: pointer;
+                font-size: 3vw;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                border-radius: 50%;
+                background-color: transparent;
+                transition: 1s;
+                &:hover {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        .CheckOutInner{
+            width: 80vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .CheckOutOfProducts {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.4vw 0.8vw;
+                font-family: 'blinkMacSystem-light';
+                text-align: center;
+                border-bottom: 2px solid rgba(0, 0, 0, 1);
+                width: 60vw;
+                transition: 1s;
+                box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px, rgba(0, 0, 0, 0.15) -2.4px -2.4px 3.2px;
+                &:hover{
+                    box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 4px, rgba(0, 0, 0, 0.6) 0px 7px 13px -3px, rgba(0, 0, 0, 0.4) 0px -3px 0px inset;
+                }
+                span {
+                    font-family: 'devil';
+                    border-radius: 50%;
+                }
+                h1 {
+                    font-size: 1.5vw;
+                }
+                p {
+                    font-family: 'Griffy';
+                    font-size: 1.6vw;
+                    span {
+                        font-size: 1.8vw;
+                    }
+                }
+                .CheckOutOfProductsMinus {
+                    font-size: 1.8vw;
+                    color: rgba(190, 190, 190, 1);
+                    transition: 0.6s;
+                    cursor: pointer;
+                    &:hover {
+                        color: rgba(0, 0, 0, 1);
+                    }
+                }
+            }
+        }
+        button {
+            position: fixed;
+            top: 105%;
+            left: 50%;
+            transform: translate(-50%, -105%);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background-color: rgba(0, 0, 0, 1);
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-family: 'Griffy';
+            cursor: pointer;
+            color: rgba(255, 255, 255, 1);
+            font-size: 20px;
+            border: 2px solid rgba(0, 0, 0, 1);
+            transition: 1s;
+            font-weight: 800;
+            width: 20vw;
+            span {
+                font-family: 'Devil';
+            }
+            &:hover {
+                background-color: rgba(255, 255, 255, 1);
+                color: rgba(0, 0, 0, 1);
+            }
+        }
+        .CheckoutPreview {
+            display: none;
+            z-index: 100;
+            pointer-events: none;
+            height: 15vw;
+            width: 18vw;
+            justify-content: space-evenly;
+            align-items: center;
+            position: fixed;
+            flex-direction: column;
+            padding: 1vw;
+            border-radius: 20px;
+            background-color: rgba(251, 251, 251, 1);
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+            img {
+                border-radius: 20px;
+                height: 80%;
+                width: 100%;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+            }
+            .ControlsForPreview {
+                width: 14vw;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 2vw;
+                .CheckoutIcon {
+                    padding-top: 0.4vw;
+                }
             }
         }
     }

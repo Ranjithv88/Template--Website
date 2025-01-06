@@ -24,7 +24,6 @@ public class  AuthenticationFilter extends OncePerRequestFilter {
     private final UserDetailsService userDetailsService;
     private final JwtUtils jwtUtils;
     private final LogoutRepository repository;
-    private final BlockedList blockedList;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
@@ -35,7 +34,6 @@ public class  AuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request,response);
             return ;
         }
-        blockedList.checked();
         jwt = authentication.substring(7);
         email = jwtUtils.extractEmail(jwt);
         if(email!=null&& SecurityContextHolder.getContext().getAuthentication()==null){

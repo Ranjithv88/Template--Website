@@ -4,13 +4,13 @@ import com.springBoot.Template.Model.LogOut;
 import com.springBoot.Template.Repository.LogoutRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
-@Component
+@Service
 public class BlockedList {
 
     private final LogoutRepository repository;
@@ -22,15 +22,11 @@ public class BlockedList {
         log.info(data.toString());
         for (LogOut datum : data) {
             String temp = datum.getToken();
-            try {
-                if(temp!=null)
-                    jwtUtils.decrypt(temp.substring(7));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            if (!jwtUtils.validateExpiration(temp)) {
-                repository.deleteById(datum.getId());
-                log.info(temp);
+            if(temp!=null) {
+                if (jwtUtils.block(temp.substring(7))) {
+                    repository.deleteById(datum.getId());
+                    log.info(temp);
+                }
             }
         }
     }

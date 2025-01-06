@@ -7,6 +7,7 @@ import com.springBoot.Template.Model.Register;
 import com.springBoot.Template.Model.User;
 import com.springBoot.Template.Repository.LogoutRepository;
 import com.springBoot.Template.Repository.UserRepository;
+import com.springBoot.Template.Security.BlockedList;
 import com.springBoot.Template.Security.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,8 @@ public class AuthenticationService {
     private final  PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
+    private final BlockedList blockedList;
+
 
     public ResponseEntity<String> register(Register data) {
         try {
@@ -43,6 +46,7 @@ public class AuthenticationService {
                         .email(data.getEmail())
                         .phoneNumber(data.getPhoneNumber())
                         .createdOn(new Date(System.currentTimeMillis()))
+                        .modifyingDate(new Date(System.currentTimeMillis()))
                         .role(Role.USER)
                             .build();
                     userRepository.save(newUser);
@@ -74,6 +78,7 @@ public class AuthenticationService {
     }
 
     public ResponseEntity<String> logOut (String token) {
+        blockedList.checked();
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         boolean tokenExist = logoutRepository.existsByToken(token);
         if (!tokenExist) {

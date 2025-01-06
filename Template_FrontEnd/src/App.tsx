@@ -9,8 +9,7 @@ const HomePage = React.lazy(() => import('./HomePage'))
 const FontPage = React.lazy(() => import('./FontPage'))
 const ColorCodePage = React.lazy(() => import('./ColorCodePage'))
 const ContactUs = React.lazy(() => import('./components/ContactUs'))
-
-
+const DashBoard = React.lazy(() => import('./components/DashBoard'))
 
 function App() {
   return (
@@ -26,6 +25,7 @@ function App() {
             <Route path="/Color-Code" element={<ColorCodePage/>}/>
             <Route path="*" element={<NotFound/>}/>
             <Route path="/ContactUs" element={<ContactUs/>}/>
+            <Route path="/Home/DashBoard" element={<DashBoard/>}/>
           </Routes>
         </Suspense>
       </BrowserRouter>

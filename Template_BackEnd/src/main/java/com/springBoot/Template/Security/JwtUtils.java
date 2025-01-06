@@ -2,6 +2,7 @@ package com.springBoot.Template.Security;
 
 import com.springBoot.Template.Model.User;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -32,6 +33,21 @@ public class JwtUtils {
 
     private static final String ALGORITHM = "AES";
     private static final String CHARSET = "UTF-8";
+
+    public Boolean block (String token) {
+        try {
+            init();
+            token = decrypt(token);
+            Date time = Jwts.parser().setAllowedClockSkewSeconds(60).setSigningKey(key()).build().parseClaimsJws(token).getBody().getExpiration();
+            return time.before(new Date());
+        } catch (ExpiredJwtException e) {
+            log.info("Token is expired: {}", e.getMessage());
+            return true;
+        } catch (Exception e) {
+            log.error("Error parsing JWT: {}", e.getMessage(), e);
+            return false;
+        }
+    }
 
     public void init() {
         this.secretKeySpec = new SecretKeySpec(encryptKey.getBytes(), ALGORITHM);

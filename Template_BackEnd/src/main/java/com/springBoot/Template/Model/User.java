@@ -52,6 +52,8 @@ public class User implements UserDetails {
 
     private Date createdOn;
 
+    private Date modifyingDate;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

@@ -1,0 +1,147 @@
+
+/*------------- DashBoard Components Style -------------*/
+ .DashBoard{
+    overflow-x: hidden;
+    .DashBoardInner {
+        height: auto;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba(236, 240, 243, 1);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.01) 50%,rgba(0, 0, 0, 0.6) 100%), url('../../assets/images/dashBoard/banner_0.png');
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        .DashBoardBack {
+            position: absolute;
+            background-color: rgba(236, 240, 243, 1);
+            z-index: 3;
+            top: 0;
+            left: 0;
+            margin: 20px;
+            padding: 5px 20px;
+            border-radius: 4px;
+            font-size: 20px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+            border: 2px solid transparent;
+            font-family: 'devil';
+            transition: 1s;
+            opacity: 0;
+            animation: DashBoardBackAnimation 3s ease-in-out 0s 1 forwards;
+            &:hover {
+                background-color: rgba(0, 0, 0, 1);
+                color: rgba(236, 240, 243, 1);
+                scale: 1.1;
+            }
+        }
+        .DashBoardOuter {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            width: 60vw;
+            div {
+                border-right: 1px solid rgba(0, 0, 0, 1);
+                z-index: 3;
+                cursor: pointer;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                flex-direction: column;
+                height: 350px;
+                width: 180px;
+                border-radius: 8px;
+                background-color: rgba(255, 255, 255, 1);
+                padding: 1vh;
+                transition: 1s;
+                animation: name duration timing-function delay iteration-count direction fill-mode;
+                &:nth-child(1) {
+                    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+                }
+                &:nth-child(2), &:nth-child(3) {
+                    box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+                }
+                &:nth-child(4) {
+                    border: none;
+                    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+                }
+                &:hover {
+                    box-shadow: none;
+                    filter: drop-shadow(0px 10px 0px rgba(0, 0, 0, 1));
+                    transform: rotateZ(10deg);
+                }
+                h1 {
+                    font-family: 'Griffy';
+                    font-size: 24px;
+                    font-weight: 800;
+                    padding: 10px 5px;
+                    border: 2px solid transparent;
+                    border-radius: 20px;
+                    transition: 0.6s;
+                }
+                p {
+                    font-family: 'BebasNeue';
+                    text-align: center;
+                    font-size: 14px;
+                }
+            }
+            .DashBoardContent {
+                width: 70vw;
+            }
+        }
+    }
+    .DashBoardSpace {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%,rgba(0, 0, 0, 0.8) 100%), url('../../assets/images/dashBoard/banner_3.png');
+        background-position: bottom;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 20vh;
+        width: 100vw;
+    }
+    .DashBoardContent {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 1) 90%,rgba(0, 0, 0, 1) 100%), url('../../assets/images/dashBoard/tab1.jpg');
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 100vw;
+    }
+    .DashBoardContent01 {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 1) 90%,rgba(0, 0, 0, 1) 100%), url('../../assets/images/dashBoard/tab2.jpg');
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 100vw;
+        color: rgba(255, 242, 230, 1);
+        font-family: 'Morion';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        p {
+            padding: 5px 0px;
+            font-size: 13px;
+            text-align: justify;
+            width: 80vw;
+        }
+        a{
+            color: rgba(255, 242, 230, 1);
+            text-decoration: underline;
+            font-size: 14px;
+            &:hover {
+                color: rgba(86, 125, 176, 1);
+            }
+        }
+    }
+}
+
+@keyframes DashBoardBackAnimation {
+    to{
+       opacity: 1;
+    }
+}
