@@ -28,7 +28,7 @@ function NavigationBar() {
   const [user, setUser] = React.useState<boolean>(false)
   const [profilePic, setProfilePic] = React.useState<boolean>(false)
   const [cookies, _, removeCookie] = useCookies(['token'])
-  const userInformation = useAppSelector((state) => state)
+  const userInformation = useAppSelector((state) => state.user.userName)
   const appDispatch = useAppDispatch()
   const [logoutMessage, setLogoutMessage] = React.useState<boolean>(false)
   const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
@@ -59,7 +59,10 @@ function NavigationBar() {
     if(cookies.token!=undefined) {
       const response = await getUserDetails()
       if (response) {
-        appDispatch(setUserName(response.data.userName), setAge(response.data.age), setEmail(response.data.email), setPhoneNumber(response.data.phoneNumber))
+        appDispatch(setUserName(response.data.userName))
+        appDispatch(setAge(response.data.age))
+        appDispatch(setEmail(response.data.email))
+        appDispatch(setPhoneNumber(response.data.phoneNumber))
         setUser(true)
         setProfilePic(false)
       }
@@ -170,7 +173,7 @@ function NavigationBar() {
                 {user?
                   <div className='MenuUser'>
                     {profilePic?<img src='#' alt="ProfilePic" />:<button className='NProfile' type='button'><GiPlagueDoctorProfile className='a'/></button>}
-                    <h1>{userInformation.user.userName}</h1>
+                    <h1>{userInformation}</h1>
                     <div className='MOptions'>
                       <button className='MCart' type='button' onClick={()=>{setCheckOut(true), setMenu(true)}}><TbShoppingCartFilled/>cart</button><Link to={'./Home/DashBoard'}><button className='MEdit' type='button'><MdEdit/>Edit</button></Link>
                     </div>
@@ -226,8 +229,8 @@ function NavigationBar() {
               <div className='cartListTitleInner'><TbShoppingCartFilled className='cartIcon'/><h1 style={{ transform: `rotate(${cartList?'0':'10'}deg)` }}>Cart</h1></div>
               <RiCloseCircleFill className='cartClose Effect' onClick={()=>setCartList(false)}/>
             </div>
-            {details.map(data=>(
-              <div className='cartListOfProducts'>
+            {details.map((data, index)=>(
+              <div key={index} className='cartListOfProducts'>
                 <h1>{data.name}</h1>
                 <p><span>$ </span>{data.price}.00</p>
               </div>

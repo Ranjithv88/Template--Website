@@ -9,7 +9,7 @@ const HomePage = React.lazy(() => import('./HomePage'))
 const FontPage = React.lazy(() => import('./FontPage'))
 const ColorCodePage = React.lazy(() => import('./ColorCodePage'))
 const ContactUs = React.lazy(() => import('./components/ContactUs'))
-const DashBoard = React.lazy(() => import('./components/DashBoard'))
+import DashBoard from './components/DashBoard'
 
 function App() {
   return (

@@ -1,16 +1,16 @@
 
 /*------------- DashBoard Components Style -------------*/
- .DashBoard{
+.DashBoard{
     overflow-x: hidden;
     .DashBoardInner {
-        height: auto;
+        height: 120vh;
         width: 100vw;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
         flex-direction: column;
         background-color: rgba(236, 240, 243, 1);
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.01) 50%,rgba(0, 0, 0, 0.6) 100%), url('../../assets/images/dashBoard/banner_0.png');
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.01) 50%,rgba(0, 0, 0, 0.9) 100%), url('../../assets/images/dashBoard/banner_0.png');
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -24,7 +24,7 @@
             padding: 5px 20px;
             border-radius: 4px;
             font-size: 20px;
-            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(58, 53, 53, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
             border: 2px solid transparent;
             font-family: 'devil';
             transition: 1s;
@@ -36,11 +36,46 @@
                 scale: 1.1;
             }
         }
+        .DashBoardProfile {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            color: rgba(255, 242, 230, 1);
+            .NProfile {
+                background-color: rgba(0, 0, 0, 1);
+                border-radius: 50%;
+                padding: 50px 55px;
+                font-family: 'Devil';
+                color: rgba(255, 255, 255, 1);
+                font-size: 50px;
+                border: 2px solid rgba(255, 255, 255, 1);
+                .a {
+                    padding: 2px 6px;
+                    color: rgba(255, 255, 255, 1);
+                }
+            }
+            .NProfileName {
+                font-family: 'blinkMacSystem-light';
+                font-size: 2vw;
+            }
+            p {
+                font-family: 'BebasNeue';
+                text-align: center;
+                font-size: 1vw;
+                a {
+                    color: rgba(50, 102, 208, 0.8);
+                    &:hover {
+                        color: rgba(50, 102, 208, 1);
+                    }
+                }
+            }
+        }
         .DashBoardOuter {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            height: 100vh;
             width: 60vw;
             div {
                 border-right: 1px solid rgba(0, 0, 0, 1);
@@ -51,8 +86,9 @@
                 justify-content: space-evenly;
                 align-items: center;
                 flex-direction: column;
-                height: 350px;
-                width: 180px;
+                gap: 10px;
+                height: 50vh;
+                width: 18vw;
                 border-radius: 8px;
                 background-color: rgba(255, 255, 255, 1);
                 padding: 1vh;
@@ -85,11 +121,8 @@
                 p {
                     font-family: 'BebasNeue';
                     text-align: center;
-                    font-size: 14px;
+                    font-size: 0.8vw;
                 }
-            }
-            .DashBoardContent {
-                width: 70vw;
             }
         }
     }
@@ -100,6 +133,126 @@
         background-repeat: no-repeat;
         height: 100vh;
         width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .DashBoardContentPI {
+            position: relative;
+            top: 18vh;
+            height: 90vh;
+            width: 90vw;
+            background-image: url('../../assets/images/dashBoard/DashBoard-PI-Background.png');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+            border-radius: 5px;
+            padding: 20px;
+            img {
+                opacity: 0.7;
+                height: 80vh;
+                width: 30vw;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%);
+            }
+            h1 {
+                font-family: 'Griffy';
+                font-size: 28px;
+                font-weight: 800;
+                padding: 10px 5px;
+                border: 2px solid transparent;
+                border-radius: 20px;
+                transition: 0.6s;
+            }
+            .DashBoardDetails{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .dashBoardControls {
+                    padding: 20px 10px;
+                    background-color: rgba(0, 0, 0, 1);
+                    border-radius: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    .dashBoardControlsIcon {
+                        font-size: 20px;
+                        padding: 10px 10px;
+                        border: 2px solid rgba(0, 0, 0, 0);
+                        border-radius: 10px;
+                        cursor: pointer;
+                        &:hover {
+                            border: 2px solid rgba(255, 215, 0, 1);
+                        }
+                    }
+                    .DBCI01 {
+                        margin-bottom: 5px;
+                    }
+                }
+                .DashBoardDetailsFull {
+                    height: 60vh;
+                    width: 60vw;
+                    display: grid;
+                    justify-content: center;
+                    align-items: center;
+                    justify-items: center;
+                    grid-template-columns: 5fr 1fr 5fr;
+                    span {
+                        width: 5vw;
+                        font-size: 3vw;
+                        -webkit-text-stroke: 0.1vw rgba(255, 255, 255, 1);
+                    }
+                    input {
+                        transition: 0.4s;
+                        font-size: 18px;
+                        padding: 10px 15px;
+                        border-radius: 5px;
+                        border: none;
+                        background-color: rgba(255, 255, 255, 1);
+                        box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+                        font-family: "Poppins";
+                        height: 38px;
+                        width: 300px;
+                        border: 2px solid transparent;
+                        &:focus {
+                            outline: none;
+                        }
+                        &:invalid{
+                            border: 2px solid rgba(170, 4, 4, 0.8);
+                        }
+                        &:valid{
+                            border: 2px solid transparent;
+                        }
+                    }
+                }
+            }
+            .DashBoardUpdate {
+                width: 80vw;
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                button {
+                    background-color: rgba(0, 0, 0, 1);
+                    border-radius: 5px;
+                    padding: 8px 15px;
+                    font-family: 'Devil';
+                    cursor: pointer;
+                    color: rgba(255, 255, 255, 1);
+                    font-size: 17px;
+                    border: 1.5px solid rgba(0, 0, 0, 1);
+                    transition: 1.2s;
+                    font-size: 20px;
+                    z-index: 3;
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.8);
+                        border: 1.5px solid rgba(0, 0, 0, 0.8);
+                        color: rgba(0, 0, 0, 1);
+                    }
+                }
+            }
+        }
     }
     .DashBoardContent01 {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 1) 90%,rgba(0, 0, 0, 1) 100%), url('../../assets/images/dashBoard/tab2.jpg');
@@ -141,3 +294,4 @@
        opacity: 1;
     }
 }
+
