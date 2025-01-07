@@ -233,6 +233,11 @@
                 display: flex;
                 justify-content: end;
                 align-items: center;
+                h1 {
+                    color: rgba(255, 0, 0, 1);
+                    font-size: 17px;
+                    font-family: 'blinkMacSystem-light';
+                }
                 button {
                     background-color: rgba(0, 0, 0, 1);
                     border-radius: 5px;

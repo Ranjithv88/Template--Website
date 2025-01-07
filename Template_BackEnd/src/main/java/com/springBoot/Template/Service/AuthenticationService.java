@@ -44,11 +44,13 @@ public class AuthenticationService {
                         .password(passwordEncoder.encode(data.getPassword()))
                         .age(data.getAge())
                         .email(data.getEmail())
+                        .emailStatus(false)
                         .phoneNumber(data.getPhoneNumber())
+                        .phoneNumberStatus(false)
                         .createdOn(new Date(System.currentTimeMillis()))
                         .modifyingDate(new Date(System.currentTimeMillis()))
                         .role(Role.USER)
-                            .build();
+                    .build();
                     userRepository.save(newUser);
                     return ResponseEntity.status(HttpStatus.CREATED).body("Registered Successfully...!");
             }

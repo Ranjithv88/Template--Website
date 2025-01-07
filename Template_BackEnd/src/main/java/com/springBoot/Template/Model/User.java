@@ -1,5 +1,6 @@
 package com.springBoot.Template.Model;
 
+import com.springBoot.Template.Annotations.BooleanToStringConverter;
 import com.springBoot.Template.Annotations.Decimal;
 import com.springBoot.Template.Model.Enum.Role;
 import jakarta.persistence.*;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,10 +47,16 @@ public class User implements UserDetails {
     @NotBlank(message = " Email is Mandatory ......! ")
     @Email(message = " Email is Invalid .......! ")
     private String email;
+ 
+    @Convert(converter = BooleanToStringConverter.class)
+    private boolean emailStatus;
 
     @NotNull(message = " Phone Number is Mandatory ......! ")
     @Size(min = 10,max = 10,message = " Phone Number is Invalid ......! ")
     private String phoneNumber;
+
+    @Convert(converter = BooleanToStringConverter.class)
+    private boolean phoneNumberStatus;
 
     private Date createdOn;
 

@@ -22,14 +22,17 @@ function DashBoard() {
     const [profilePic, setProfilePic] = React.useState<boolean>(false)
     const appDispatch = useAppDispatch()
     const [enable, setEnable] = React.useState<boolean>(false)
+    const [validation, setValidation] = React.useState<boolean>(true)
     const [process, setProcess] = React.useState({updateProcess: true, anyChanges: true})
     const userDetails:{userName: string, age: number, email: string, phoneNumber: string} ={userName: useAppSelector(state => state.user.userName), age: useAppSelector(state => state.user.age), email: useAppSelector(state => state.user.email), phoneNumber: useAppSelector(state => state.user.phoneNumber)}
     const details:{key: number, name: string, description: string}[] = [{key: 1, name: 'Personal Information', description:'See the data in your Template Account and choose what activity is saved to personalize your Template experience'}, {key: 2, name: 'Security', description:'its a Security Information about you, its most import'}, {key: 3, name: 'Terms & services', description:'its Terms & services you must read it place'}, {key: 4, name: 'Coming Soon', description: ''}]
 
     React.useEffect(()=>{editUser()},[])
 
-    React.useEffect(() => {
-      const inputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
+    React.useEffect(() => { inputDataUpadate() }, [enable, userDetails])
+
+    const inputDataUpadate = () => {
+    const inputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>
       if (enable) {
         inputs.forEach((input) => input.removeAttribute('readonly'))
       } else {
@@ -41,7 +44,7 @@ function DashBoard() {
           inputs[3].value = userDetails.phoneNumber || ''
         }
       }
-    }, [enable, userDetails])
+    }
     
     const editUser = async() => {
       setLoadingProcess(true)
@@ -54,6 +57,7 @@ function DashBoard() {
           appDispatch(setEmail(response.data.email))
           appDispatch(setPhoneNumber(response.data.phoneNumber))
           if(response.status === 200){
+            inputDataUpadate()
             setAccess(true)
             console.log(userDetails)
           }
@@ -82,6 +86,32 @@ function DashBoard() {
     const updateUserDetails = () => {
       setProcess({updateProcess: false, anyChanges: true})
       
+    }
+
+    const validationProcess =() => {
+    const inputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+      if (inputs) {
+        if(inputs[0].value.length < 2 ){
+          setValidation(false)
+          return false
+        }else if(inputs[1].value.length >= 10 && inputs[1].value.length >= 99) {
+          setValidation(false)
+          return false
+        }else if(!emailPattern.test(inputs[3].value)) {
+          setValidation(false)
+          return false
+        }else if(inputs[4].value.length != 10) {
+          setValidation(false)
+          return false
+        }else {
+          setValidation(true)
+          return true
+        }
+      }else {
+        setValidation(false)
+        return false
+      }
     }
 
   return (
@@ -114,13 +144,13 @@ function DashBoard() {
                   <button className='dashBoardControlsIcon' type='button' style={{ backgroundColor: `${enable?'rgba(255, 215, 0, 1)':'rgba(255, 255, 255, 1)'}`, color: `${enable?'rgba(255, 255, 255, 1)':'rgba(0, 0, 0, 1)'}` }} onClick={()=>setEnable(true)}><FaEdit className='q' /></button>
                 </div>
                 <div className='DashBoardDetailsFull'>
-                  <h1>UserName</h1><span>:</span><input type="text" minLength={2} style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }}/>
-                  <h1>Age</h1><span>:</span><input type="number" min={10} max={99} style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }}/>
-                  <h1>Email</h1><span>:</span> <input type="email" style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }}/>
-                  <h1>PhoneNumber</h1><span>:</span><input type='number' min={1000000000} max={9999999999} style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }}/>
+                  <h1>UserName</h1><span>:</span><input type="text" minLength={2} style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }} />
+                  <h1>Age</h1><span>:</span><input type="number" min={10} max={99} style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }} onChange={()=>validationProcess()}/>
+                  <h1>Email</h1><span>:</span> <input type="email" style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }} />
+                  <h1>PhoneNumber</h1><span>:</span><input type='number' min={1000000000} max={9999999999} style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }} />
                 </div>
               </div>
-              <div className='DashBoardUpdate'><button className='DashBoardUpdateButton' type='button' style={{ opacity: `${enable?'1':'0'}` }} onClick={()=>updateUserDetails()}>{process.updateProcess?'places Wait ...':'Update'}</button></div>
+              <div className='DashBoardUpdate'>{validation?<></>:<h1>Enter The Valid Input Places ......!</h1>}<button className='DashBoardUpdateButton' type='button' style={{ opacity: `${enable?'1':'0'}` }} onClick={()=>updateUserDetails()}>{process.updateProcess?'Update':'places Wait ...'}</button></div>
             </motion.div>
           </div>
           <div className='DashBoardContent01' >
