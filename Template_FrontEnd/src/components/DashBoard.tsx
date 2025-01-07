@@ -18,23 +18,25 @@ function DashBoard() {
 
     const [loadingProcess, setLoadingProcess] = React.useState<boolean>(true)
     const [access, setAccess] = React.useState<boolean>(false)
-    const [cookies, _, removeCookie] = useCookies(['token'])
+    const [cookies] = useCookies(['token'])
     const [profilePic, setProfilePic] = React.useState<boolean>(false)
     const appDispatch = useAppDispatch()
     const [enable, setEnable] = React.useState<boolean>(false)
     const [validation, setValidation] = React.useState<boolean>(true)
-    const [process, setProcess] = React.useState({updateProcess: true, anyChanges: true})
+    const [process, setProcess] = React.useState(false)
     const userDetails:{userName: string, age: number, email: string, phoneNumber: string} ={userName: useAppSelector(state => state.user.userName), age: useAppSelector(state => state.user.age), email: useAppSelector(state => state.user.email), phoneNumber: useAppSelector(state => state.user.phoneNumber)}
     const details:{key: number, name: string, description: string}[] = [{key: 1, name: 'Personal Information', description:'See the data in your Template Account and choose what activity is saved to personalize your Template experience'}, {key: 2, name: 'Security', description:'its a Security Information about you, its most import'}, {key: 3, name: 'Terms & services', description:'its Terms & services you must read it place'}, {key: 4, name: 'Coming Soon', description: ''}]
 
     React.useEffect(()=>{editUser()},[])
 
-    React.useEffect(() => { inputDataUpadate() }, [enable, userDetails])
+    React.useEffect(() => { inputDataUpdate() }, [enable, userDetails])
 
-    const inputDataUpadate = () => {
-    const inputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>
+    const inputDataUpdate = () => {
+      const inputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>
       if (enable) {
         inputs.forEach((input) => input.removeAttribute('readonly'))
+        if (inputs.length > 0)
+          inputs[0].setAttribute('readonly', 'true')
       } else {
         inputs.forEach((input) => input.setAttribute('readonly', 'true'))
         if (inputs.length >= 4) { 
@@ -57,9 +59,8 @@ function DashBoard() {
           appDispatch(setEmail(response.data.email))
           appDispatch(setPhoneNumber(response.data.phoneNumber))
           if(response.status === 200){
-            inputDataUpadate()
+            inputDataUpdate()
             setAccess(true)
-            console.log(userDetails)
           }
         }
       }else {
@@ -83,25 +84,41 @@ function DashBoard() {
         }
     }
 
-    const updateUserDetails = () => {
-      setProcess({updateProcess: false, anyChanges: true})
-      
+    const updateUserDetails = async() => {
+      setProcess(true)
+      if(cookies.token!=undefined) {
+        if(validationProcess()) {
+          try {
+            const inputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>
+            if(inputs){
+              let response = await axios.put('http://localhost:8888/user/UpdateUser', {'userName': inputs[0].value, 'age': inputs[1].value, 'email': inputs[2].value, 'phoneNumber': inputs[3].value}, {headers: {'Authorization': 'Bearer '+cookies.token}})
+              if(response.status === 200) {
+                editUser()
+                setEnable(false)
+              }
+            }
+          }catch(error: any) {
+            if(error.message == "Network Error")
+              alert("Server is Not Working, please try again later....!")
+            console.log(error)
+          }
+        }
+      }
+      setProcess(false)
     }
 
     const validationProcess =() => {
     const inputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>
       const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
       if (inputs) {
-        if(inputs[0].value.length < 2 ){
+        if(inputs[1].value.length >= 10 && inputs[1].value.length >= 99) {
           setValidation(false)
           return false
-        }else if(inputs[1].value.length >= 10 && inputs[1].value.length >= 99) {
+        }else if(!emailPattern.test(inputs[2].value)) {
           setValidation(false)
           return false
-        }else if(!emailPattern.test(inputs[3].value)) {
-          setValidation(false)
-          return false
-        }else if(inputs[4].value.length != 10) {
+        }else if(inputs[3].value.length != 10) {
+          console.log(3)
           setValidation(false)
           return false
         }else {
@@ -109,8 +126,15 @@ function DashBoard() {
           return true
         }
       }else {
-        setValidation(false)
+        setValidation(true)
         return false
+      }
+    }
+
+    const viewOptions = () => {
+      const element = document.querySelector('.DashBoardContent') as HTMLDivElement | null
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'end' })
       }
     }
 
@@ -127,7 +151,7 @@ function DashBoard() {
             </div>
             <div className='DashBoardOuter'>
               {details.map(data=>(
-                <motion.div key={data.key} initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }} >
+                <motion.div key={data.key} initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 3 } }} viewport={{ amount: 0 }} onClick={()=>viewOptions()} >
                   <h1>{data.name}</h1>
                   <p>{data.description}</p>
                 </motion.div>
@@ -144,13 +168,17 @@ function DashBoard() {
                   <button className='dashBoardControlsIcon' type='button' style={{ backgroundColor: `${enable?'rgba(255, 215, 0, 1)':'rgba(255, 255, 255, 1)'}`, color: `${enable?'rgba(255, 255, 255, 1)':'rgba(0, 0, 0, 1)'}` }} onClick={()=>setEnable(true)}><FaEdit className='q' /></button>
                 </div>
                 <div className='DashBoardDetailsFull'>
-                  <h1>UserName</h1><span>:</span><input type="text" minLength={2} style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }} />
+                  <h1>UserName</h1><span>:</span><input type="text" style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }} />
+                  {enable?<h2> Do Not Change The UserName ......! </h2>:<></>}
                   <h1>Age</h1><span>:</span><input type="number" min={10} max={99} style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }} onChange={()=>validationProcess()}/>
+                  <div className='UpdateMessage'>
+                    <h1>Profile Update SuccessFully ......!</h1>
+                  </div>
                   <h1>Email</h1><span>:</span> <input type="email" style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }} />
                   <h1>PhoneNumber</h1><span>:</span><input type='number' min={1000000000} max={9999999999} style={{ backgroundColor: `${enable?'rgba(255, 255, 255, 1)':'transparent'}`, boxShadow: `${enable?'inset 1px 1px 2px rgba(0, 0, 0, 0.2)':'none'}` }} />
                 </div>
               </div>
-              <div className='DashBoardUpdate'>{validation?<></>:<h1>Enter The Valid Input Places ......!</h1>}<button className='DashBoardUpdateButton' type='button' style={{ opacity: `${enable?'1':'0'}` }} onClick={()=>updateUserDetails()}>{process.updateProcess?'Update':'places Wait ...'}</button></div>
+              <div className='DashBoardUpdate'>{validation?<></>:<h1>Enter The Valid Input Places ......!</h1>}<button className='DashBoardUpdateButton' type='button' style={{ opacity: `${enable?'1':'0'}`, pointerEvents: `${process?'none':'fill'}` }} onClick={()=>updateUserDetails()}>{process?'places Wait ...':'Update'}</button></div>
             </motion.div>
           </div>
           <div className='DashBoardContent01' >

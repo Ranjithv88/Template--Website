@@ -8,12 +8,13 @@ public class BooleanToStringConverter implements AttributeConverter<Boolean, Str
 
     @Override
     public String convertToDatabaseColumn(Boolean attribute) {
-        return attribute != null && attribute ? "TRUE" : "FALSE";
+        return attribute != null && attribute ? "true" : "false";
     }
 
     @Override
     public Boolean convertToEntityAttribute(String dbData) {
-        return "TRUE".equalsIgnoreCase(dbData);
+        return "true".equalsIgnoreCase(dbData);
     }
+
 }
 
