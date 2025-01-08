@@ -27,7 +27,7 @@
     overflow-x: hidden;
 }
 
-/*--------------------------- Google Fonts ( Anton, BebasNeue, Griffy, Inter, Karantina, Matemasie, Merriweather, Oswald, Pacifico, Poppins, Jaro, Devil, Canicule, BrightMelody, skyer, Morion, blinkMacSystem-light, Brandbe ) --------------------*/
+/*--------------------------- Google Fonts ( Anton, BebasNeue, Griffy, Inter, Karantina, Matemasie, Merriweather, Oswald, Pacifico, Poppins, Jaro, Devil, Canicule, BrightMelody, skyer, Morion, blinkMacSystem-light, Brandbe, MANIFESTO, BillionDreams ) --------------------*/
 @font-face {
     font-family: "Anton";
     src: url('./assets/fonts/Anton-Regular.ttf');
@@ -103,5 +103,13 @@
 @font-face {
     font-family: "Brandbe";
     src: url('./assets/fonts/Brandbe\ Extra\ Bold.otf');
+}
+@font-face {
+    font-family: "MANIFESTO";
+    src: url('./assets/fonts/MANIFESTO.ttf');
+}
+@font-face {
+    font-family: "BillionDreams";
+    src: url('./assets/fonts/BillionDreams.ttf');
 }
 

@@ -175,7 +175,7 @@ function Register() {
                 <input type="number" min={10} max={99} placeholder=' Enter the Age'/>
                 <input type="email" placeholder=' Enter the Email'/>
                 <input type="number" min={1000000000} max={9999999999} placeholder=' Enter the PhoneNumber'/>
-                <button className='SignIn' type='submit' style={{pointerEvents: `${registerProcess?'fill':'none'}`}}>{registerProcess?'Register Now':'places Wait ...'}</button>
+                <button className='SignIn' type='submit' style={{pointerEvents: `${registerProcess?'fill':'none'}`}}>{registerProcess?'Register Now':'Please Wait ...'}</button>
                 <span>I already have the Account ?<Link className='a' to='/login'>Click Here</Link></span>
                 <p>By continuing, you agree to Template <span className='RegisterSpan'> Terms of Service </span>an acknowledge you've read our <span className='RegisterSpan'> Privacy Policy</span></p>
               </form>

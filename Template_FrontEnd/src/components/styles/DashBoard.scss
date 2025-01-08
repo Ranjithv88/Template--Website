@@ -126,6 +126,11 @@
             }
         }
     }
+    .DashBoardSpace {
+        height: 18vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 1);
+    }
     .DashBoardContent { 
         background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 1) 90%,rgba(0, 0, 0, 1) 100%), url('../../assets/images/dashBoard/tab1.jpg');
         background-position: center center;
@@ -136,9 +141,38 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        .DashBoardContentI {
+            height: 40vw;
+            width: 30vw;
+            border-radius: 100%;
+            background-color: rgba(241, 236, 231, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1vh;
+            cursor: pointer;
+            transition: 1s;
+            h1 {
+                font-family: "MANIFESTO";
+                font-size: 2vw;
+                text-align: center;
+            }
+            img {
+                height: 10vw;
+                width: 10vw;
+            }
+            h2 {
+                font-family: 'BillionDreams';
+                font-size: 2vw;
+                text-align: center;
+            }
+            &:hover {
+                background-color: rgba(241, 236, 231, 1);
+            }
+        }
         .DashBoardContentPI {
             position: relative;
-            top: 18vh;
             height: 90vh;
             width: 90vw;
             background-image: url('../../assets/images/dashBoard/DashBoard-PI-Background.png');
@@ -232,11 +266,20 @@
                         align-items: center;
                         background-color: rgba(65, 9, 0, 1);
                         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-                        transition: 2s;
-                        // transform: rotate(10deg);
+                        pointer-events: none;
+                        animation: DashBoardUpdateMessage 7s ease-in-out 0s 1 forwards;
                         h1 {
+                            rotate: -90deg;
                             text-align: center;
                             color: rgba(255, 255, 255, 1);
+                        }
+                    }
+                    h4{
+                        font-size: 18px;
+                        font-family: 'Poppins';
+                        input {
+                            padding: 10px 10px;
+                            width: 262px;
                         }
                     }
                     input {
@@ -293,6 +336,30 @@
                 }
             }
         }
+        .DashBoardContentS {
+            height: 90vh;
+            width: 90vw;
+            background-image: url('../../assets/images/login\ background\ image.jpg');
+            background-size: cover;
+            background-position: top center;
+            background-repeat: no-repeat;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            border-radius: 20px;
+        }
+        .DashBoardContentCS {
+            position: relative;
+            height: 90vh;
+            width: 90vw;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg {
+                height: 90vh;
+                width: 90vw;
+            }
+        }
     }
     .DashBoardContent01 {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 1) 90%,rgba(0, 0, 0, 1) 100%), url('../../assets/images/dashBoard/tab2.jpg');
@@ -329,9 +396,30 @@
     }
 }
 
+/*------------- Animation for DashBoard -------------*/
 @keyframes DashBoardBackAnimation {
     to{
        opacity: 1;
+    }
+}
+@keyframes DashBoardUpdateMessage {
+    0% {
+        left: -20%;
+        transform: translate(0%);
+    }20% {
+        left: 50%;
+        transform: translate(-50%);
+    }40% {
+        left: 50%;
+        transform: translate(-50%) rotate(90deg) scale(1);
+    }60% {
+        transform: translate(-50%) rotate(90deg) scale(1.25);
+    }80% {
+        left: 50%;
+        transform: translate(-50%) rotate(90deg) scale(1);
+    }100% {
+        left: 150%;
+        transform: translate(-150%);
     }
 }
 

@@ -153,8 +153,8 @@ function NavigationBar() {
                       <button className='NCart' type='button' onClick={()=>setCartList(true)}><TbShoppingCartFilled/>cart</button>
                       <button className='NProfile' type='button' onClick={()=>setMenu(!menu)}><GiPlagueDoctorProfile/></button>
                       </>:<>
-                      <Link className='a' to={'/Login'} style={{ pointerEvents: `${process?'none':'fill'}` }}><button type='button'>{process?'loading':'Login'}</button></Link>
-                      <Link className='a' to={'/Register'} style={{ pointerEvents: `${process?'none':'fill'}` }}><button type='button'>{process?'loading':'Register'}</button></Link>
+                      <Link className='a' to={'/Login'} style={{ pointerEvents: `${process?'none':'fill'}` }}><button type='button'>{process?'Loading':'Login'}</button></Link>
+                      <Link className='a' to={'/Register'} style={{ pointerEvents: `${process?'none':'fill'}` }}><button type='button'>{process?'Loading':'Register'}</button></Link>
                     </>}
                 </div>
           </nav>:
@@ -175,9 +175,9 @@ function NavigationBar() {
                     {profilePic?<img src='#' alt="ProfilePic" />:<button className='NProfile' type='button'><GiPlagueDoctorProfile className='a'/></button>}
                     <h1>{userInformation}</h1>
                     <div className='MOptions'>
-                      <button className='MCart' type='button' onClick={()=>{setCheckOut(true), setMenu(true)}}><TbShoppingCartFilled/>cart</button><Link to={'./Home/DashBoard'}><button className='MEdit' type='button'><MdEdit/>Edit</button></Link>
+                      <button className='MCart' type='button' onClick={()=>{setCheckOut(true), setMenu(true)}}><TbShoppingCartFilled/>cart</button><Link to={'/Home/DashBoard'}><button className='MEdit' type='button'><MdEdit/>Edit</button></Link>
                     </div>
-                    <button className='logOut' type='button' style={{ cursor: `${process?'wait':'pointer'}`, pointerEvents: `${process?'none':'fill'}` }} onClick={()=>logOut()}><IoMdLogOut/>{process?'places Wait ...':'Log Out'}</button>
+                    <button className='logOut' type='button' style={{ cursor: `${process?'wait':'pointer'}`, pointerEvents: `${process?'none':'fill'}` }} onClick={()=>logOut()}><IoMdLogOut/>{process?'Please Wait ...':'Log Out'}</button>
                   </div>
                   :
                   <div className='menu03'>

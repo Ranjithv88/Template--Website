@@ -138,7 +138,7 @@ function Login() {
                 </div>
                 <h2>Forget Your Password ?</h2>
                 {loginValidator?<h5>username and Password Wrong...</h5>:<></>}
-                <button className='SignIn' type='submit' style={{pointerEvents: `${loginProcess?'fill':'none'}`}}>{loginProcess?'Log In':'places Wait ...'}</button>
+                <button className='SignIn' type='submit' style={{pointerEvents: `${loginProcess?'fill':'none'}`}}>{loginProcess?'Log In':'Please Wait ...'}</button>
                 <span>OR</span>
                 <button className='SignG' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}><h3><FcGoogle /></h3>Continue With Google </button>
                 <button className='SignF' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}><h3><FaFacebook /></h3>Continue With FaceBook </button>
@@ -156,7 +156,7 @@ function Login() {
           </svg>
 
           <h2>Hi, {emailSuccess}</h2>
-          <Link to={'/'}><button type='button'>go to Home</button></Link>
+          <Link to={'/'}><button type='button'>Go to Home</button></Link>
         </div>
       }
       <h1 className='Underdevelopment' ref={message} style={{top: mousePosition.y+'px', left: mousePosition.x+'px'}}>Under Development</h1>

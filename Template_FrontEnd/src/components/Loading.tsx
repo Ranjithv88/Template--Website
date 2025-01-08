@@ -5,7 +5,7 @@ function Loading() {
   return (
     <div className='Loading'>
        <video className="media" autoPlay muted loop>
-        <source src={media} type="video/mp4"></source>
+        <source src={media} type="video/mp4"/>
       </video>
       <div className='LoadingOuter'>
         <div className='LoadingInner'></div>
