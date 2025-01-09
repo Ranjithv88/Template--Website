@@ -27,7 +27,7 @@
     overflow-x: hidden;
 }
 
-/*--------------------------- Google Fonts ( Anton, BebasNeue, Griffy, Inter, Karantina, Matemasie, Merriweather, Oswald, Pacifico, Poppins, Jaro, Devil, Canicule, BrightMelody, skyer, Morion, blinkMacSystem-light, Brandbe, MANIFESTO, BillionDreams ) --------------------*/
+/*--------------------------- Google Fonts ( Anton, BebasNeue, Griffy, Inter, Karantina, Matemasie, Merriweather, Oswald, Pacifico, Poppins, Jaro, Devil, Canicule, BrightMelody, skyer, Morion, blinkMacSystem-light, Brandbe, MANIFESTO, BillionDreams, MomcakeThin, MomcakeBold, Starlight ) --------------------*/
 @font-face {
     font-family: "Anton";
     src: url('./assets/fonts/Anton-Regular.ttf');
@@ -111,5 +111,17 @@
 @font-face {
     font-family: "BillionDreams";
     src: url('./assets/fonts/BillionDreams.ttf');
+}
+@font-face {
+    font-family: "MomcakeThin";
+    src: url('./assets/fonts/MomcakeThin.otf');
+}
+@font-face {
+    font-family: "MomcakeBold";
+    src: url('./assets/fonts/MomcakeBold.otf');
+}
+@font-face {
+    font-family: "Starlight";
+    src: url('./assets/fonts/Starlight\ demo.ttf');
 }
 

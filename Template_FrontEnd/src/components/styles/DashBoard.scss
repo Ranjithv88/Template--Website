@@ -336,6 +336,7 @@
             }
         }
         .DashBoardContentS {
+            z-index: 2;
             height: 90vh;
             width: 90vw;
             background-image: url('../../assets/images/login\ background\ image.jpg');
@@ -348,11 +349,12 @@
             align-items: center;
             flex-direction: column;
             h1 {
+                z-index: 4;
                 padding: 5px 20px;
                 text-align: center;
                 font-size: 2vw;
                 font-family: 'MANIFESTO';
-                background-color: rgba(248, 248, 248, 1);
+                background-color: rgba(233, 233, 233, 1);
                 border-radius: 10px 10px 0px 0px;
             }
             .DashBoardContentSMain {
@@ -387,7 +389,7 @@
                     justify-content: center;
                     align-items: center;
                     flex-direction: column;
-                    background-color: rgba(248, 248, 248, 1);
+                    background-color: rgba(233, 233, 233, 1);
                     border-radius: 10px 0px 10px 10px;
                     font-family: 'MANIFESTO';
                     h2 {
@@ -396,14 +398,92 @@
                         padding: 20px 0px;
                     }
                 }
+                .Otp {
+                    z-index: 3;
+                    position: absolute;
+                    left: 50%;
+                    background-color: rgba(248, 248, 248, 1);
+                    border-radius: 50%;
+                    height: 300px;
+                    width: 300px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 10px;
+                    color: rgba(0, 0, 0, 1);
+                    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                    border: 2px solid transparent;
+                    transition: 4.5s, border 0.5s, box-shadow 0.4s;
+                    cursor: pointer;
+                    h2 {
+                        font-family: 'MomcakeBold';
+                        font-size: 16px;
+                        text-align: center;
+                    }
+                    input {
+                        font-size: 16px;
+                        padding: 10px 15px;
+                        border-radius: 5px;
+                        border: none;
+                        background-color: rgba(233, 233, 233, 1);
+                        box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+                        font-family: "Poppins";
+                        height: 38px;
+                        width: 250px;
+                        text-align: center;
+                    }
+                    input::placeholder{
+                        font-size: 18px;
+                        font-family: "BebasNeue",sans-serif;
+                    }
+                    input:focus{
+                        outline: none;
+                    }
+                    input:invalid{
+                        border: 2px solid rgba(170, 4, 4, 0.8);
+                    }
+                    input:valid{
+                        border: 2px solid transparent;
+                    }
+                    button {
+                        font-family: 'Starlight';
+                        padding: 4px 18px;
+                        font-size: 18px;
+                        box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+                        &:hover {
+                            box-shadow: none;
+                        }
+                    }
+                    input:invalid ~ button[type="button"] {
+                        background-color: rgb(165, 165, 166, 1);
+                        cursor: not-allowed;
+                    }
+                    .OtpIcon {
+                        color: rgba(176, 5, 5, 1);
+                        padding: 5px;
+                        font-size: 35px;
+                        transition: 0.8s;
+                        &:hover {
+                            rotate: 360deg;
+                            padding: 1px;
+                            font-size: 37px;
+                        }
+                    }
+                    &:hover {
+                        box-shadow: rgba(0, 0, 0, 0.25) 0px 64px 55px, rgba(0, 0, 0, 0.12) 0px -22px 30px, rgba(0, 0, 0, 0.12) 0px 14px 6px, rgba(0, 0, 0, 0.17) 0px 22px 13px, rgba(0, 0, 0, 0.09) 0px -13px 5px;
+                        border: 2px solid rgba(255, 215, 0, 1);
+                    }
+                }
                 .DashBoardContentSMain02 {
+                    z-index: 4;
                     height: 70vh;
                     width: 30vw;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     flex-direction: column;
-                    background-color: rgba(248, 248, 248, 1);
+                    background-color: rgba(233, 233, 233, 1);
                     border-radius: 0px 10px 10px 10px;
                     font-family: 'MANIFESTO';
                     h2 {

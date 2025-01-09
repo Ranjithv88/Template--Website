@@ -28,5 +28,10 @@ public class UserController {
         return service.updateUserDetails(data);
     }
 
+    @GetMapping("/user/sendOTP")
+    public ResponseEntity<String> otpGetApi (@RequestParam("userName") String data) {
+        return service.otpService(data);
+    }
+
 }
 
