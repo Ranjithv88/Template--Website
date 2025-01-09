@@ -237,8 +237,7 @@
                     cursor: default;
                     h2 {
                         padding: 5px 15px;
-                        margin-right: 2vw;
-                        justify-self: end;
+                        justify-self: center;
                         grid-column: span 3;
                         font-size: 18px;
                         border-radius: 20px;
@@ -345,6 +344,75 @@
             background-repeat: no-repeat;
             box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
             border-radius: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            h1 {
+                padding: 5px 20px;
+                text-align: center;
+                font-size: 2vw;
+                font-family: 'MANIFESTO';
+                background-color: rgba(248, 248, 248, 1);
+                border-radius: 10px 10px 0px 0px;
+            }
+            .DashBoardContentSMain {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2vw;
+                height: 70vh;
+                width: 75vw;
+                button {
+                    background-color: rgba(0, 0, 0, 1);
+                    border-radius: 5px;
+                    padding: 8px 15px;
+                    font-family: 'MANIFESTO';
+                    cursor: pointer;
+                    color: rgba(255, 255, 255, 1);
+                    font-size: 1vw;
+                    border: 1.5px solid rgba(0, 0, 0, 1);
+                    transition: 1s;
+                    &:hover{
+                        background-color: rgba(255, 255, 255, 1);
+                        color: rgba(0, 0, 0, 1);
+                        letter-spacing: 2px;
+                        box-shadow: -2px -2px 0px rgba(0, 0, 0, 1),
+                            5px 5px 0px rgba(0, 0, 0, 1);
+                    }
+                }
+                .DashBoardContentSMain01 {
+                    height: 70vh;
+                    width: 30vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color: rgba(248, 248, 248, 1);
+                    border-radius: 10px 0px 10px 10px;
+                    font-family: 'MANIFESTO';
+                    h2 {
+                        text-align: center;
+                        font-size: 1.5vw;
+                        padding: 20px 0px;
+                    }
+                }
+                .DashBoardContentSMain02 {
+                    height: 70vh;
+                    width: 30vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color: rgba(248, 248, 248, 1);
+                    border-radius: 0px 10px 10px 10px;
+                    font-family: 'MANIFESTO';
+                    h2 {
+                        text-align: center;
+                        font-size: 1.5vw;
+                        padding: 20px 0px;
+                    }
+                }
+            }
         }
         .DashBoardContentCS {
             position: relative;

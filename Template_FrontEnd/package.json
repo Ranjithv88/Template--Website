@@ -1,3 +1,4 @@
+
 {
   "name": "template-frontend",
   "private": true,
@@ -35,3 +36,4 @@
     "vite": "^6.0.1"
   }
 }
+

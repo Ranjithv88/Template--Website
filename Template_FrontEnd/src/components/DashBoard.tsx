@@ -27,6 +27,7 @@ function DashBoard() {
     const [process, setProcess] = React.useState(false)
     const [updateMessage, setUpdateMessage] = React.useState<boolean>(false)
     const [options, setOptions] = React.useState<number>(0)
+    const [verified, setVerified] = React.useState({ emailVerified: false, phoneNumberVerified: false })
     const userDetails:{userName: string, age: number, email: string, phoneNumber: string} ={userName: useAppSelector(state => state.user.userName), age: useAppSelector(state => state.user.age), email: useAppSelector(state => state.user.email), phoneNumber: useAppSelector(state => state.user.phoneNumber)}
     const details:{key: number, name: string, description: string}[] = [{key: 1, name: 'Personal Information', description:'See the data in your Template Account and choose what activity is saved to personalize your Template experience'}, {key: 2, name: 'Security', description:'its a Security Information about you, its most import'}, {key: 3, name: 'Terms & services', description:'its Terms & services you must read it place'}, {key: 4, name: 'Coming Soon', description: ''}]
     const sleep=(ms: number): Promise<void> => new Promise(resolve=>setTimeout(resolve, ms)) 
@@ -99,8 +100,8 @@ function DashBoard() {
               if(response.status === 200) {
                 editUser()
                 setEnable(false)
-                viewOptions()
                 setUpdateMessage(true)
+                viewOptions()
                 await sleep(7000)
                 setUpdateMessage(false)
               }
@@ -213,6 +214,19 @@ function DashBoard() {
               <div className='DashBoardUpdate'>{validation?<></>:<h1>Please Enter The Valid Input ......!</h1>}<button className='DashBoardUpdateButton' type='button' style={{ opacity: `${enable?'1':'0'}`, pointerEvents: `${process?'none':'fill'}` }} onClick={()=>updateUserDetails()}>{process?'Please Wait ...':'Update'}</button></div>
             </motion.div>
             <motion.div className='DashBoardContentS' initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 } }} viewport={{ amount: 0 }} style={{ display: options === 2?'flex':'none' }}>
+              <h1>Security</h1>
+              <div className='DashBoardContentSMain'>
+                <div className='DashBoardContentSMain01'>
+                  <h2>Email :<br/> {userDetails.email}</h2>
+                  <h3 style={{ color: verified.emailVerified?'rgba(2, 48, 32, 1)':'rgba(219, 0, 0, 1)'}}>{verified.emailVerified?'Verified':'Not Verified'}</h3>
+                  <button style={{ pointerEvents: verified.emailVerified?'none':'fill'}}> Verify Email </button>
+                </div>
+                <div className='DashBoardContentSMain02'>
+                  <h2>Phone Number :<br/> +91 {userDetails.phoneNumber}</h2>
+                  <h3 style={{ color: verified.phoneNumberVerified?'rgba(2, 48, 32, 1)':'rgba(219, 0, 0, 1)'}}>{verified.phoneNumberVerified?'Verified':'Not Verified'}</h3>
+                  <button style={{ pointerEvents: verified.phoneNumberVerified?'none':'fill'}}> Verify Phone Number </button>
+                </div>
+              </div>
             </motion.div>
             <motion.div className='DashBoardContentCS' initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 } }} viewport={{ amount: 0 }} style={{ display: options === 4?'block':'none' }}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.000314728997182101 545.0260009765625 640.9843139648438" fill="none" preserveAspectRatio="xMidYMid meet" role="img">
@@ -220,13 +234,13 @@ function DashBoard() {
               <text x="50%" y="45%" fontSize="4vw" textAnchor="middle" fill="black" fontFamily="Griffy">
                  Coming Soon .....! 
               </text>
-              <text x="50%" y="52%" fontSize="0.8vw" textAnchor="middle" fill="black" fontFamily="Griffy">
+              <text x="50%" y="52%" fontSize="0.5vw" textAnchor="middle" fill="black" fontFamily="Griffy">
                 The "Coming Soon" section provides a brief yet engaging overview of upcoming features, 
               </text>
-              <text x="50%" y="54%" fontSize="0.8vw" textAnchor="middle" fill="black" fontFamily="Griffy">
+              <text x="50%" y="54%" fontSize="0.5vw" textAnchor="middle" fill="black" fontFamily="Griffy">
                  highlighting innovative enhancements designed to elevate user experience and meet evolving needs. 
               </text>
-              <text x="50%" y="56%" fontSize="0.8vw" textAnchor="middle" fill="black" fontFamily="Griffy">
+              <text x="50%" y="56%" fontSize="0.5vw" textAnchor="middle" fill="black" fontFamily="Griffy">
                  It ensures users stay informed and excited about future developments. 
               </text>
             </svg>
