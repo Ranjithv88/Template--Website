@@ -3,24 +3,26 @@ package com.springBoot.Template.Service;
 import com.springBoot.Template.Model.UpdateUser;
 import com.springBoot.Template.Model.User;
 import com.springBoot.Template.Repository.UserRepository;
-import lombok.Data;
+import com.springBoot.Template.Security.OTPServices;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
+@Log
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository repository;
-    private final JavaMailSender javaMailSender;
+    public final OTPServices otpServices;
 
     public ResponseEntity<Map<String, Object>> getUserService (String userName) {
         User userDetails = repository.findByUserDetails(userName);
@@ -44,26 +46,54 @@ public class UserService {
     }
 
     public ResponseEntity<String> otpService (String data) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        User userDetails = repository.findByUserDetails(data);
-        if(repository.existsByUserName(data)) {
-            message.setFrom("ranjithkumar22445588@gmail.com");
-            message.setTo(data);
-            message.setSubject("PortFolio Team for Mail Verification");
-            message.setText("Dear User,\n\n" +
-                    data + "\n\n" +
-                    "We have received a request to access your account. To complete this email Verification  process, please use the following One-Time Password (OTP):\n\n" +
-                    "OTP: " + "909090" + "\n\n" +
-                    "Please note:\n" +
-                    "- This OTP is valid for 60 seconds.\n" +
-                    "- Do not share this OTP with anyone.\n" +
-                    "- If you did not request this, please ignore this email or contact support immediately.\n\n" +
-                    "Thank you,\n" +
-                    "Your Service Team");
-            javaMailSender.send(message);
-            return ResponseEntity.ok(" Mail Sending SuccessFully....! ");
-        }else if(userDetails.isEmailStatus()) {
-            return new ResponseEntity<>("User is Already Verified.....!",HttpStatusCode.valueOf(409));
+        Optional<User> userDetails = repository.findByUserName(data);
+        if (userDetails.isPresent()) {
+            User existingUser = userDetails.get();
+            if(!existingUser.isEmailStatus()) {
+                String otp = otpServices.generateOTP(data);
+                String to = existingUser.getEmail();
+                try {
+                    ProcessBuilder processBuilder = new ProcessBuilder("node", "sendEmail.js", to, otp);
+                    processBuilder.directory(new java.io.File("./src/main/java/com/springBoot/Template/javaScript"));
+                    Process process = processBuilder.start();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    StringBuilder output = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        output.append(line).append("\n");
+                    }
+                    BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+                    while ((line = errorReader.readLine()) != null) {
+                        output.append("ERROR: ").append(line).append("\n");
+                    }
+                    process.waitFor();
+                    log.info(output.toString());
+                    if (process.exitValue() == 0 && output.toString().startsWith("Email sent:"))
+                        return ResponseEntity.ok("Email sent successfully!");
+                    else if(output.toString().startsWith("ERROR: "))
+                        return new ResponseEntity<>("Error sending email : "+output, HttpStatus.INTERNAL_SERVER_ERROR);
+                    else
+                        return new ResponseEntity<>("Error sending email", HttpStatus.INTERNAL_SERVER_ERROR);
+                } catch(Exception e) {
+                    log.info(e.toString());
+                    return new ResponseEntity<>("Error sending email: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            } else
+                return new ResponseEntity<>("User is already verified!", HttpStatus.CONFLICT);
+        }else
+            return new ResponseEntity<>("User Not Found ....!",HttpStatusCode.valueOf(409));
+    }
+
+    public ResponseEntity<String> otpTestService(String data, String otp) {
+        Optional<User> userDetails = repository.findByUserName(data);
+        if(userDetails.isPresent()) {
+            if(otpServices.validateOTP(data, otp)) {
+                User existingUser = userDetails.get();
+                existingUser.setEmailStatus(true);
+                repository.save(existingUser);
+                return ResponseEntity.ok("Email OTP Verified Successfully .....!");
+            }else
+                return new ResponseEntity<>("Invalid OTP. Please try again .....!", HttpStatusCode.valueOf(410));
         }else
             return new ResponseEntity<>("User Not Found ....!",HttpStatusCode.valueOf(409));
     }

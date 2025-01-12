@@ -33,6 +33,8 @@ function DashBoard() {
     const userDetails:{userName: string, age: number, email: string, phoneNumber: string} ={userName: useAppSelector(state => state.user.userName), age: useAppSelector(state => state.user.age), email: useAppSelector(state => state.user.email), phoneNumber: useAppSelector(state => state.user.phoneNumber)}
     const details:{key: number, name: string, description: string}[] = [{key: 1, name: 'Personal Information', description:'See the data in your Template Account and choose what activity is saved to personalize your Template experience'}, {key: 2, name: 'Security', description:'its a Security Information about you, its most import'}, {key: 3, name: 'Terms & services', description:'its Terms & services you must read it place'}, {key: 4, name: 'Coming Soon', description: ''}]
     const sleep=(ms: number): Promise<void> => new Promise(resolve=>setTimeout(resolve, ms)) 
+    const [resend, setResend] = React.useState<boolean>(false)
+    const [otpVerified, setOTPVerified] = React.useState({ otpVerifiedChecked: false, sendOTPVerified: false })
 
     React.useEffect(()=>{editUser()},[])
     React.useEffect(()=>{otpInputUpdate()}, [verifiedVisible])
@@ -177,11 +179,14 @@ function DashBoard() {
     }
 
     const verifyEmail = async() => {
+      setProcess(true)
+      setResend(true)
       if(cookies.token!=undefined) {
         try {
           const response = await axios.get('http://localhost:8888/user/sendOTP?userName='+userDetails.userName, {headers: {'Authorization': 'Bearer '+cookies.token}})
           if(response.status === 200) {
             setVerifiedVisible(true)
+            timeOut()
           }
         } catch (e: any) {
           if(e.message === "Network Error")
@@ -189,6 +194,59 @@ function DashBoard() {
           alert("Something went wrong, please try again later......!")
           console.log(e)
         }
+      }
+      setProcess(false)
+      setResend(false)
+    }
+
+    const getOTP = (): string|false => {
+      const otp = document.querySelector('.otpInput') as HTMLInputElement | null
+      if(otp){
+        if(otp.value.length == 6){
+          return otp.value.toString()
+        }
+        setOTPVerified({otpVerifiedChecked: true, sendOTPVerified: false})
+        return false
+      }
+      return false
+    }
+
+    const verifyOTP = async() => {
+      setProcess(true)
+      let otp = getOTP();
+      if(cookies.token!=undefined && otp != false) {
+        try {
+          const response = await axios.post('http://localhost:8888/user/sendOTP?userName='+userDetails.userName, {"otp": otp}, {headers: {'Authorization': 'Bearer '+cookies.token}})
+          if(response.status === 200) {
+            setOTPVerified({otpVerifiedChecked: false, sendOTPVerified: true})
+            await sleep(2000)
+            editUser()
+            setVerifiedVisible(false)
+            setOTPVerified({otpVerifiedChecked: false, sendOTPVerified: false})
+            await sleep(800)
+            viewOptions()
+          }
+        } catch (e: any) {
+          if(e.response.status === 410 && e.response.data === 'Invalid OTP. Please try again .....!')
+            setOTPVerified({otpVerifiedChecked: true, sendOTPVerified: false})
+          if(e.message === "Network Error")
+            alert("Server is Not Working, please try again later....!")
+          if(e.message != "Network Error" && e.response.status != 410 && e.response.data != 'Invalid OTP. Please try again .....!')
+            alert("Something went wrong, please try again later......!")
+          console.log(e)
+        }
+      }
+      setProcess(false)
+    }
+
+    const timeOut = async() =>{
+      await sleep(300000)
+      setVerifiedVisible(false)
+      const emailMessage = document.querySelector('.emailMessage') as HTMLDivElement | null
+      if(emailMessage){
+        emailMessage.style.opacity = '1'
+        await sleep(10000)
+        emailMessage.style.opacity = '0'
       }
     }
 
@@ -246,13 +304,16 @@ function DashBoard() {
                 <div className='DashBoardContentSMain01'>
                   <h2>Email :<br/> {userDetails.email}</h2>
                   <h3 style={{ color: verified.emailVerified?'rgba(106, 149, 66, 1)':'rgba(219, 0, 0, 1)'}}>{verified.emailVerified?'Verified':'Not Verified'}</h3>
-                  <button style={{ pointerEvents: verified.emailVerified?'none':'fill'}} onClick={()=>verifyEmail()}> Verify Email </button>
+                  <button style={{ pointerEvents: verified.emailVerified?'none':'fill', cursor: process?'not-allowed':'pointer'}} onClick={()=>verifyEmail()}> {process?'Please Wait ...':'Verify Email'} </button>
                 </div>
-                <div className='Otp' style={{ transform: `translate(${verifiedVisible?'-120%':'40%'}) rotate(${verifiedVisible?'-360deg':'0deg'})`, opacity: verifiedVisible?'1':'0' }}>
-                  <h2> Click Here to Resend the OTP </h2>
-                  <input className='otpInput' type="number" min={100000} max={999999} placeholder='XXXXXX' />
-                  <button type='button' onClick={()=>{editUser(), viewOptions()}}>Submit</button>
-                  <IoCloseCircle className='OtpIcon' onClick={()=>setVerifiedVisible(false)}/>
+                <div className='Otp' style={{ transform: `translate(${verifiedVisible?'-120%':'40%'}) rotate(${verifiedVisible?'-360deg':'0deg'})`, opacity: verifiedVisible?'1':'0', pointerEvents: resend?'none':'fill' }} >
+                  {otpVerified.sendOTPVerified?<div className='otpVerifyStatus'></div>:
+                    <>{resend?<h4> places Wait ....!</h4>:<>
+                      <h2 onClick={()=>verifyEmail()}> Click Here to Resend the OTP </h2>
+                      <input className='otpInput' type="number" min={100000} max={999999} placeholder='XXXXXX' />
+                      {otpVerified.otpVerifiedChecked?<h3>otp is Wrong ....!</h3>:<></>}
+                      <button type='button' style={{ pointerEvents: process?'none':'fill' }} onClick={()=>{verifyOTP()}}>{process?'Please Wait ...!':'Submit'}</button>
+                      <IoCloseCircle className='OtpIcon' onClick={()=>setVerifiedVisible(false)}/></>}</>}
                 </div>
                 <div className='DashBoardContentSMain02'>
                   <h2>Phone Number :<br/> +91 {userDetails.phoneNumber}</h2>
@@ -288,6 +349,7 @@ function DashBoard() {
         :
         <NotFound/>}
       </>}
+      <div className='emailMessage'> To make Sure Email is Correct , places try Again Later .......! </div>
     </>
   )
 }

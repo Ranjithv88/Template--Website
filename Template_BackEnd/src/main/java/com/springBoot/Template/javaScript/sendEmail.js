@@ -1,7 +1,8 @@
 const nodemailer = require('nodemailer');
-console.log('hi')
 const transporter = nodemailer.createTransport({
     service: 'gmail',
+    port: 465,
+    secure: true,
     auth: {
         user: 'ranjithkumar22445588@gmail.com',
         pass: 'vfoivtmatfjgzsrv'
@@ -9,7 +10,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const mailOptions = {
-    from: 'ranjithkumar22445588@gmail.com',
+    from: 'portfolio.com',
     to: process.argv[2],
     subject: 'Email verification process for portfolio.com',
     text: `Dear User,\n\n` +
@@ -17,7 +18,7 @@ const mailOptions = {
           `We have received a request to access your account. To complete this email verification process, please use the following One-Time Password (OTP):\n\n` +
           `OTP: ${process.argv[3]}\n\n` +
           `Please note:\n` +
-          `- This OTP is valid for 60 seconds.\n` +
+          `- This OTP is valid for 5 Minutes.\n` +
           `- Do not share this OTP with anyone.\n` +
           `- If you did not request this, please ignore this email or contact support immediately.\n\n` +
           `Thank you,\n` +
@@ -30,3 +31,4 @@ transporter.sendMail(mailOptions, (error, info) => {
     }
     console.log('Email sent:', info.response);
 });
+

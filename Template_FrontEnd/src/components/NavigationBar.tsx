@@ -102,7 +102,7 @@ function NavigationBar() {
           setLogoutMessage(true)
           await sleep(14000)
           setLogoutMessage(false)
-        }
+        } 
     }catch(e: any) {
       if(e.message === "Network Error")
         alert("Server is Not Working, please try again later....!")
@@ -193,7 +193,7 @@ function NavigationBar() {
       <div className='logoutMessage Effect' style={{ left: `${logoutMessage?'98%':'128%'}`, visibility: `${logoutMessage?'visible':'hidden'}` }}>
         <FiAlertOctagon className='LOM01 Effect'/>
         <p>LogOut Successfully...!</p>
-        <CgCloseO className='LOM03 Effect' onClick={()=>setLogoutMessage(false)}/>
+        <CgCloseO className='LOM03 Effect' onClick={()=>{setLogoutMessage(false), setProcess(false)}}/>
       </div>
       {/* Navigation CartList Html Code */}
       {checkOut?

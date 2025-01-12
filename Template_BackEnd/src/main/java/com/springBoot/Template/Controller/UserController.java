@@ -33,5 +33,10 @@ public class UserController {
         return service.otpService(data);
     }
 
+    @PostMapping("/user/sendOTP")
+    public ResponseEntity<String> otpTestApi (@RequestParam("userName") String data, @RequestBody String otp) {
+        return service.otpTestService(data, otp);
+    }
+
 }
 
