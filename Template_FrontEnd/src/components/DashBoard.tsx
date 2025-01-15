@@ -328,14 +328,14 @@ function DashBoard() {
               <text x="50%" y="45%" fontSize="70px" textAnchor="middle" fill="black" fontFamily="Griffy">
                  Coming Soon .....! 
               </text>
-              <text x="50%" y="52%" fontSize="12px" textAnchor="middle" fill="black" fontFamily="Griffy">
-                The "Coming Soon" section provides a brief yet engaging overview of upcoming features, 
+              <text x="50%" y="52%" fontSize="12px" textAnchor="middle" fill="black" fontFamily="MomcakeBold">
+                The "Coming Soon" section provides a brief yet engaging overview of upcoming 
               </text>
-              <text x="50%" y="54%" fontSize="12px" textAnchor="middle" fill="black" fontFamily="Griffy">
-                 highlighting innovative enhancements designed to elevate user experience and meet evolving needs. 
+              <text x="50%" y="54%" fontSize="12px" textAnchor="middle" fill="black" fontFamily="MomcakeBold">
+                features, highlighting innovative enhancements designed to elevate user experience and meet 
               </text>
-              <text x="50%" y="56%" fontSize="12px" textAnchor="middle" fill="black" fontFamily="Griffy">
-                 It ensures users stay informed and excited about future developments. 
+              <text x="50%" y="56%" fontSize="12px" textAnchor="middle" fill="black" fontFamily="MomcakeBold">
+                evolving needs. It ensures users stay informed and excited about future developments. 
               </text>
             </svg>
             </motion.div>

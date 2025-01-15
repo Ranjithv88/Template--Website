@@ -21,7 +21,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login ( @Valid @RequestBody Login data) {
+    public ResponseEntity<?> loginApi ( @Valid @RequestBody Login data) {
         return service.login(data);
     }
 

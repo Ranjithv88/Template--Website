@@ -24,7 +24,7 @@ public class SecurityConfiguration {
     private AuthEntryPoint authenticationEntryPoint;
     private AuthenticationProvider authenticationProvider;
 
-    private final String[] guest = {"/login","/register","/test"};
+    private final String[] guest = {"/login", "/register", "/test", "/products/**"};
     private final String[] user = {"/user/**"};
     private final String[] admin = {"/admin/**"};
 

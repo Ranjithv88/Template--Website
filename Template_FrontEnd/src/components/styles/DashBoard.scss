@@ -98,6 +98,7 @@
                     box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
                 }
                 &:nth-child(2), &:nth-child(3) {
+                    transform: scaleY(0.96);
                     box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
                 }
                 &:nth-child(4) {
@@ -552,15 +553,16 @@
             font-size: 1.8vw;
         }
         p {
+            font-family: 'MomcakeThin';
             padding: 5px 0px;
-            font-size: 1.2vw;
+            font-size: 1.4vw;
             text-align: justify;
             width: 80vw;
         }
         a{
             color: rgba(255, 242, 230, 1);
             text-decoration: underline;
-            font-size: 1.3vw;
+            font-size: 1.5vw;
             &:hover {
                 color: rgba(86, 125, 176, 1);
             }

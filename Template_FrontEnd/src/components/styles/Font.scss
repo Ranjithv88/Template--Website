@@ -10,32 +10,40 @@
         display: grid;
         justify-content: center;
         align-items: center;
-        grid-template-columns: repeat(auto-fill, 16vw);
+        grid-template-columns: repeat(auto-fill, 20vw);
         gap: 15px;
         .Font01 {
-            background-color: rgba(242, 243, 247, 1);
+            mask-image: url('../../assets/images/product.png');
+            mask-size: cover;
+            mask-position: center bottom;
+            mask-repeat: no-repeat;
+            background-color: rgba(220, 237, 254, 1);
             border-radius: 8px 8px 0px 0px;
             cursor: pointer;
             &:hover {
-                filter: drop-shadow(2px 2px 20px rgba(0, 0, 0, 0.4));
+                div {
+                    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+                }
             }
             div {
-                height: 11vw;
-                width: 16vw;
+                height: 14vw;
+                width: 100%;
                 background-position: center center;
                 background-repeat: no-repeat;
                 background-size: cover;
                 border-radius: 8px;
+                transition: 0.4s;
             }
             h1{
                 font-family: 'blinkMacSystem-light';
                 font-size: 19px;
                 text-align: center;
                 font-weight: 400;
-                margin: 5px 0 5px 0;
+                margin: 1vw 0 1vw 0;
                 text-transform: lowercase;
                 color: rgba(0, 0, 0, 0.6);
                 cursor: pointer;
+                transition: 1s;
                 &:hover {
                     color: rgba(0, 0, 0, 1);
                 }

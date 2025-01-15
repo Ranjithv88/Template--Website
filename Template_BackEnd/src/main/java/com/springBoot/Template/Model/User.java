@@ -1,5 +1,6 @@
 package com.springBoot.Template.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.springBoot.Template.Annotations.BooleanToStringConverter;
 import com.springBoot.Template.Annotations.Decimal;
 import com.springBoot.Template.Model.Enum.Role;
@@ -64,6 +65,11 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    @JsonManagedReference
+    private Cart cart;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -11,7 +11,7 @@ import { MdEdit } from "react-icons/md"
 import { IoMdLogOut } from "react-icons/io"
 import { useCookies } from 'react-cookie'
 import axios from 'axios'
-import { setUserName, setAge, setEmail, setPhoneNumber } from '../redux/UserSlices'
+import { setUserName, setAge, setEmail, setPhoneNumber, setCart } from '../redux/UserSlices'
 import { FiAlertOctagon } from "react-icons/fi"
 import { CgCloseO } from "react-icons/cg"
 import { RiCloseCircleFill } from "react-icons/ri"
@@ -39,16 +39,22 @@ function NavigationBar() {
   const [isHovered, setIsHovered] = React.useState<boolean>(false)
   const [mousePosition, setMousePosition] = React.useState({ x: 500, y: 500 })
   const message = React.useRef<HTMLDivElement | null>(null)
-  const details:{name: string, price: number}[] = [{ name: 'muthu', price: 24 }, { name: 'selva', price: 22 }, { name: 'ranjith', price: 20 }]
+  // const details:{name: string, price: number}[] = [{ name: 'muthu', price: 24 }, { name: 'selva', price: 22 }, { name: 'ranjith', price: 20 }]
+  const cart = useAppSelector((state) => state.user.cart)
+  const [loadingProductId, setLoadingProductId] = React.useState<Number>(0)
+  const [imagePreview, setImagePreview] = React.useState<string>('null')
 
   // Search Focus Functions 
   React.useEffect(()=>search.current?.focus(),[menu])
 
   // Total Amount calculation Function
   React.useEffect(() => {
-    const total = details.reduce((sum, detail)=> sum+detail.price, 0)
-    setTotalAmount(total)
-  }, [details])
+    if (cart && Array.isArray(cart)) {
+      const total = cart.reduce((sum, cart) => sum + cart.price, 0)
+      setTotalAmount(total)
+    } else
+      setTotalAmount(0)
+  }, [cart])
 
   // Went Load page he Can trigger the loginUser Function
   React.useEffect(()=>{loginUser()}, [])
@@ -63,6 +69,7 @@ function NavigationBar() {
         appDispatch(setAge(response.data.age))
         appDispatch(setEmail(response.data.email))
         appDispatch(setPhoneNumber(response.data.phoneNumber))
+        appDispatch(setCart(response.data.cart.products))
         setUser(true)
         setProfilePic(false)
       }
@@ -97,7 +104,7 @@ function NavigationBar() {
           setMenu(true)
           setUser(false)
           setProfilePic(false)
-          appDispatch(setUserName(''), setAge(0), setEmail(''), setPhoneNumber(''))
+          appDispatch(setUserName(''), setAge(0), setEmail(''), setPhoneNumber(''), setCart([]))
           removeCookie('token', { path: '/'})
           setLogoutMessage(true)
           await sleep(14000)
@@ -108,7 +115,7 @@ function NavigationBar() {
         alert("Server is Not Working, please try again later....!")
         if(e.response.status != 409 && e.response.data != 'Token Is Already Exists......!')
           alert("Something went wrong, User is Already LogOut....!")
-      setUser(true)
+      setUser(true) 
       setProfilePic(false)
     }finally {
       setProcess(false)
@@ -123,7 +130,8 @@ function NavigationBar() {
     if (isHovered){
       document.addEventListener('mousemove', handleMouseMove)
       if (message.current) {
-        message.current.style.display = 'flex'
+        if(cart.length > 0)
+          message.current.style.display = 'flex'
       }
     }else {
       document.removeEventListener('mousemove', handleMouseMove)
@@ -133,6 +141,23 @@ function NavigationBar() {
       }
     return () => document.removeEventListener('mousemove', handleMouseMove)
   }, [isHovered])
+
+  // remove The Cart Item
+  const removeCartItem = async(productId: number) => {
+    setLoadingProductId(productId)
+    if(cookies.token!=undefined) {
+        try {
+            const response = await axios.delete('http://localhost:8888/user/deleteCart/'+userInformation+'/'+productId, {headers: {'Authorization': 'Bearer '+cookies.token}})
+            if(response.status === 200) {
+              await sleep(500)
+              appDispatch(setCart(response.data.products))
+            }
+        }catch (e: any) {
+            console.log(e)
+        }
+    }
+    setLoadingProductId(0)
+  }
 
   return (
     // Navigation Html Code 
@@ -204,17 +229,24 @@ function NavigationBar() {
               <div className='CheckOutTitleInner'><TbShoppingCartFilled className='CheckOutIcon'/><h1>Check Out</h1></div>
               <RiCloseCircleFill className='CheckOutClose Effect' onClick={()=>setCheckOut(false)}/>
             </div>
-            <div className='CheckOutInner' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
-              {details.map((data, index)=>(
-                  <div className='CheckOutOfProducts Effect'>
-                    <span>{index+1}.</span>
+            <div className='CheckOutInner'>
+              {cart && cart.length > 0 ? (
+                cart.map((data, index) => (
+                  <div className="CheckOutOfProducts Effect" key={data.id}  onMouseEnter={()=>{setIsHovered(true), setImagePreview(data.image)}} onMouseLeave={()=>setIsHovered(false)}>
+                    <span>{index + 1}.</span>
                     <h1>{data.name}</h1>
-                    <p><span>$ </span>{data.price}.00</p>
-                    <FaMinusCircle className='CheckOutOfProductsMinus'/>
+                    <p>
+                      <span>$ </span>
+                      {data.price}.00
+                    </p>
+                    <FaMinusCircle className="CheckOutOfProductsMinus" style={{animationName: loadingProductId === data.id?'removeProduct':'none'}} onClick={()=>removeCartItem(data.id)} />
                   </div>
-                ))}
+                )))
+              :
+                (<h4>No Items in the Cart.</h4>)
+              }
             </div>
-            <button className='Effect' type='button' onClick={()=>{setCheckOut(true),setCartList(false)}}>$ <span>{totalAmount}.00</span> Buy Now .....</button>
+            <button className='Effect' type='button' onClick={()=>{setCheckOut(true), setCartList(false)}}>$ <span>{totalAmount}.00</span> Buy Now .....</button>
             <div className='CheckoutPreview' ref={message} style={{top: mousePosition.y+'px', left: mousePosition.x+'px'}}>
               <img src={img} alt="Products Preview.....!" />
               <div className='ControlsForPreview'>
@@ -229,12 +261,18 @@ function NavigationBar() {
               <div className='cartListTitleInner'><TbShoppingCartFilled className='cartIcon'/><h1 style={{ transform: `rotate(${cartList?'0':'10'}deg)` }}>Cart</h1></div>
               <RiCloseCircleFill className='cartClose Effect' onClick={()=>setCartList(false)}/>
             </div>
-            {details.map((data, index)=>(
-              <div key={index} className='cartListOfProducts'>
-                <h1>{data.name}</h1>
-                <p><span>$ </span>{data.price}.00</p>
-              </div>
-            ))}
+            <div className='cartListOfProductsOuter'>
+              {cart && cart.length > 0 ? (
+                cart.map((data, index)=>(
+                  <div key={index} className='cartListOfProducts'>
+                    <h1>{data.name}</h1>
+                    <p><span>$ </span>{data.price}.00</p>
+                  </div>
+                )))
+              :
+                (<h4>No Items in the Cart.</h4>)
+              }
+            </div>
             <div className='CartCheckOut'><button className='Effect' type='button' onClick={()=>{setCheckOut(true),setCartList(false)}}>$ Check Out .....</button></div>
           </div>
       }

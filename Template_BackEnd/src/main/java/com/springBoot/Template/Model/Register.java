@@ -38,5 +38,7 @@ public class Register {
     @Size(min = 10,max = 10,message = " Phone Number is Invalid ......! ")
     private String phoneNumber;
 
+    private Cart cart;
+
 }
 

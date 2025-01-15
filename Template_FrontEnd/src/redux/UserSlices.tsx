@@ -5,13 +5,25 @@ interface UserState {
   age: number
   email: string
   phoneNumber: string
+  cart: CartItem[]
+}
+
+interface CartItem {
+  id: number
+  image: string
+  name: string
+  price: number
 }
 
 const initialState: UserState = {
   userName: '',
   age: 0,
   email: '',
-  phoneNumber: ''
+  phoneNumber: '',
+  cart: [{ id: 1,
+    image: "string",
+    name: "ranjith",
+    price: 20}]
 }
 
 export const userSlice = createSlice({
@@ -29,10 +41,13 @@ export const userSlice = createSlice({
     },
     setPhoneNumber: (state, action: PayloadAction<string>) => {
       state.phoneNumber = action.payload
+    },
+    setCart: (state, action: PayloadAction<CartItem[]>) => {
+      state.cart = action.payload
     }
   }
 })
 
-export const { setUserName, setAge, setEmail, setPhoneNumber } = userSlice.actions
+export const { setUserName, setAge, setEmail, setPhoneNumber, setCart } = userSlice.actions
 export default userSlice.reducer
 

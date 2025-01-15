@@ -26,7 +26,7 @@ public class UserService {
 
     public ResponseEntity<Map<String, Object>> getUserService (String userName) {
         User userDetails = repository.findByUserDetails(userName);
-        Map<String, Object> response = Map.of("userName", userDetails.getUsername(),"age", userDetails.getAge(),"email", userDetails.getEmail(),"phoneNumber", userDetails.getPhoneNumber(), "emailStatus", userDetails.isEmailStatus(), "phoneNumberStatus", userDetails.isPhoneNumberStatus());
+        Map<String, Object> response = Map.of("userName", userDetails.getUsername(),"age", userDetails.getAge(),"email", userDetails.getEmail(),"phoneNumber", userDetails.getPhoneNumber(), "emailStatus", userDetails.isEmailStatus(), "phoneNumberStatus", userDetails.isPhoneNumberStatus(), "cart", userDetails.getCart());
         return ResponseEntity.ok(response);
     }
 

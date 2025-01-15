@@ -1,10 +1,7 @@
 package com.springBoot.Template.Service;
 
+import com.springBoot.Template.Model.*;
 import com.springBoot.Template.Model.Enum.Role;
-import com.springBoot.Template.Model.LogOut;
-import com.springBoot.Template.Model.Login;
-import com.springBoot.Template.Model.Register;
-import com.springBoot.Template.Model.User;
 import com.springBoot.Template.Repository.LogoutRepository;
 import com.springBoot.Template.Repository.UserRepository;
 import com.springBoot.Template.Security.BlockedList;
@@ -34,25 +31,28 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final BlockedList blockedList;
 
-
     public ResponseEntity<String> register(Register data) {
         try {
             boolean userNameExist = userRepository.existsByUserName(data.getUserName());
             if (!userNameExist) {
-                    User newUser = User.builder()
+                Cart cart = Cart.builder()
                         .userName(data.getUserName())
-                        .password(passwordEncoder.encode(data.getPassword()))
-                        .age(data.getAge())
-                        .email(data.getEmail())
-                        .emailStatus(false)
-                        .phoneNumber(data.getPhoneNumber())
-                        .phoneNumberStatus(false)
-                        .createdOn(new Date(System.currentTimeMillis()))
-                        .modifyingDate(new Date(System.currentTimeMillis()))
-                        .role(Role.USER)
-                    .build();
-                    userRepository.save(newUser);
-                    return ResponseEntity.status(HttpStatus.CREATED).body("Registered Successfully...!");
+                        .build();
+                User newUser = User.builder()
+                    .userName(data.getUserName())
+                    .password(passwordEncoder.encode(data.getPassword()))
+                    .age(data.getAge())
+                    .email(data.getEmail())
+                    .emailStatus(false)
+                    .phoneNumber(data.getPhoneNumber())
+                    .phoneNumberStatus(false)
+                    .createdOn(new Date(System.currentTimeMillis()))
+                    .modifyingDate(new Date(System.currentTimeMillis()))
+                    .role(Role.USER)
+                    .cart(cart)
+                .build();
+                userRepository.save(newUser);
+                return ResponseEntity.status(HttpStatus.CREATED).body("Registered Successfully...!");
             }
             return ResponseEntity.status(HttpStatus.CONFLICT).body("That UserName is taken, Try another...!");
         }catch (Exception e){
