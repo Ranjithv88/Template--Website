@@ -563,6 +563,7 @@
             color: rgba(255, 242, 230, 1);
             text-decoration: underline;
             font-size: 1.5vw;
+            transition: 0.5s;
             &:hover {
                 color: rgba(86, 125, 176, 1);
             }
