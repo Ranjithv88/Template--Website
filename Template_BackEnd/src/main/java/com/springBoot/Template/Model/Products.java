@@ -22,6 +22,7 @@ public class Products {
     private long id;
 
     @NotBlank(message = " Image is Mandatory ......! ")
+    @Lob
     private String image;
 
     @Column(unique=true)

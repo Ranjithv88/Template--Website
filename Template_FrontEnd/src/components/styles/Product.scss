@@ -1,0 +1,175 @@
+
+/*------------- product Components Style -------------*/
+.Product {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(220, 220, 220, 1);
+    .productBook {
+        z-index: 3;
+        height: 90vh;
+        width: 90vw;
+        background-color: rgba(252, 245, 239, 1);
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .productFirstBook {
+            z-index: 3;
+            height: 90vh;
+            width: 45vw;
+            box-shadow: rgba(0, 0, 0, 0.4) -5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px,rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .productBackArrow {
+                height: 5vh;
+                width: 1.5vw;
+                clip-path: polygon(40% 0%,40% 35%,100% 20%,100% 80%,40% 65%,40% 100%,0% 50%);
+                background-color: rgba(0, 0, 0, 1);
+                position: absolute;
+                top: 7%;
+                left: 7%;
+                transform: translate(-7%, -7%);
+                z-index: 3;
+                transition: 1s;
+                cursor: pointer;
+                &:hover {
+                    clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+                }
+            }
+            .ProductImage {
+                height: 75vh;
+                width: 38vw;
+                background-color: rgba(255, 255, 255, 1);
+                border-radius: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+                transform: rotate(-2deg);
+                transition: 1s;
+            }
+        }
+        .waterMark {
+            z-index: 12;
+            height: 60vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5vw;
+            font-family: 'MANIFESTO';
+            text-align: center;
+            color: rgba(0, 0, 0, 0.2);
+        }
+        .productSecondBook {
+            z-index: 3;
+            height: 90vh;
+            width: 45vw;
+            box-shadow: rgba(0, 0, 0, 0.4) 5px 5px, rgba(0, 0, 0, 0.3) 10px 10px, rgba(0, 0, 0, 0.2) 15px 15px, rgba(0, 0, 0, 0.1) 20px 20px, rgba(0, 0, 0, 0.05) 25px 25px, rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+            padding: 20px;
+            h1{
+                font-size: 2.8vw;
+                font-family: 'skyer';
+                text-align: center;
+            }
+            .productContent {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px 0px;
+                .productPrice {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 20px;
+                    h2 {
+                        text-align: center;
+                        font-size: 2vw;
+                        font-family: 'MomcakeThin';
+                    }
+                    .buyNow {
+                        background-color: rgba(0, 0, 0, 1);
+                        border-radius: 5px;
+                        padding: 8px 15px;
+                        font-family: 'Devil';
+                        cursor: pointer;
+                        color: rgba(255, 255, 255, 1);
+                        font-size: 13px;
+                        border: 1.5px solid rgba(0, 0, 0, 1);
+                        transition: 1s;
+                        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+                        &:hover {
+                            background-color: rgba(255, 255, 255, 1);
+                            color: rgba(0, 0, 0, 1);
+                            letter-spacing: 2px;
+                            box-shadow: -2px -2px 0px rgba(0, 0, 0, 1), 5px 5px 0px rgba(0, 0, 0, 1);
+                        }
+                    }
+                    .ProductCart {
+                        background-color: rgba(0, 0, 0, 1);
+                        color: rgba(255, 255, 255, 1);
+                        clip-path: polygon(0% 11%,100% 27%,100% 81%,0% 91%);
+                        border-radius: 5px;
+                        padding: 8px 15px;
+                        font-family: 'Devil';
+                        cursor: pointer;
+                        transition: 1s;
+                        filter: drop-shadow(2px 2px 20px rgba(0, 0, 0, 0.8));
+                        &:hover {
+                            clip-path: polygon(0% 10%,100% 12%,100% 90%,0% 90%);
+                        }
+                    }
+                    .RemoveProductCart {
+                        border-radius: 5px;
+                        border: none;
+                        padding: 2px 8px;
+                        cursor: pointer;
+                        font-size: 22px;
+                        transition: 0.5s;
+                        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+                        background-color: rgba(28, 79, 72, 1);
+                        font-family: 'Devil';
+                        color: rgba(255, 255, 255, 1);
+                        &:hover {
+                            color: rgba(28, 79, 72, 1);
+                            background-color: rgba(255, 255, 255, 1);
+                        }
+                    }
+                    .ProductLiveDemo {
+                        background-color: rgba(0, 0, 0, 1);
+                        clip-path: polygon(0% 20%,100% 10%,100% 90%,0% 77%);
+                        color: rgba(255, 255, 255, 1);
+                        border-radius: 5px;
+                        padding: 8px 15px;
+                        font-family: 'Devil';
+                        cursor: pointer;
+                        font-size: 20px;
+                        transition: 1s;
+                        &:hover {
+                            clip-path: polygon(0% 10%,100% 12%,100% 90%,0% 90%);
+                        }
+                    }
+                }
+            }
+            .productDetails {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                text-align: center;
+                gap: 10px;
+                p {
+                    font-size: 15px;
+                    font-family: 'MomcakeThin';
+                }
+            }
+        }
+    }
+}    
+

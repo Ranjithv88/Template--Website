@@ -110,7 +110,6 @@ public class JwtUtils {
         Object roleClaims = extractClaims(Token).get("role");
         if(roleClaims instanceof List<?>){
             List<HashMap<String,String>> roles = (List<HashMap<String,String>>) roleClaims;
-            System.out.println(" Token Role is = "+roles);
             return roles.stream().map(x-> new SimpleGrantedAuthority(x.get("authority"))).collect(Collectors.toSet());
         }else {
             return List.of( new SimpleGrantedAuthority(null));

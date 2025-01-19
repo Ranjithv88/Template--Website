@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import { useAppSelector, useAppDispatch } from '../redux/Hooks'
 import { setCart } from '../redux/UserSlices'
+import { useNavigate } from 'react-router-dom'
 import { TbShoppingCartFilled } from "react-icons/tb"
 import { GoIssueClosed } from "react-icons/go"
 import img from '../assets/images/no-signal.jpg'
@@ -17,6 +18,8 @@ function Content() {
     const cart = useAppSelector((state) => state.user.cart)
     const appDispatch = useAppDispatch()
     const [loadingProductId, setLoadingProductId] = useState<Number>(0)
+    const navigate = useNavigate()
+    const [user, setUser] = useState<boolean>(false)
     
     interface Product {
         id: number
@@ -25,7 +28,24 @@ function Content() {
         price: number
     }
     
-    useEffect(()=>{getProduct()}, []) 
+    useEffect(()=>{
+        userValidation()
+        getProduct()
+    }, [userInformation]) 
+
+    async function userValidation() {
+        if(cookies.token!=undefined) {
+            try {
+                const response = await axios.get('http://localhost:8888/user', {headers: {'Authorization': 'Bearer '+cookies.token}})
+                response.status === 200 ? setUser(true) : setUser(false)
+            }catch (e: any) {
+                setUser(false)
+                console.log(e)
+            }
+        }else {
+            setUser(false)
+        }
+    }
 
     async function getProduct() {
         try {
@@ -72,11 +92,11 @@ function Content() {
             <div className='ContentOuter'>
                 {products.map(product =>(
                     <div className='Content01' key={product.id}>
-                        <img src={img} alt={product.name} />
+                        <img src={img} alt={product.name} onClick={()=>navigate('/Home/Template/'+product.name)}/>
                         <h2 className='ProductName'>{product.name}</h2>
                         <div className='ContentInner'>
                             <p><span className='productTag'>Price : </span><span>$ </span>{product.price}.00</p>
-                            {cart.some((item) => item.id === product.id) ? <button className='RemoveButton Effect' type='button' onClick={()=>removeCartItem(product.id)}><GoIssueClosed/> Cart <TbShoppingCartFilled/></button>:<button className='Effect' type='button' onClick={()=>addCart(product.id)} >{loadingProductId === product.id ? 'Please Wait ...' : 'Add to Cart'}</button>}
+                            {cart.some((item) => item.id === product.id) ? <button className='RemoveButton Effect' type='button' style={{ display: user?'block':'none' }} onClick={()=>removeCartItem(product.id)} ><GoIssueClosed/> Cart <TbShoppingCartFilled/></button>:<button className='Effect' type='button' style={{ display: user?'block':'none' }} onClick={()=>addCart(product.id)} >{loadingProductId === product.id ? 'Please Wait ...' : 'Add to Cart'}</button>}
                         </div>
                     </div>
                 ))}

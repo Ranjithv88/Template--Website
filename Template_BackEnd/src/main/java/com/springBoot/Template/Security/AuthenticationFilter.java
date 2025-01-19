@@ -38,11 +38,11 @@ public class  AuthenticationFilter extends OncePerRequestFilter {
         email = jwtUtils.extractEmail(jwt);
         if(email!=null&& SecurityContextHolder.getContext().getAuthentication()==null){
             UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-            logger.info( " Token Validation Status = " + jwtUtils.tokenValidation(jwt,userDetails));
             if(jwtUtils.tokenValidation(jwt,userDetails)){
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails,null,jwtUtils.extractRole(jwt));
                 token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(token);
+                logger.info("UserName : "+jwtUtils.extractEmail(jwt)+" Permission Graded ....!");
             }
         }
         filterChain.doFilter(request,response);

@@ -3,13 +3,14 @@ import './App.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Loading from './components/Loading'
 import NotFound from './components/404'
+import DashBoard from './components/DashBoard'
+import Product from './components/Product'
 const Login = React.lazy(() => import('./components/Login'))
 const Register = React.lazy(() => import('./components/Register'))
 const HomePage = React.lazy(() => import('./HomePage'))
 const FontPage = React.lazy(() => import('./FontPage'))
 const ColorCodePage = React.lazy(() => import('./ColorCodePage'))
 const ContactUs = React.lazy(() => import('./components/ContactUs'))
-import DashBoard from './components/DashBoard'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="*" element={<NotFound/>}/>
             <Route path="/ContactUs" element={<ContactUs/>}/>
             <Route path="/Home/DashBoard" element={<DashBoard/>}/>
+            <Route path="/Home/Template/:productName" element={<Product/>}/>
           </Routes>
         </Suspense>
       </BrowserRouter>
