@@ -11,7 +11,7 @@ import img from '../assets/images/no-signal.jpg'
 
 function Content() {
 
-    let temp01: Product[] = [{id : 1, image: img, name : 'preview', price: 0},{id : 2, image: img, name : 'preview', price: 0},{id : 3, image: img, name : 'preview', price: 0},{id : 4, image: img, name : 'preview', price: 0},{id : 5, image: img, name : 'preview', price: 0}, {id : 6, image: img, name : 'preview', price: 0}, {id : 7, image: img, name : 'preview', price: 0}, {id : 8, image: img, name : 'preview', price: 0}, {id : 9, image: img, name : 'preview', price: 0}, {id : 10, image: img, name : 'preview', price: 0}]
+    let temp01: Product[] = [{id : 1, image: '', name : 'preview', price: 0},{id : 2, image: '', name : 'preview', price: 0},{id : 3, image: '', name : 'preview', price: 0},{id : 4, image: '', name : 'preview', price: 0},{id : 5, image: '', name : 'preview', price: 0}, {id : 6, image: '', name : 'preview', price: 0}, {id : 7, image: '', name : 'preview', price: 0}, {id : 8, image: '', name : 'preview', price: 0}, {id : 9, image: '', name : 'preview', price: 0}, {id : 10, image: '', name : 'preview', price: 0}]
     const [products, setProducts] = useState<Product[]>([])
     const [cookies] = useCookies(['token'])
     const userInformation = useAppSelector((state) => state.user.userName)
@@ -92,7 +92,7 @@ function Content() {
             <div className='ContentOuter'>
                 {products.map(product =>(
                     <div className='Content01' key={product.id}>
-                        <img src={img} alt={product.name} onClick={()=>navigate('/Home/Template/'+product.name)}/>
+                        <img src={product.image?`data:image/jpeg;base64,${product.image}`:img} alt={product.name} onClick={()=>navigate('/Home/Template/'+product.name)}/>
                         <h2 className='ProductName'>{product.name}</h2>
                         <div className='ContentInner'>
                             <p><span className='productTag'>Price : </span><span>$ </span>{product.price}.00</p>

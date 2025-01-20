@@ -21,9 +21,10 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = " Image is Mandatory ......! ")
+    @NotNull(message = " Image is Mandatory ......! ")
     @Lob
-    private String image;
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] image;
 
     @Column(unique=true)
     @NotBlank(message = " Name is Mandatory ......! ")

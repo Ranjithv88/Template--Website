@@ -248,7 +248,7 @@ function NavigationBar() {
             </div>
             <button className='Effect' type='button' onClick={()=>{setCheckOut(true), setCartList(false)}}>$ <span>{totalAmount}.00</span> Buy Now .....</button>
             <div className='CheckoutPreview' ref={message} style={{top: mousePosition.y+'px', left: mousePosition.x+'px'}}>
-              <img src={img} alt="Products Preview.....!" />
+              <img src={imagePreview?`data:image/jpeg;base64,${imagePreview}`:img} alt="Products Preview.....!" />
               <div className='ControlsForPreview'>
                 <GiPowerButton className='CheckoutIcon'/><BsThreeDots className='CheckoutIcon'/>
               </div>
