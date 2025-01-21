@@ -20,7 +20,7 @@ function Login() {
   const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
   const [isHovered, setIsHovered] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 500, y: 500 })
-  const message = useRef<HTMLDivElement | null>(null)
+  const message = useRef<HTMLHeadingElement | null>(null)
   const [loginProcess, setLoginProcess] = React.useState<Boolean>(true)
 
   // button message on hover

@@ -53,8 +53,7 @@
                     justify-content: center;
                     align-items: center;
                     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-                    top: 50%;
-                    left: 50%;
+                    transition: 0.5s, rotate 1s;
                     img {
                         height: 95%;
                         width: 95%;
@@ -73,6 +72,7 @@
                 font-family: 'MANIFESTO';
                 text-align: center;
                 color: rgba(0, 0, 0, 0.2);
+                cursor: default;
             }
             .productSecondBook {
                 z-index: 3;
@@ -179,6 +179,73 @@
             }
         }
     }    
+    .ProductNotFound {
+        height: 75vh;
+        width: 100vw;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        img {
+            height: 15.5vw;
+            width: 15.5vw;
+            position: absolute;
+            z-index: 1;
+        }
+        .NotFoundMedia01 {
+            top: 24%;
+            left: 12%;
+            transform: translate(-12%, -24%);
+        }
+        .NotFoundMedia02 {
+            top: 97%;
+            left: 44%;
+            transform: translate(-44%, -97%);
+            border-radius: 50%;
+            animation: notFoundForProduct 8s linear infinite;
+            box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+            border: 1vw solid rgba(0, 0, 0, 1);
+        }
+        .NotFoundMedia03 {
+            top: 17%;
+            left: 85%;
+            transform: translate(-85%, -17%);
+        }
+        p {
+            width: 25vw;
+            font-family: 'MomcakeThin';
+            font-size: 1.5vw;
+            text-align: center;
+            background-color: rgba(199, 196, 183, 1);
+            padding: 1vw;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+            z-index: 2;
+        }
+        div {
+            width: 35vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-shadow: rgba(0, 0, 0, 0.5) 2.95px 2.95px 3.6px;
+            z-index: 2;
+            h1 {
+                font-family: 'MomcakeThin';
+                font-size: 10vw;
+                text-align: center;
+                span {
+                    font-family: 'blinkMacSystem-light';
+                    margin: 0px 4vw;
+                    display: inline-block;
+                    animation: rotateInfiniteForProduct 8s linear infinite;
+                }
+            }
+            h2 {
+                font-family: 'BrightMelody';
+                font-size: 5vw;
+                text-align: center;
+            }
+        }
+    }
     .anotherProducts {
         display: flex;
         justify-content: center;
@@ -187,11 +254,15 @@
             width: 90%;
             font-family: 'Devil';
             font-size: 4vw;
-            color: rgb(255, 255, 255);
+            color: rgba(255, 255, 255, 1);
             text-align: center;
             box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-            text-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
             letter-spacing: 0.2vw;
+            cursor: default;
+            transition: 1s;
+            &:hover {
+                text-shadow: rgba(0, 0, 0, 1) 2.95px 2.95px 3.6px;
+            }
         }
     }
     .ProductOuter {
@@ -202,6 +273,7 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        padding: 12px;
         .Content01 {
             display: flex;
             justify-content: center;
@@ -280,5 +352,48 @@
             }
         }
     }
+    .ProductNotFoundMessage {
+        display: none;
+        position: fixed;
+        font-family: cursive;
+        font-size: 1vw;
+        padding: 0.5vw 0.8vw;
+        background-color: rgba(255, 255, 255, 1);
+        z-index: 100;
+        pointer-events: none;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    }
 }
 
+/*------------- Animation For Product -------------*/
+@keyframes rotateInfiniteForProduct {
+    0% {
+        transform: rotateY(0deg);
+    }10% {
+        transform: rotateY(0deg);
+    }20% {
+        transform: rotateY(360deg);
+    }80% {
+        transform: rotateY(360deg);
+    }90% {
+        transform: rotateX(0deg);
+    }100% {
+        transform: rotateX(0deg);
+    }
+}
+@keyframes notFoundForProduct {
+    10% {
+        scale: 1;
+        rotate: 0;
+    }20% {
+        scale: 1.1;
+        rotate: 10deg;
+    }40% {
+        scale: 1.1;
+        rotate: 0;
+    }90% {
+        scale: 1;
+        rotate: 0;
+    }
+}

@@ -7,7 +7,7 @@ import { setCart } from '../redux/UserSlices'
 import { useNavigate } from 'react-router-dom'
 import { TbShoppingCartFilled } from "react-icons/tb"
 import { GoIssueClosed } from "react-icons/go"
-import img from '../assets/images/no-signal.jpg'
+import img from '../assets/images/no-signal.jpeg'
 
 function Content() {
 

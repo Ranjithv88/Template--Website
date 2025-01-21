@@ -22,7 +22,7 @@ public class ProductsServices {
 
     public ResponseEntity<Products> getOneProducts(String name) {
         Optional<Products> product = repository.findByName(name.substring(9, name.length()-2));
-        return product.isPresent() ? new ResponseEntity<>(product.get(), HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return product.map(p -> new ResponseEntity<>(p, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
 }

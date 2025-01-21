@@ -33,7 +33,7 @@ public class ProductsController {
 //    @PostMapping("/putProduct")
 //    public ResponseEntity<String> putProduct(@RequestParam("image") MultipartFile file) {
 //        try {
-//            Optional<Products> products = repository.findById(16L);
+//            Optional<Products> products = repository.findById(1L);
 //            products.get().setImage(file.getBytes());
 //            repository.save(products.get());
 //            return ResponseEntity.ok().body("success");

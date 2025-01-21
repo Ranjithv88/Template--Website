@@ -11,8 +11,10 @@ import { TbShoppingCartFilled } from "react-icons/tb"
 import { GoIssueClosed } from "react-icons/go"
 import NavigationBar from './NavigationBar'
 import Footer from './Footer'
-import { motion } from 'motion/react'
-import img from '../assets/images/no-signal.jpg'
+import img from '../assets/images/no-signal.jpeg'
+import NotFoundMedia01 from '../assets/media/404-NotFound-first.gif'
+import NotFoundMedia02 from '../assets/media/404-NotFound-second.gif'
+import NotFoundMedia03 from '../assets/media/404-NotFound-three.gif'
 
 function Product() {
 
@@ -21,11 +23,6 @@ function Product() {
     image: string
     name: string
     price: number
-  }
-
-  interface ImagePreviewState {
-    hidden: React.CSSProperties;
-    visible: React.CSSProperties;
   }
 
   const [product, setProduct] = React.useState<Product | null>(null)
@@ -42,11 +39,13 @@ function Product() {
   const [loadingProcessApi, setLoadingProcessApi] = React.useState<boolean>(false)
   const [serverOff, setServerOff] = React.useState<boolean>(false)
   const [loadingProductId, setLoadingProductId] = React.useState<Number>(0)
-  const [imageClickPreview, setImageClickPreview] = React.useState<ImagePreviewState>({hidden: {transform: 'rotate(0deg)'},visible: {transform: 'rotate(-3deg)'}})
+  const [imageClickPreview, setImageClickPreview] = React.useState<boolean>(false)
+  const [notFound, setNotFound] = React.useState<boolean>(true)
+  const [isHovered, setIsHovered] = React.useState<boolean>(false)
+  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
+  const message = React.useRef<HTMLHeadingElement | null>(null)
 
-  React.useEffect(() =>{
-    loadingProcess()
-  }, [productName])
+  React.useEffect(() =>{ setProcess(false), loadingProcess()},[productName])
 
   const loadingProcess = async() => {
     await loginUser()
@@ -56,36 +55,36 @@ function Product() {
     setProcess(false)
   }
 
-   const loginUser = async() => {
-      if(cookies.token!=undefined) {
-        const response = await getUserDetails()
-        if (response) {
-          appDispatch(setUserName(response.data.userName))
-          appDispatch(setAge(response.data.age))
-          appDispatch(setEmail(response.data.email))
-          appDispatch(setPhoneNumber(response.data.phoneNumber))
-          appDispatch(setCart(response.data.cart.products))
-          setUser(true)
-          return true
-        }
-        setUser(false)
-        return false
-      }else {
-        setUser(false)
-        console.log(" places Login ....! ")
-        return false
+  const loginUser = async() => {
+    if(cookies.token!=undefined) {
+      const response = await getUserDetails()
+      if (response) {
+        appDispatch(setUserName(response.data.userName))
+        appDispatch(setAge(response.data.age))
+        appDispatch(setEmail(response.data.email))
+        appDispatch(setPhoneNumber(response.data.phoneNumber))
+        appDispatch(setCart(response.data.cart.products))
+        setUser(true)
+        return true
       }
+      setUser(false)
+      return false
+    }else {
+      setUser(false)
+      console.log(" places Login ....! ")
+      return false
     }
+  }
 
-    const getUserDetails = async() => {
-      try {
-        let response = await axios.get('http://localhost:8888/user/getUserDetails', {headers: {'Authorization': 'Bearer '+cookies.token}})
-        return response
-      } catch (e: any) {
-        console.log(e)
-        return false
-      }
+  const getUserDetails = async() => {
+    try {
+      let response = await axios.get('http://localhost:8888/user/getUserDetails', {headers: {'Authorization': 'Bearer '+cookies.token}})
+      return response
+    } catch (e: any) {
+      console.log(e)
+      return false
     }
+  }
 
   async function getProduct() {
     try {
@@ -94,7 +93,7 @@ function Product() {
           setProduct(response.data)
           setProductIdSelect(response.data.id)
           setServerOff(false)
-          console.log(response.data)
+          setNotFound(true)
           return true
         }else {
           setServerOff(false)
@@ -104,11 +103,15 @@ function Product() {
     }catch (e: any) {
       if(e.message === "Network Error")
         setServerOff(true)
+      if(e.response.status === 404 && e.response.data === ''){
+        setNotFound(false)
+        return true
+      }
       setProduct(null)
       console.log(e)
       return false
     }
-}
+  }
 
   async function addCart(productId: number) {
     setLoadingProductId(productId)
@@ -147,7 +150,7 @@ function Product() {
     try {
         const response = await axios.get('http://localhost:8888/products/getProducts')
         if(response.status === 200){
-          setProducts(response.data.filter((data: Product) => data.id !== product?.id))
+          setProducts(response.data.filter((data: Product) => data.name !== productName))
           return true
         }else {
           setProducts([])
@@ -158,23 +161,41 @@ function Product() {
       console.log(e)
       return false
     }
-}
+  }
+
+   const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX+10, y: e.clientY+10 })
+    }
+    React.useEffect(() => {
+      if (isHovered){
+        document.addEventListener('mousemove', handleMouseMove)
+        if (message.current) {
+          message.current.style.display = 'block';
+        }
+      }else {
+        document.removeEventListener('mousemove', handleMouseMove)
+        if (message.current) {
+          message.current.style.display = 'none'
+        }
+        }
+      return () => document.removeEventListener('mousemove', handleMouseMove)
+    }, [isHovered])
 
   return (
     <>
       {process ?<div className='productOuter'>
         <NavigationBar />
         <div className='empty'/>
-        <div className='Product'>
+        {notFound?<div className='Product'>
           <div className='productBook'>
-            <div className="productFirstBook">
+            <div className="productFirstBook" style={{ width: imageClickPreview?'90vw':'45vw' }}>
               <div className="productBackArrow" onClick={()=>navigate('/')}/>
-              <motion.div className='ProductImage' variants={imageClickPreview} initial='imageClickPreview.hidden' whileInView={{transform: 'rotate(-3deg)', transition: { duration: 1, delay: 0.5 } }} viewport={{ amount: 0.6 }} style={{ position: imageClickPreview==?'fixed':'static' }} onClick={()=>setImageClickPreview(!imageClickPreview)}>
+              <div className="ProductImage" style={{ height: imageClickPreview?'90vh':'75vh', width: imageClickPreview?'90vw':'40vw', rotate: imageClickPreview?'2deg':'-3deg' }} onClick={()=>setImageClickPreview(!imageClickPreview)}>
                 <img src={product?.image ?`data:image/jpeg;base64,${product?.image}`:img} alt={product?.name} />
-              </motion.div>
+              </div>
             </div>
-            <div className='waterMark'>P<br/>O<br/>RTF<br/>O<br/>LI<br/>O</div>
-            <div className="productSecondBook">
+            <div className='waterMark' style={{ display: imageClickPreview?'none':'block' }}>P<br/>O<br/>RTF<br/>O<br/>LI<br/>O</div>
+            <div className="productSecondBook" style={{ display: imageClickPreview?'none':'block' }}>
               <h1>{product?.name}</h1>
               <div className='productContent'>
                 <div className='productPrice'>
@@ -191,23 +212,34 @@ function Product() {
               </div>
             </div>
           </div>
-        </div>
+        </div>:<div className='ProductNotFound' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
+          <img className='NotFoundMedia01' src={NotFoundMedia01} alt="404 Not Found .....!" />
+          <img className='NotFoundMedia02' src={NotFoundMedia02} alt="404 Not Found .....!" />
+          <img className='NotFoundMedia03' src={NotFoundMedia03} alt="404 Not Found .....!" />
+          <p>this error Show thw '404 Not found' Not Product in there WebSites to make sure to correctly Search or check Correct Product and check Correct Url</p>
+          <div>
+            <h1>4<span>°0°</span>4</h1>
+            <h2>Not Found</h2>
+          </div>
+          <p>A '404 Not Found' error means the requested resource isn't available. Verify API endpoints match frontend requests and are case-sensitive. Check static asset paths and ensure the server is running.</p>
+        </div>}
         <div className='empty'/>
-        <h1 className='anotherProducts'><h1>Another Products</h1></h1>
+        <div className='anotherProducts'><h1>Another Products</h1></div>
         <div className='empty'/>
         {products.length == 0?<></>:
         <div className='ProductOuter'>
-                {products.map(data =>(
-                    <div className='Content01' key={data.id}>
-                        <img src={data.image?`data:image/jpeg;base64,${data.image}`:img} alt={data.name} onClick={()=>{navigate('/Home/Template/'+data.name), setProcess(false)}}/>
-                        <h2 className='ProductName'>{data.name}</h2>
-                        <div className='ContentInner'>
-                            <p><span className='productTag'>Price : </span><span>$ </span>{data.price}.00</p>
-                            {cart.some((item) => item.id === data.id) ? <button className='RemoveButton Effect' type='button' style={{ display: user?'block':'none' }} onClick={()=>removeCartItem(data.id)} ><GoIssueClosed/> Cart <TbShoppingCartFilled/></button>:<button className='Effect' type='button' style={{ display: user?'block':'none' }} onClick={()=>addCart(data.id)} >{loadingProductId === data.id ? 'Please Wait ...' : 'Add to Cart'}</button>}
-                        </div>
-                    </div>
-                ))}
-            </div>}
+          {products.map(data =>(
+              <div className='Content01' key={data.id}>
+                  <img src={data.image?`data:image/jpeg;base64,${data.image}`:img} alt={data.name} onClick={()=>navigate('/Home/Template/'+data.name)}/>
+                  <h2 className='ProductName'>{data.name}</h2>
+                  <div className='ContentInner'>
+                      <p><span className='productTag'>Price : </span><span>$ </span>{data.price}.00</p>
+                      {cart.some((item) => item.id === data.id) ? <button className='RemoveButton Effect' type='button' style={{ display: user?'block':'none' }} onClick={()=>removeCartItem(data.id)} ><GoIssueClosed/> Cart <TbShoppingCartFilled/></button>:<button className='Effect' type='button' style={{ display: user?'block':'none' }} onClick={()=>addCart(data.id)} >{loadingProductId === data.id ? 'Please Wait ...' : 'Add to Cart'}</button>}
+                  </div>
+              </div>
+          ))}
+        </div>}
+        <h1 className='ProductNotFoundMessage' ref={message} style={{top: mousePosition.y+'px', left: mousePosition.x+'px'}}>Not Found</h1>
         <Footer /></div> : (serverOff?<NotFound />:<Loading />)
       }
     </>

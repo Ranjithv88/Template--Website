@@ -11,6 +11,7 @@ import { MdEdit } from "react-icons/md"
 import { IoMdLogOut } from "react-icons/io"
 import { useCookies } from 'react-cookie'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import { setUserName, setAge, setEmail, setPhoneNumber, setCart } from '../redux/UserSlices'
 import { FiAlertOctagon } from "react-icons/fi"
 import { CgCloseO } from "react-icons/cg"
@@ -18,13 +19,14 @@ import { RiCloseCircleFill } from "react-icons/ri"
 import { FaMinusCircle } from "react-icons/fa"
 import { GiPowerButton } from "react-icons/gi"
 import { BsThreeDots } from "react-icons/bs"
-import img from '../assets/images/no-signal.jpg'
+import img from '../assets/images/no-signal.jpeg'
 
 function NavigationBar() {
 
   // Variables Declaration 
   const [menu, setMenu] = React.useState<boolean>(true)
-  const search = React.useRef<HTMLInputElement | null>(null) 
+  const search = React.useRef<HTMLInputElement | null>(null)
+  const navigate = useNavigate()
   const [user, setUser] = React.useState<boolean>(false)
   const [profilePic, setProfilePic] = React.useState<boolean>(false)
   const [cookies, _, removeCookie] = useCookies(['token'])
@@ -39,7 +41,6 @@ function NavigationBar() {
   const [isHovered, setIsHovered] = React.useState<boolean>(false)
   const [mousePosition, setMousePosition] = React.useState({ x: 500, y: 500 })
   const message = React.useRef<HTMLDivElement | null>(null)
-  // const details:{name: string, price: number}[] = [{ name: 'muthu', price: 24 }, { name: 'selva', price: 22 }, { name: 'ranjith', price: 20 }]
   const cart = useAppSelector((state) => state.user.cart)
   const [loadingProductId, setLoadingProductId] = React.useState<Number>(0)
   const [imagePreview, setImagePreview] = React.useState<string>('null')
@@ -159,6 +160,21 @@ function NavigationBar() {
     setLoadingProductId(0)
   }
 
+  React.useEffect(() => {
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        event.preventDefault()
+        if (search.current?.value) {
+          console.log("Enter key pressed!")
+          navigate(`/Home/Template/${search.current.value}`)
+          setMenu(true)
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeydown)
+    return () =>window.removeEventListener('keydown', handleKeydown)
+  },[])
+
   return (
     // Navigation Html Code 
     <>
@@ -192,7 +208,7 @@ function NavigationBar() {
                 </div> 
                 <div className='menu02'>
                   <div className='menuSearch'>
-                    <input ref={search} type="text" placeholder='Search............!'/><CgSearch className='a'/>
+                    <input ref={search} type="text" placeholder='Search............!'/><CgSearch className='a' onClick={()=>{if (search.current?.value) {navigate(`/Home/Template/${search.current.value}`);setMenu(true);}}}/>
                   </div>
                 </div>
                 {user?

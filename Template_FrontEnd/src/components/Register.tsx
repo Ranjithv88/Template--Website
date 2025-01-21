@@ -19,7 +19,7 @@ function Register() {
     const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
     const [isHovered, setIsHovered] = React.useState(false)
     const [mousePosition, setMousePosition] = React.useState({ x: 500, y: 500 })
-    const message = React.useRef<HTMLDivElement | null>(null)
+    const message = React.useRef<HTMLHeadingElement | null>(null)
     const lightDiv = React.useRef<HTMLDivElement | null>(null)
     const [registerProcess, setRegisterProcess] = React.useState<Boolean>(true)
 
