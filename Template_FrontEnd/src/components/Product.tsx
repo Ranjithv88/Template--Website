@@ -163,23 +163,21 @@ function Product() {
     }
   }
 
-   const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX+10, y: e.clientY+10 })
-    }
-    React.useEffect(() => {
-      if (isHovered){
-        document.addEventListener('mousemove', handleMouseMove)
-        if (message.current) {
-          message.current.style.display = 'block';
-        }
-      }else {
-        document.removeEventListener('mousemove', handleMouseMove)
-        if (message.current) {
-          message.current.style.display = 'none'
-        }
-        }
-      return () => document.removeEventListener('mousemove', handleMouseMove)
-    }, [isHovered])
+  const handleMouseMove = (e: MouseEvent) => setMousePosition({ x: e.clientX+10, y: e.clientY+10 })
+  React.useEffect(() => {
+    if (isHovered){
+      document.addEventListener('mousemove', handleMouseMove)
+      if (message.current) {
+        message.current.style.display = 'block';
+      }
+    }else {
+      document.removeEventListener('mousemove', handleMouseMove)
+      if (message.current) {
+        message.current.style.display = 'none'
+      }
+      }
+    return () => document.removeEventListener('mousemove', handleMouseMove)
+  }, [isHovered])
 
   return (
     <>
