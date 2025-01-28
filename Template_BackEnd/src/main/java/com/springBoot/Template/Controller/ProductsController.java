@@ -23,24 +23,11 @@ import static org.springframework.web.servlet.function.RequestPredicates.content
 public class ProductsController {
 
     public final ProductsServices services;
-    private final ProductsRepository repository;
 
     @GetMapping("/getProducts")
     public ResponseEntity<List<Products>> getApiForProducts () {
         return services.getProducts();
     }
-
-//    @PostMapping("/putProduct")
-//    public ResponseEntity<String> putProduct(@RequestParam("image") MultipartFile file) {
-//        try {
-//            Optional<Products> products = repository.findById(1L);
-//            products.get().setImage(file.getBytes());
-//            repository.save(products.get());
-//            return ResponseEntity.ok().body("success");
-//        } catch (IOException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-//        }
-//    }
 
     @PostMapping("/getOneProduct")
     public ResponseEntity<Products> getOneProducts (@RequestBody String name) {
