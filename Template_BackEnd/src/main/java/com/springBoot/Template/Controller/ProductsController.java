@@ -26,7 +26,7 @@ public class ProductsController {
 
     @GetMapping("/getProducts")
     public ResponseEntity<List<Products>> getApiForProducts () {
-        return services.getProducts();
+        return services.getCachedProducts();
     }
 
     @PostMapping("/getOneProduct")

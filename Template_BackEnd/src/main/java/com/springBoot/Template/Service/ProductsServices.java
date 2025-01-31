@@ -4,18 +4,15 @@ import com.springBoot.Template.Model.Products;
 import com.springBoot.Template.Repository.ProductsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Log
@@ -25,14 +22,29 @@ public class ProductsServices {
 
     public final ProductsRepository repository;
 
-    public ResponseEntity<List<Products>> getProducts() {
+    @Cacheable(value = "Products", key = "#userName", unless = "#result == null", cacheManager = "cacheManager")
+    public List<Products> getProducts() {
         try {
             productsInsert();
         } catch (IOException e) {
             log.info(e.getMessage());
         }
         List<Products> products = repository.findAll();
-        return products.isEmpty() ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(products, HttpStatus.OK);
+        return products.isEmpty() ? Collections.emptyList() : products;
+    }
+
+    public ResponseEntity<List<Products>> getCachedProducts() {
+        List<Products> cachedProducts = getProducts();
+        if (cachedProducts.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(cachedProducts, HttpStatus.OK);
+        }
+    }
+
+    @Cacheable(value = "Products02")
+    public Optional<Products> getOneProducts01() {
+        return repository.findById(1L);
     }
 
     public ResponseEntity<Products> getOneProducts(String name) {
@@ -46,7 +58,7 @@ public class ProductsServices {
             Path path = Paths.get("../ProductsImages/download.jpg");
             List<Products> productsList = new ArrayList<>();
             for (char ch = 'A'; ch <= 'Z'; ch++) {
-                String productName = "Product " + ch;
+                String productName = "Product-" + ch;
                 int price = generateRandomOddNumber();
                 byte[] imageBytes = Files.readAllBytes(path);
                 productsList.add(Products.builder()

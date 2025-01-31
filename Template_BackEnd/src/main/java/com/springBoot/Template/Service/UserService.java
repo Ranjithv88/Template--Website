@@ -6,6 +6,7 @@ import com.springBoot.Template.Repository.UserRepository;
 import com.springBoot.Template.Security.OTPServices;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ public class UserService {
     private final UserRepository repository;
     public final OTPServices otpServices;
 
+//    @Cacheable(value = "Products", key = "#userName")
     public ResponseEntity<Map<String, Object>> getUserService (String userName) {
         User userDetails = repository.findByUserDetails(userName);
         Map<String, Object> response = Map.of("userName", userDetails.getUsername(),"age", userDetails.getAge(),"email", userDetails.getEmail(),"phoneNumber", userDetails.getPhoneNumber(), "emailStatus", userDetails.isEmailStatus(), "phoneNumberStatus", userDetails.isPhoneNumberStatus(), "cart", userDetails.getCart());
@@ -54,7 +56,7 @@ public class UserService {
                 String to = existingUser.getEmail();
                 try {
                     ProcessBuilder processBuilder = new ProcessBuilder("node", "sendEmail.js", to, otp);
-                    processBuilder.directory(new java.io.File("./src/main/java/com/springBoot/Template/javaScript"));
+                    processBuilder.directory(new java.io.File("./src/main/java/com/springBoot/Template/JavaScript"));
                     Process process = processBuilder.start();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     StringBuilder output = new StringBuilder();

@@ -68,13 +68,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Dependency for SCrypt  -->
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcprov-jdk15on</artifactId>
-			<version>1.70</version>
-		</dependency>
-
 		<!-- Dependency for Validation  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -112,6 +105,12 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<!-- Dependency for Redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 	</dependencies>
