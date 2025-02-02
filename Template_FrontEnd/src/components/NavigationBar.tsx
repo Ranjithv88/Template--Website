@@ -20,6 +20,7 @@ import { FaMinusCircle } from "react-icons/fa"
 import { GiPowerButton } from "react-icons/gi"
 import { BsThreeDots } from "react-icons/bs"
 import img from '../assets/images/no-signal.jpeg'
+import { div } from 'motion/react-client'
 
 function NavigationBar() {
 
@@ -44,6 +45,7 @@ function NavigationBar() {
   const cart = useAppSelector((state) => state.user.cart)
   const [loadingProductId, setLoadingProductId] = React.useState<Number>(0)
   const [imagePreview, setImagePreview] = React.useState<string>('null')
+  const [searchResult, setSearchResult] = React.useState<string[]>([])
 
   // Search Focus Functions 
   React.useEffect(()=>search.current?.focus(),[menu])
@@ -175,6 +177,21 @@ function NavigationBar() {
     return () =>window.removeEventListener('keydown', handleKeydown)
   },[])
 
+  const searchReclamations = async(e: any) => {
+    if(e.target.value.length != 0){
+      try {
+          const response = await axios.post('http://localhost:8888/products/search/'+e.target.value)
+          if(response.status === 200) {
+            setSearchResult(response.data)
+          }
+      }catch (e: any) {
+          console.log(e)
+      }
+    }else {
+      setSearchResult([])
+    }
+  }
+
   return (
     // Navigation Html Code 
     <>
@@ -208,7 +225,12 @@ function NavigationBar() {
                 </div> 
                 <div className='menu02'>
                   <div className='menuSearch'>
-                    <input ref={search} type="text" placeholder='Search............!'/><CgSearch className='a' onClick={()=>{if (search.current?.value) {navigate(`/Home/Template/${search.current.value}`);setMenu(true);}}}/>
+                    <input ref={search} type="text" placeholder='Search............!' onChange={searchReclamations}/><CgSearch className='a' onClick={()=>{if (search.current?.value) {navigate(`/Home/Template/${search.current.value}`);setMenu(true)}}}/>
+                  </div>
+                  <div className='searchSuggestions' style={{ height: searchResult.length===0?'1vh':'45vh' }}>
+                      {searchResult.map((search)=>(
+                        <Link to={`/Home/Template/${search}`}><li>{search}</li></Link>
+                      ))}
                   </div>
                 </div>
                 {user?

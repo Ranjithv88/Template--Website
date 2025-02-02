@@ -193,6 +193,11 @@ header {
             }
             .menu02 {
                 align-items: start;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 2vh;
                 .menuSearch {
                     background-color: rgba(255, 255, 255, 1);
                     padding: 10px;
@@ -209,6 +214,24 @@ header {
                     .a:hover {
                         cursor: pointer;
                         font-size: 20px;
+                    }
+                }
+                .searchSuggestions {
+                    transition: 1s;
+                    width: 25vw;
+                    display: block;
+                    overflow: auto;
+                    li{
+                        list-style: none;
+                        text-align: center;
+                        border-radius: 10px;
+                        padding: 10px 0px;
+                        font-size: 18px;
+                        font-family: 'MomcakeThin';
+                        transition: 0.8s;
+                        &:hover {
+                            background-color: rgba(255, 255, 255, 0.6);
+                        }
                     }
                 }
             }

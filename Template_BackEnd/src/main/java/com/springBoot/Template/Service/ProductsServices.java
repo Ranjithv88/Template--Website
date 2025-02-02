@@ -25,7 +25,7 @@ public class ProductsServices {
 
     public final ProductsRepository repository;
 
-    @Cacheable(value = "Products")
+//    @Cacheable(value = "Products")
     public List<Products> getProducts() {
         try {
             productsInsert();
@@ -45,18 +45,18 @@ public class ProductsServices {
         }
     }
 
-    @Cacheable(value = "product", key = "#name")
+//    @Cacheable(value = "product", key = "#name")
     public ResponseEntity<Products> getOneProducts(String name) {
         Optional<Products> product = repository.findByName(name.substring(9, name.length()-2));
         return product.map(p -> new ResponseEntity<>(p, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     public ResponseEntity<List<String>> SearchProducts(String searchName) {
-        List<Products> products = repository.findByNameStartingWith(searchName);
+        List<Products> products = repository.findByNameContainingIgnoreCase(searchName);
         return ResponseEntity.ok(products.stream().map(Products::getName).collect(Collectors.toList()));
     }
 
-    @CacheEvict(value = "products", allEntries = true)
+//    @CacheEvict(value = "products", allEntries = true)
     public void productsInsert() throws IOException {
         List<Products> products = repository.findAll();
         if(products.isEmpty()){
