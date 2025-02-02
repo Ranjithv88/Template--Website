@@ -6,6 +6,7 @@ import com.springBoot.Template.Repository.UserRepository;
 import com.springBoot.Template.Security.OTPServices;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -25,13 +26,14 @@ public class UserService {
     private final UserRepository repository;
     public final OTPServices otpServices;
 
-//    @Cacheable(value = "Products", key = "#userName")
+    @Cacheable(value = "user", key = "#userName")
     public ResponseEntity<Map<String, Object>> getUserService (String userName) {
         User userDetails = repository.findByUserDetails(userName);
         Map<String, Object> response = Map.of("userName", userDetails.getUsername(),"age", userDetails.getAge(),"email", userDetails.getEmail(),"phoneNumber", userDetails.getPhoneNumber(), "emailStatus", userDetails.isEmailStatus(), "phoneNumberStatus", userDetails.isPhoneNumberStatus(), "cart", userDetails.getCart());
         return ResponseEntity.ok(response);
     }
 
+    @CacheEvict(value = "user", key = "#updatedUser.getUserName()")
     public ResponseEntity<String> updateUserDetails ( UpdateUser updatedUser ) {
         Optional<User> userDetails = repository.findByUserName(updatedUser.getUserName());
         if (userDetails.isPresent()) {

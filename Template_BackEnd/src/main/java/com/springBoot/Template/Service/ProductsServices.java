@@ -4,6 +4,7 @@ import com.springBoot.Template.Model.Products;
 import com.springBoot.Template.Repository.ProductsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +13,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.PreparedStatement;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 @Log
 @Service
@@ -22,7 +25,7 @@ public class ProductsServices {
 
     public final ProductsRepository repository;
 
-    @Cacheable(value = "Products", key = "#userName", unless = "#result == null", cacheManager = "cacheManager")
+    @Cacheable(value = "Products")
     public List<Products> getProducts() {
         try {
             productsInsert();
@@ -42,16 +45,18 @@ public class ProductsServices {
         }
     }
 
-    @Cacheable(value = "Products02")
-    public Optional<Products> getOneProducts01() {
-        return repository.findById(1L);
-    }
-
+    @Cacheable(value = "product", key = "#name")
     public ResponseEntity<Products> getOneProducts(String name) {
         Optional<Products> product = repository.findByName(name.substring(9, name.length()-2));
         return product.map(p -> new ResponseEntity<>(p, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    public ResponseEntity<List<String>> SearchProducts(String searchName) {
+        List<Products> products = repository.findByNameStartingWith(searchName);
+        return ResponseEntity.ok(products.stream().map(Products::getName).collect(Collectors.toList()));
+    }
+
+    @CacheEvict(value = "products", allEntries = true)
     public void productsInsert() throws IOException {
         List<Products> products = repository.findAll();
         if(products.isEmpty()){

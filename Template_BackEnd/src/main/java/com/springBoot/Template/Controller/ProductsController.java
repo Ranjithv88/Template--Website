@@ -34,5 +34,10 @@ public class ProductsController {
         return services.getOneProducts(name);
     }
 
+    @PostMapping("/search/{searchName}")
+    public ResponseEntity<List<String>> postSearchProducts (@PathVariable String searchName) {
+        return services.SearchProducts(searchName);
+    }
+
 }
 
