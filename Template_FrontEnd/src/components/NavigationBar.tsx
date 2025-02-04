@@ -20,7 +20,7 @@ import { FaMinusCircle } from "react-icons/fa"
 import { GiPowerButton } from "react-icons/gi"
 import { BsThreeDots } from "react-icons/bs"
 import img from '../assets/images/no-signal.jpeg'
-import { div } from 'motion/react-client'
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
 
 function NavigationBar() {
 
@@ -46,6 +46,7 @@ function NavigationBar() {
   const [loadingProductId, setLoadingProductId] = React.useState<Number>(0)
   const [imagePreview, setImagePreview] = React.useState<string>('null')
   const [searchResult, setSearchResult] = React.useState<string[]>([])
+  const [searchLoading, setSearchLoading] = React.useState<boolean>(false)
 
   // Search Focus Functions 
   React.useEffect(()=>search.current?.focus(),[menu])
@@ -178,17 +179,21 @@ function NavigationBar() {
   },[])
 
   const searchReclamations = async(e: any) => {
+    setSearchLoading(true)
     if(e.target.value.length != 0){
       try {
           const response = await axios.post('http://localhost:8888/products/search/'+e.target.value)
           if(response.status === 200) {
             setSearchResult(response.data)
           }
+          setSearchLoading(false)
       }catch (e: any) {
           console.log(e)
+          setSearchLoading(false)
       }
     }else {
       setSearchResult([])
+      setSearchLoading(false)
     }
   }
 
@@ -225,7 +230,7 @@ function NavigationBar() {
                 </div> 
                 <div className='menu02'>
                   <div className='menuSearch'>
-                    <input ref={search} type="text" placeholder='Search............!' onChange={searchReclamations}/><CgSearch className='a' onClick={()=>{if (search.current?.value) {navigate(`/Home/Template/${search.current.value}`);setMenu(true)}}}/>
+                    <input ref={search} type="text" placeholder='Search............!' onChange={searchReclamations}/>{searchLoading?(<AiOutlineLoading3Quarters style={{ animation: 'rotateInfinite 1s linear infinite', cursor: 'not-allowed' }}/>):(<CgSearch className='a' onClick={()=>{if (search.current?.value) {navigate(`/Home/Template/${search.current.value}`);setMenu(true)}}}/>)}
                   </div>
                   <div className='searchSuggestions' style={{ height: searchResult.length===0?'1vh':'45vh' }}>
                       {searchResult.map((search)=>(
