@@ -4,23 +4,25 @@ This project is created using React.js. It is a dynamic website for a Tempalte e
 that backEnd to implament by a Aunthentication archive by spring Security there are three type of permision level guest, user and admin, optimazation used by Redis Server that is used manage the cache in there website and likey improve api call speed and otp services achive on backend that is use to verfied the email for user and then once cross check the data for backend that implament by spring validation.
 
 ### Sample ScreenShoot 
-###### Template E-Commerce WebSites Home Page <br>
+#### Template E-Commerce WebSites Home Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/Sample%20Home%20Page%20.png)
-###### Register Page <br>
+#### Register Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/Register%20Page%20.png)
-###### Login Page <br>
+#### Login Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/Login%20Page%20.png)
-###### sample user Home Page <br>
+#### sample user Home Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/Sample%20user%20Home%20Page%20.png)
-###### Search Option <br>
+#### Search Option <br>
+search recommendation that use to Archive The LIKE operator in MySQL is used to search for a specified pattern in a column. It is typically used with WHERE clauses to filter records based on patterns in string data.
 ![](https://github.com/user-attachments/assets/dc2dfc6f-2267-4742-88a7-71ad4e836701)
-###### Prduct Details Page <br>
+#### Prduct Details Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/Single%20Product%20Details%20Page%20.png)
-###### Font Face Page <br>
+#### Font Face Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/Font%20Face%20Page%20.png)
-###### Colour Code Page <br>
+#### Colour Code Page <br>
+that Mangifying class Option that use zoom the image , and onclick to active that option
 ![](https://github.com/Ranjithv88/Template--Website/blob/master/ScreenShot/color%20code%20page%20.png)
-###### About Page <br>
+#### About Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/About%20page%20.png)
 
 # About Me 
