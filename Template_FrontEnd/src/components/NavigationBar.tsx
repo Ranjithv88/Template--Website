@@ -199,12 +199,12 @@ function NavigationBar() {
 
   React.useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'c' || e.key === 'C') 
+      if (user && menu && e.key === 'c' || e.key === 'C') 
         setCheckOut(prevCheckOut => !prevCheckOut)
     }
     window.addEventListener('keydown', handleKeyPress)
     return () => window.removeEventListener('keydown', handleKeyPress)
-  }, [])
+  }, [user, menu])
 
   return (
     // Navigation Html Code 
