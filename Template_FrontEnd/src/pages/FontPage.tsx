@@ -1,6 +1,6 @@
-import NavigationBar from "./components/NavigationBar"
-import Font from "./components/Font"
-import Footer from "./components/Footer"
+import NavigationBar from "../components/NavigationBar"
+import Font from "../components/Font"
+import Footer from "../components/Footer"
 
 function FontPage() {
   return (

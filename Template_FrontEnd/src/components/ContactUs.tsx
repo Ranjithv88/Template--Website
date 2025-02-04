@@ -13,9 +13,9 @@ function ContactUs() {
         <div className="ContactDetailsBar">
             <div className="ContactDetails">
                 <h1>Contact us</h1>
-                <button className="CUGoogle" type="button"><GrGoogle className="CUA"/><span>Google</span></button>
+                <button className="CUGoogle" type="button" onClick={()=>window.open('mailto:ranjith.dev.00@gmail.com', '_blank')}><GrGoogle className="CUA"/><span>Google</span></button>
                 <button className="CUThread" type="button"><FaThreads className="CUA"/><span>Threads</span></button>
-                <button className="CUInstagram" type="button"><FaInstagram className="CUA"/><span>Instagram</span></button>
+                <button className="CUInstagram" type="button" onClick={()=>window.open('https://instagram.com/ranjith_kumar__v', '_blank')}><FaInstagram className="CUA"/><span>Instagram</span></button>
                 <button className="CUTwitter" type="button"><FaXTwitter className="CUA"/><span>X</span></button>
             </div>
             <div className="ContactDetailsBar01">

@@ -35,14 +35,14 @@ function Footer01() {
             </div>
             <div className="Foot03Three">
                 <div className="Foot03Three01">
-                    <GrGoogle className='a FGB'/>
+                    <GrGoogle className='a FGB' onClick={()=>window.open('mailto:ranjith.dev.00@gmail.com', '_blank')}/>
                     <FaThreads className='a FTB'/>
-                    <FaInstagram className='a FIB'/>
+                    <FaInstagram className='a FIB' onClick={()=>window.open('https://instagram.com/ranjith_kumar__v', '_blank')}/>
                 </div>
                 <div className="Foot03Three02 following">
-                    <a href="#" className='following FG'> Google</a>
+                    <a target='_Blank' href="mailto:ranjith.dev.00@gmail.com" className='following FG'> Google</a>
                     <a href="#" className='following FT'> Threads</a>
-                    <a href="#" className='following FI'> Instagram</a>
+                    <a target='_Blank' href="https://instagram.com/ranjith_kumar__v" className='following FI'> Instagram</a>
                 </div>
             </div>
         </div>

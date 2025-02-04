@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from 'react'
-import './HomePage.scss'
-import NavigationBar from './components/NavigationBar'
-import Home from './components/Home'
-import Content from './components/Content'
-import Footer from './components/Footer'
+import './styles/HomePage.scss'
+import NavigationBar from '../components/NavigationBar'
+import Home from '../components/Home'
+import Content from '../components/Content'
+import Footer from '../components/Footer'
 
 function HomePage() { 
 
