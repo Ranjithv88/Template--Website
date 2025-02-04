@@ -17,11 +17,15 @@ search recommendation that use to Archive The LIKE operator in MySQL is used to 
 ![](https://github.com/user-attachments/assets/dc2dfc6f-2267-4742-88a7-71ad4e836701)
 #### Prduct Details Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/Single%20Product%20Details%20Page%20.png)
+#### 404 Not Found Prduct Details Page <br>
+![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/404%20Not%20Found%20Product%20Details%20Page%20.png)
 #### Font Face Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/Font%20Face%20Page%20.png)
 #### Colour Code Page <br>
 that Mangifying class Option that use zoom the image , and onclick to active that option
 ![](https://github.com/Ranjithv88/Template--Website/blob/master/ScreenShot/color%20code%20page%20.png)
+#### 404 Not Found Page 
+![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/404%20Not%20Found%20Page%20.png)
 #### About Page <br>
 ![](https://raw.githubusercontent.com/Ranjithv88/Template--Website/refs/heads/master/ScreenShot/About%20page%20.png)
 
