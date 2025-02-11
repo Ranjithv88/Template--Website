@@ -10,13 +10,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// cart Service Class
 @Service
 @RequiredArgsConstructor
 public class CartServices {
 
+    // Repository Class Dependency
     private final CartRepository cartRepository;
     public final ProductsRepository productsRepository;
 
+    // Add cart Services Method
     public ResponseEntity<Cart> updateCart(String userName, Long productId) {
         Optional<Cart> cartDetails = cartRepository.findByUserName(userName);
         if(cartDetails.isPresent()){
@@ -38,6 +41,7 @@ public class CartServices {
             return ResponseEntity.status(409).build();
     }
 
+    // Remove cart Services Method
     public ResponseEntity<Cart> deleteCart(String userName, Long productId) {
         Optional<Cart> cartDetails = cartRepository.findByUserName(userName);
         if(cartDetails.isPresent()) {

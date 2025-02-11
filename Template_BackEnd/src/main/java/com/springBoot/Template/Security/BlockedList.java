@@ -5,17 +5,19 @@ import com.springBoot.Template.Repository.LogoutRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@RequiredArgsConstructor
+// BlockedList Token Class
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class BlockedList {
 
+    // Import Other Class Properties
     private final LogoutRepository repository;
     private final JwtUtils jwtUtils;
 
+    // Checked LogOut Token Validation Delete Automatically
     public void checked () {
         List<LogOut> data = repository.findAll();
         jwtUtils.init();

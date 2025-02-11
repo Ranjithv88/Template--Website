@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// Update User Details Model
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,6 +21,7 @@ public class UpdateUser {
     @Size(min = 2,message = " UserName Must Be Between 2 & 30 Characters .......! ",max = 40)
     private String userName;
 
+    // this is Age Column
     @Decimal
     private int age;
 

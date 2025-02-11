@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 import userSlice from "./UserSlices"
 
+// this is the Redux Store 
 export const store = configureStore({
     devTools: true,
     reducer: {

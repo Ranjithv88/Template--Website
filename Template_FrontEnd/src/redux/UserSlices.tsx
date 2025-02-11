@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+// user Data Interface Model
 interface UserState {
   userName: string
   age: number
@@ -8,6 +9,7 @@ interface UserState {
   cart: CartItem[]
 }
 
+// cart Data Interface Model
 interface CartItem {
   id: number
   image: string
@@ -15,6 +17,7 @@ interface CartItem {
   price: number
 }
 
+// InitialState for userDetails
 const initialState: UserState = {
   userName: '',
   age: 0,
@@ -26,6 +29,7 @@ const initialState: UserState = {
     price: 20}]
 }
 
+// this is Redux Action for userDetails
 export const userSlice = createSlice({
   name: 'userDetails',
   initialState,

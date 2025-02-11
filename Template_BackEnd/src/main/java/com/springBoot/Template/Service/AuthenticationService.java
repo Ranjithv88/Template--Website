@@ -20,10 +20,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Optional;
 
+// Authentication Service Class
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
 
+    // Repository Class Dependency
     private final UserRepository userRepository;
     private final LogoutRepository logoutRepository;
     private final  PasswordEncoder passwordEncoder;
@@ -31,6 +33,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final BlockedList blockedList;
 
+    // Register Services Method
     public ResponseEntity<String> register(Register data) {
         try {
             boolean userNameExist = userRepository.existsByUserName(data.getUserName());
@@ -60,6 +63,7 @@ public class AuthenticationService {
         }
     }
 
+    // Login Services Method
     public ResponseEntity<?> login(Login data) {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.getUserName(), data.getPassword()));
@@ -79,6 +83,7 @@ public class AuthenticationService {
         }
     }
 
+    // LogOut Services Method
     public ResponseEntity<String> logOut (String token) {
         blockedList.checked();
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();

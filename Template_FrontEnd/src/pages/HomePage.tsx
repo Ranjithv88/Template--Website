@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 
 function HomePage() { 
 
+  // this is mouse Following div for variables 
   var mouse = { x: 0, y: 0 }
   var circle = { x: 0, y: 0 }
   var scale = 1
@@ -15,6 +16,7 @@ function HomePage() {
   var backgroundColor: string = 'rgba(0, 0, 0, 0.2)'
   const speed = 0.17
  
+  // add the Div Effects 
   const handleMouseMove = (e: MouseEvent) => {
     mouse.x = e.x
     mouse.y = e.y
@@ -51,9 +53,9 @@ function HomePage() {
     }
   }
  
+  // Add Event Listener for mousemove this is used to following mouse 
   useEffect(() => {
     window.addEventListener('mousemove', handleMouseMove)
- 
     const tick = () => {
       circle.x += (mouse.x - circle.x) * speed
       circle.y += (mouse.y - circle.y) * speed
@@ -70,6 +72,7 @@ function HomePage() {
   },[])
 
   return (
+    // HomePage HTMl tags 
     <div className='Home'>
         <div className='circle' ref={circleElement}>{message?(<></>):(<h1>View More</h1>)}</div>
         <NavigationBar/>

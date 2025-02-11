@@ -1,4 +1,8 @@
-const nodemailer = require('nodemailer');
+// This JavaScript Program Send The GMail
+
+// import the nodemailer
+const nodemailer = require('nodemailer')
+// set the Properties for Gmail Sending
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     port: 465,
@@ -7,8 +11,8 @@ const transporter = nodemailer.createTransport({
         user: 'ranjithkumar22445588@gmail.com',
         pass: 'vfoivtmatfjgzsrv'
     }
-});
-
+})
+// Send the Gmail Function
 const mailOptions = {
     from: 'portfolio.com',
     to: process.argv[2],
@@ -23,12 +27,11 @@ const mailOptions = {
           `- If you did not request this, please ignore this email or contact support immediately.\n\n` +
           `Thank you,\n` +
           `Your Service Team`
-};
-
+}
+// Check GMail Send Or Not If GMail is Not Send This Show the Message on Log
 transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
+    if(error)
         return console.error('Error:', error);
-    }
     console.log('Email sent:', info.response);
-});
+})
 

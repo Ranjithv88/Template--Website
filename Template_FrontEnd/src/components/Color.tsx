@@ -8,6 +8,7 @@ function Color() {
   // Variables Declaration
   const [zoom, setZoom] = React.useState({ x: 0, y: 0 })
   const [zoomButton, setZoomButton] = React.useState<boolean>(false)
+  const imageZoomElements = document.querySelectorAll('.image-zoom')
 
   // Zoom the Image Function
   React.useEffect(() => {
@@ -19,8 +20,7 @@ function Color() {
       setZoom({ x: pointer.x, y: pointer.y })
     }
 
-    const imageZoomElements = document.querySelectorAll('.image-zoom')
-
+    // zoom Image Function trigger the function
     imageZoomElements.forEach((imageZoom) => {
       const imageZoomElement = imageZoom as HTMLDivElement
       const handleMouseMoveBound = (event: MouseEvent) => handleMouseMove(event, imageZoomElement)
@@ -33,6 +33,7 @@ function Color() {
 
   return (
     <>
+       {/* ColorCode Page Html tags */}
       <div className="empty" />
       <div className="ColorCodeOuter">
         <div className="ColorCodeInner">
@@ -43,6 +44,7 @@ function Color() {
           ))}
         </div>
       </div>
+      {/* magnifying glass Button tag */}
       <button className="magnifying" type="button" onClick={()=>setZoomButton(!zoomButton)} style={{ backgroundColor: `${zoomButton==true?'rgba(255, 255, 255, 1)':'rgba(0, 0, 0, 1)'}`, color: `${zoomButton==true?'rgba(0, 0, 0, 1)':'rgba(255, 255, 255, 1)'}` }}><PiMagnifyingGlassFill/>Magnifying<br/>Glass</button>
     </>
   )

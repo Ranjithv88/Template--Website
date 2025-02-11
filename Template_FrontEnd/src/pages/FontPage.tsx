@@ -5,9 +5,10 @@ import Footer from "../components/Footer"
 function FontPage() {
   return (
     <>
-        <NavigationBar/>
-        <Font/>
-        <Footer/>
+      {/* FontPage HTML tags */}
+      <NavigationBar/>
+      <Font/>
+      <Footer/>
     </>
   )
 }

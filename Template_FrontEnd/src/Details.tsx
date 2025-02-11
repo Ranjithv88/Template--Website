@@ -405,6 +405,7 @@ export const fonts: Font[] = [
   }
 ]
 
+// this is Color code Page data
 export const colors: color[] = [
   {
     key: 71,

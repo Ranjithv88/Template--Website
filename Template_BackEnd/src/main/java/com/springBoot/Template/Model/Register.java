@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// Register Model
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,6 +26,7 @@ public class Register {
     @Size(min = 8,message = " Too Weak .......! ")
     private String password;
 
+    // this is Age Column
     @Decimal
     private int age;
 

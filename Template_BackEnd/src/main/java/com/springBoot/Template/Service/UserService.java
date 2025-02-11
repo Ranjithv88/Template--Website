@@ -18,22 +18,26 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
+// User Service Class
 @Log
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
+    // Repository Class Dependency
     private final UserRepository repository;
     public final OTPServices otpServices;
 
-//    @Cacheable(value = "user", key = "#userName")
+    // Get User Details Services Method And Save the Redis Server
+    //@Cacheable(value = "user", key = "#userName")
     public ResponseEntity<Map<String, Object>> getUserService (String userName) {
         User userDetails = repository.findByUserDetails(userName);
         Map<String, Object> response = Map.of("userName", userDetails.getUsername(),"age", userDetails.getAge(),"email", userDetails.getEmail(),"phoneNumber", userDetails.getPhoneNumber(), "emailStatus", userDetails.isEmailStatus(), "phoneNumberStatus", userDetails.isPhoneNumberStatus(), "cart", userDetails.getCart());
         return ResponseEntity.ok(response);
     }
 
-//    @CacheEvict(value = "user", key = "#updatedUser.getUserName()")
+    // Update User Details Services Method And Remove the Redis Server
+    // @CacheEvict(value = "user", key = "#updatedUser.getUserName()")
     public ResponseEntity<String> updateUserDetails ( UpdateUser updatedUser ) {
         Optional<User> userDetails = repository.findByUserName(updatedUser.getUserName());
         if (userDetails.isPresent()) {
@@ -49,6 +53,7 @@ public class UserService {
         }
     }
 
+    // Send the OTP TO Gmail Method
     public ResponseEntity<String> otpService (String data) {
         Optional<User> userDetails = repository.findByUserName(data);
         if (userDetails.isPresent()) {
@@ -57,15 +62,18 @@ public class UserService {
                 String otp = otpServices.generateOTP(data);
                 String to = existingUser.getEmail();
                 try {
+                    //Run The JavaScript Code For Cmd
                     ProcessBuilder processBuilder = new ProcessBuilder("node", "sendEmail.js", to, otp);
                     processBuilder.directory(new java.io.File("./src/main/java/com/springBoot/Template/JavaScript"));
                     Process process = processBuilder.start();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     StringBuilder output = new StringBuilder();
                     String line;
+                    // Result Save
                     while ((line = reader.readLine()) != null) {
                         output.append(line).append("\n");
                     }
+                    // Save The Error
                     BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
                     while ((line = errorReader.readLine()) != null) {
                         output.append("ERROR: ").append(line).append("\n");
@@ -88,6 +96,7 @@ public class UserService {
             return new ResponseEntity<>("User Not Found ....!",HttpStatusCode.valueOf(409));
     }
 
+    // Check the OTP
     public ResponseEntity<String> otpTestService(String data, String otp) {
         Optional<User> userDetails = repository.findByUserName(data);
         if(userDetails.isPresent()) {

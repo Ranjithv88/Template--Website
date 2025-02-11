@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- maven Spring Boot Project Configuration for Portfolio Website -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<!-- Project Details -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -12,7 +14,7 @@
 	<artifactId>Template</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Template</name>
-	<description> This Project Online Template sell WebSite BackEnd using Spring FrameWork. </description>
+	<description> This Project Online Portfolio sell WebSite BackEnd using Spring FrameWork. </description>
 	<url/>
 	<licenses>
 		<license/>
@@ -26,10 +28,12 @@
 		<tag/>
 		<url/>
 	</scm>
+	<!-- Java Version (23) -->
 	<properties>
 		<java.version>23</java.version>
 	</properties>
 
+	<!-- dependencies for project -->
 	<dependencies>
 
 		<!-- Dependency for Spring Data JPA -->
@@ -115,6 +119,7 @@
 
 	</dependencies>
 
+	<!-- Build Configuration -->
 	<build>
 		<plugins>
 			<plugin>

@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Collection;
 import java.util.List;
 
+// User Madel For User Table
 @Entity
 @Data
 @NoArgsConstructor
@@ -48,7 +49,8 @@ public class User implements UserDetails {
     @NotBlank(message = " Email is Mandatory ......! ")
     @Email(message = " Email is Invalid .......! ")
     private String email;
- 
+
+    // this for Email Number Status Stored as a Boolean value
     @Convert(converter = BooleanToStringConverter.class)
     private boolean emailStatus;
 
@@ -56,6 +58,7 @@ public class User implements UserDetails {
     @Size(min = 10,max = 10,message = " Phone Number is Invalid ......! ")
     private String phoneNumber;
 
+    // this for Phone Number Status Stored as a Boolean value
     @Convert(converter = BooleanToStringConverter.class)
     private boolean phoneNumberStatus;
 
@@ -63,14 +66,17 @@ public class User implements UserDetails {
 
     private Date modifyingDate;
 
+    // this is Role for Enum Stored as a String
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    // OneToOne RelationShip For User to Cart
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     @JsonManagedReference
     private Cart cart;
 
+    // Implement Method for User Details
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

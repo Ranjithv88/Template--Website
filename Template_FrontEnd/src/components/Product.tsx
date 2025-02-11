@@ -1,16 +1,16 @@
 import React from 'react'
 import './styles/Product.scss'
-import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { setUserName, setAge, setEmail, setPhoneNumber, setCart } from '../redux/UserSlices'
-import { useAppSelector, useAppDispatch } from '../redux/Hooks'
 import { useCookies } from 'react-cookie'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useAppSelector, useAppDispatch } from '../redux/Hooks'
+import { setUserName, setAge, setEmail, setPhoneNumber, setCart } from '../redux/UserSlices'
+import NavigationBar from './NavigationBar'
 import Loading from './Loading'
 import NotFound from './404'
+import Footer from './Footer'
 import { TbShoppingCartFilled } from "react-icons/tb"
 import { GoIssueClosed } from "react-icons/go"
-import NavigationBar from './NavigationBar'
-import Footer from './Footer'
 import img from '../assets/images/no-signal.jpeg'
 import NotFoundMedia01 from '../assets/media/404-NotFound-first.gif'
 import NotFoundMedia02 from '../assets/media/404-NotFound-second.gif'
@@ -18,6 +18,7 @@ import NotFoundMedia03 from '../assets/media/404-NotFound-three.gif'
 
 function Product() {
 
+  // Product Interface Model 
   interface Product {
     id: number
     image: string
@@ -25,6 +26,7 @@ function Product() {
     price: number
   }
 
+  // Product Details variable and Hooks 
   const [product, setProduct] = React.useState<Product | null>(null)
   const [productIdSelect, setProductIdSelect] = React.useState<number>(0)
   const [products, setProducts] = React.useState<Product[]>([])
@@ -45,8 +47,10 @@ function Product() {
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
   const message = React.useRef<HTMLHeadingElement | null>(null)
 
-  React.useEffect(() =>{ setProcess(false), loadingProcess()},[productName])
+  // useEffect trigger OnLoading
+  React.useEffect(() =>{setProcess(false), loadingProcess()},[productName])
 
+  // This for Loading Process 
   const loadingProcess = async() => {
     await loginUser()
     if(await getProduct() && await getAllProduct())
@@ -55,6 +59,7 @@ function Product() {
     setProcess(false)
   }
 
+  // this is for Login user
   const loginUser = async() => {
     if(cookies.token!=undefined) {
       const response = await getUserDetails()
@@ -76,6 +81,7 @@ function Product() {
     }
   }
 
+  // Get Login User Details 
   const getUserDetails = async() => {
     try {
       let response = await axios.get('http://localhost:8888/user/getUserDetails', {headers: {'Authorization': 'Bearer '+cookies.token}})
@@ -86,6 +92,7 @@ function Product() {
     }
   }
 
+  // Get the Product Details 
   async function getProduct() {
     try {
         const response = await axios.post('http://localhost:8888/products/getOneProduct', {name: productName})
@@ -113,6 +120,7 @@ function Product() {
     }
   }
 
+   // Add Cart Product Function
   async function addCart(productId: number) {
     setLoadingProductId(productId)
     setLoadingProcessApi(true)
@@ -129,6 +137,7 @@ function Product() {
     setLoadingProductId(0)
   }
 
+   // Remove Cart Product Function 
   const removeCartItem = async(productId: number) => {
     setLoadingProductId(productId)
     setLoadingProcessApi(true)
@@ -146,6 +155,7 @@ function Product() {
     setLoadingProductId(0)
   }
 
+  // get All Product From DataBase 
   async function getAllProduct() {
     try {
         const response = await axios.get('http://localhost:8888/products/getProducts')
@@ -163,6 +173,7 @@ function Product() {
     }
   }
 
+  // Product Not Found Message in Mouse Following Track Function 
   const handleMouseMove = (e: MouseEvent) => setMousePosition({ x: e.clientX+10, y: e.clientY+10 })
   React.useEffect(() => {
     if (isHovered){
@@ -180,10 +191,13 @@ function Product() {
   }, [isHovered])
 
   return (
+    // Product Details Page HTML Tags  
     <>
       {process ?<div className='productOuter'>
+        {/* NavigationBar Component */}
         <NavigationBar />
         <div className='empty'/>
+        {/* Single Product Details HTML Tags */}
         {notFound?<div className='Product'>
           <div className='productBook'>
             <div className="productFirstBook" style={{ width: imageClickPreview?'90vw':'45vw' }}>
@@ -210,7 +224,10 @@ function Product() {
               </div>
             </div>
           </div>
-        </div>:<div className='ProductNotFound' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
+        </div>
+        :
+        // Product Not Found HTMl Tags 
+        <div className='ProductNotFound' onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
           <img className='NotFoundMedia01' src={NotFoundMedia01} alt="404 Not Found .....!" />
           <img className='NotFoundMedia02' src={NotFoundMedia02} alt="404 Not Found .....!" />
           <img className='NotFoundMedia03' src={NotFoundMedia03} alt="404 Not Found .....!" />
@@ -222,6 +239,7 @@ function Product() {
           <p>A '404 Not Found' error means the requested resource isn't available. Verify API endpoints match frontend requests and are case-sensitive. Check static asset paths and ensure the server is running.</p>
         </div>}
         <div className='empty'/>
+        {/* Balances products Display Tags */}
         <div className='anotherProducts'><h1>Another Products</h1></div>
         <div className='empty'/>
         {products.length == 0?<></>:
@@ -237,8 +255,13 @@ function Product() {
               </div>
           ))}
         </div>}
+        {/* Product Not Found Message Tag */}
         <h1 className='ProductNotFoundMessage' ref={message} style={{top: mousePosition.y+'px', left: mousePosition.x+'px'}}>Not Found</h1>
-        <Footer /></div> : (serverOff?<NotFound />:<Loading />)
+        {/* Footer Component */}
+        <Footer /></div> 
+        :
+        // {/* Below Condition True Show the NotFound Component Otherwise that show Loading Component */}
+        (serverOff?<NotFound />:<Loading />)
       }
     </>
   )

@@ -19,21 +19,25 @@ import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Service
+// JwtUtils Class for Tokens
 @Slf4j
+@Service
 public class JwtUtils {
 
+    // secretKey value get By Application properties
     @Value("${spring.jwt.token.key}")
     private String secretKey;
 
+    // encryptKey value get By Application properties
     @Value("${spring.encrypt.key}")
     private String encryptKey;
 
+    // Import the Encrypt Method Properties
     private SecretKeySpec secretKeySpec;
-
     private static final String ALGORITHM = "AES";
     private static final String CHARSET = "UTF-8";
 
+    // Check the LogOut table Tokens Expired or Not
     public Boolean block (String token) {
         try {
             init();
@@ -49,10 +53,12 @@ public class JwtUtils {
         }
     }
 
+    // Initialize the encryptKey Method
     public void init() {
         this.secretKeySpec = new SecretKeySpec(encryptKey.getBytes(), ALGORITHM);
     }
 
+    // Encrypt Tokens
     public String encrypt(String data) throws Exception {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
@@ -60,6 +66,7 @@ public class JwtUtils {
         return Base64.getEncoder().encodeToString(encrypted);
     }
 
+    // Decrypt Tokens
     public String decrypt(String encryptedData) throws Exception {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
@@ -67,6 +74,7 @@ public class JwtUtils {
         return new String(decrypted, CHARSET);
     }
 
+    // Generate Token Method
     public String generateToken (Map<String,Object> claims, User user) {
         claims.put("userName",user.getUsername());
         claims.put("role",user.getAuthorities());
@@ -86,11 +94,13 @@ public class JwtUtils {
         return encryptToken;
     }
 
+    // Initialize the Signature Method
     public Key key () {
         byte[] KeyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(KeyBytes);
     }
 
+    // Extract the Token Body Data
     public Claims extractClaims (String decryptToken) {
         String token = null;
         try{
@@ -102,10 +112,12 @@ public class JwtUtils {
         return Jwts.parser().setSigningKey(key()).build().parseClaimsJws(token).getBody();
     }
 
+    // Extract Email For Token
     public String extractEmail (String token) {
         return extractClaims(token).get("userName").toString();
     }
 
+    // Extract Role For Token
     public Collection<? extends GrantedAuthority> extractRole (String Token){
         Object roleClaims = extractClaims(Token).get("role");
         if(roleClaims instanceof List<?>){
@@ -116,14 +128,17 @@ public class JwtUtils {
         }
     }
 
+    // Extract Expiration  For Token
     public Date extractExpiration (String token) {
         return extractClaims(token).getExpiration();
     }
 
+    // validate Expiration For Token
     public Boolean validateExpiration (String token) {
         return extractExpiration(token).before(new Date());
     }
 
+    // Check the Token validation
     public Boolean tokenValidation (String token, UserDetails userDetails) {
         final String username = extractEmail(token);
         return (username.equals(userDetails.getUsername())) && !validateExpiration(token);

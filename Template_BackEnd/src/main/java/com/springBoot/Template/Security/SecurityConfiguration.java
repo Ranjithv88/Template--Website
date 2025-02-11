@@ -15,28 +15,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// Security Filter Chain For Spring Security
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
 public class SecurityConfiguration {
 
+    // Import Other Class
     private AuthenticationFilter authenticationFilter;
     private AuthEntryPoint authenticationEntryPoint;
     private AuthenticationProvider authenticationProvider;
 
+    // Set Paths For Array
     private final String[] guest = {"/login", "/register", "/test", "/products/**"};
     private final String[] user = {"/user/**"};
     private final String[] admin = {"/admin/**"};
 
+    // Security Filter Chain Method to Filter the Request
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 
+        // Initialize And Declaration developerPaths As a ArrayList
         List<String> developerPaths = new ArrayList<>();
         developerPaths.addAll(Arrays.asList(guest));
         developerPaths.addAll(Arrays.asList(user));
         developerPaths.addAll(Arrays.asList(admin));
         String[] developer = developerPaths.toArray(new String[0]);
 
+        // Check Request for Authentications
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception->exception.authenticationEntryPoint(authenticationEntryPoint))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -49,7 +55,6 @@ public class SecurityConfiguration {
         httpSecurity.authenticationProvider(authenticationProvider);
         httpSecurity.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
-
     }
 
 }

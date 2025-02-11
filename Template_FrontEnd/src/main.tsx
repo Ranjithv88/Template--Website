@@ -4,6 +4,7 @@ import App from './App.tsx'
 import store from './redux/Store.tsx'
 import { Provider } from 'react-redux'
 
+// this is main Property for React 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>

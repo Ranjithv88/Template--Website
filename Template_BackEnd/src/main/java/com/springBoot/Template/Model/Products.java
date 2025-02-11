@@ -3,12 +3,10 @@ package com.springBoot.Template.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import java.util.*;
 
+// products Model for Table
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,6 +19,7 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    // this is Image Column
     @NotNull(message = " Image is Mandatory ......! ")
     @Lob
     @Column(columnDefinition = "LONGBLOB")
@@ -37,6 +36,7 @@ public class Products {
 
     private Date updateOn;
 
+    // ManyToMany For cart to Products
     @ManyToMany(mappedBy = "products",  cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<Cart> carts = new LinkedList<>();

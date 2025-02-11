@@ -5,6 +5,7 @@ import Footer from "../components/Footer"
 
 function ColorCodePage() {
   return (
+    // ColorCodePage Html tags 
     <div className="ColorCodePage" >
         <NavigationBar/>
         <Color/>

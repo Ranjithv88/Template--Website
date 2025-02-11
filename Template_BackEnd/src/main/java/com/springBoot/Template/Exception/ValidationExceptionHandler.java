@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
+// Validation Exception Handler Class
 @RestControllerAdvice
 public class ValidationExceptionHandler {
 
+    // This Method is Catch Validation Error and Send Only Messages
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {

@@ -1,13 +1,11 @@
 package com.springBoot.Template.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
+// LogOut Model
 @Entity
 @Data
 @NoArgsConstructor

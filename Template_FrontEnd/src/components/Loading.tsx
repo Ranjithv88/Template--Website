@@ -3,6 +3,7 @@ import media from '../assets/media/Loading_bg.mp4'
 
 function Loading() {
   return (
+    // Loading Component HTML Tags 
     <div className='Loading'>
        <video className="media" autoPlay muted loop>
         <source src={media} type="video/mp4"/>
@@ -10,6 +11,7 @@ function Loading() {
       <div className='LoadingOuter'>
         <div className='LoadingInner'></div>
       </div>
+      {/* Loading Messages Tags */}
       <ul>
         <li>L</li>
         <li>o</li>

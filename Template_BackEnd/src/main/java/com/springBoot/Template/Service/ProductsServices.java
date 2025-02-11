@@ -13,19 +13,21 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.PreparedStatement;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
+// Products Service Class
 @Log
 @Service
 @RequiredArgsConstructor
 public class ProductsServices {
 
+    // Repository Class Dependency
     public final ProductsRepository repository;
 
-//    @Cacheable(value = "Products")
+    // Get Products Services Method
+    //@Cacheable(value = "Products")
     public List<Products> getProducts() {
         try {
             productsInsert();
@@ -36,6 +38,7 @@ public class ProductsServices {
         return products.isEmpty() ? Collections.emptyList() : products;
     }
 
+    // Get Products Services Method And Save the Redis Server
     public ResponseEntity<List<Products>> getCachedProducts() {
         List<Products> cachedProducts = getProducts();
         if (cachedProducts.isEmpty()) {
@@ -45,18 +48,21 @@ public class ProductsServices {
         }
     }
 
-//    @Cacheable(value = "product", key = "#name")
+    // Get One Products Services Method And Save the Redis Server
+    // @Cacheable(value = "product", key = "#name")
     public ResponseEntity<Products> getOneProducts(String name) {
         Optional<Products> product = repository.findByName(name.substring(9, name.length()-2));
         return product.map(p -> new ResponseEntity<>(p, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    // Search Products Services Method
     public ResponseEntity<List<String>> SearchProducts(String searchName) {
         List<Products> products = repository.findByNameContainingIgnoreCase(searchName);
         return ResponseEntity.ok(products.stream().map(Products::getName).collect(Collectors.toList()));
     }
 
-//    @CacheEvict(value = "products", allEntries = true)
+    // If Products Table is Empty that Method Insert Data For Table And Remove The Redis Server
+    //@CacheEvict(value = "products", allEntries = true)
     public void productsInsert() throws IOException {
         List<Products> products = repository.findAll();
         if(products.isEmpty()){
@@ -79,6 +85,7 @@ public class ProductsServices {
         }
     }
 
+    // Generate Random Prices Number for Products Prices Method
     private int generateRandomOddNumber() {
         int price = ThreadLocalRandom.current().nextInt(1, 101);
         return price % 2 == 0 ? price + 1 : price;

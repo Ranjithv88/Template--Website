@@ -5,7 +5,7 @@ import axios from 'axios'
 import Loading from './Loading'
 import { useCookies } from 'react-cookie'
 import {FcGoogle} from "react-icons/fc"
-import {FaFacebook,FaXTwitter} from "react-icons/fa6"
+import {FaFacebook, FaXTwitter} from "react-icons/fa6"
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs"
 
 function Login() {

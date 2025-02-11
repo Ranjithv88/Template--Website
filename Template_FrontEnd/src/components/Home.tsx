@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom'
 
 function Home() {
 
-    // Hooks declaration 
+    // Home Component Variables and Hooks 
     const navigate = useNavigate()
     const [mousePosition, setMousePosition] = React.useState({ x: 500, y: 500 })
     const [isHovered, setIsHovered] = React.useState(false)
     const message = React.useRef<HTMLDivElement | null>(null)
 
-    // button message on hover
+    // Button Message on Hover
     const handleMouseMove = (e: MouseEvent) => {
         setMousePosition({ x: e.clientX+10, y: e.clientY+10 })
     }
@@ -29,8 +29,8 @@ function Home() {
           return () => document.removeEventListener('mousemove', handleMouseMove)
     }, [isHovered])
         
-
   return (
+    // Home Component HTML Tags 
     <>
         <div className='empty'/>
         <main className="HMainOuter">
@@ -49,6 +49,7 @@ function Home() {
             </main>
         </main>
         <div className='empty'/>
+        {/* Button Message on Hover in HTML Tag */}
         <h1 className='click' ref={message} style={{top: mousePosition.y+'px', left: mousePosition.x+'px'}}>Click</h1>
     </>
   )

@@ -14,17 +14,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
 
+// OncePerRequestFilter For AuthenticationFilter In Spring Boot
 @Configuration
 @RequiredArgsConstructor
-public class  AuthenticationFilter extends OncePerRequestFilter {
+public class AuthenticationFilter extends OncePerRequestFilter {
 
+    // Import Other Class Properties
     private final UserDetailsService userDetailsService;
     private final JwtUtils jwtUtils;
     private final LogoutRepository repository;
 
+    // this method Process the filter and process the Authorization
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         final String authentication = request.getHeader("Authorization");

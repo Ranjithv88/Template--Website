@@ -9,12 +9,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
+// UserDetailsService for Spring Security
 @Configuration
 @RequiredArgsConstructor
 public class UserDetailsServiceConfiguration implements UserDetailsService {
 
+    // Repository Class Dependency
     private final UserRepository repository;
 
+    // Check UserName For DataBase For Spring Security
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {

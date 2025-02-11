@@ -6,18 +6,22 @@ import { FaRegWindowClose } from "react-icons/fa"
 
 function Font() {
 
+  // Font Object interface Model 
   interface FontPreview {
     image: string
     name: string
   }
   
+  // Font Variables and Hooks 
   const [preview, setPreview] = React.useState<FontPreview>({ image: '', name: '' })
   const [previewToggle, setPreviewToggle] = React.useState<boolean>(false)
 
   return (
+    // Font Page Main Content 
     <>
         <div className='empty'/>
         <main className='FontOuter'>
+          {/* Font Display Tags  */}
           <main className='Font'>
               {fonts.map(font =>(
                   <motion.div key={font.key} className='Font01'
@@ -32,6 +36,7 @@ function Font() {
               ))}
           </main>
         </main>
+        {/* Font Details Tags */}
         <div className='FontDetails' style={{ display: previewToggle?'flex':'none' }}>
           <div style={{ backgroundImage: `url(${preview.image})` }} />
             <h1><span>Font Name : </span>{preview.name}</h1>
