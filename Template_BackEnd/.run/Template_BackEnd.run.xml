@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Template" type="Application" factoryName="Application">
+  <configuration default="false" name="Template_BackEnd" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="com.springBoot.Template.TemplateApplication" />
     <module name="Template" />
     <method v="2">
